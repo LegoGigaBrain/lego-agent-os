@@ -1,85 +1,130 @@
 # Context Files Standard (CLAUDE Files)
 
-We use `CLAUDE.*` files to give Claude Code structured, layered context.
+We use `CLAUDE.*` files and core project docs to give Claude Code structured, layered context.
 
 ---
 
 ## 1. Types of context files
 
-- **Root OS file:**
-  - `CLAUDE.base.md`
-  - Defines global LEGO OS rules, standards, and behaviours.
+### Global OS file
 
-- **Project-level file:**
-  - e.g., `CLAUDE.project.md` or `CLAUDE.vlossom.md`
-  - Describes the specific project:
-    - mission
-    - domain concepts
-    - key constraints
-    - links to roadmap/plan/docs.
+- `CLAUDE.base.md`
+- Defines global LEGO OS rules, standards, and agent behaviours.
 
-- **Folder-level files:**
-  - `path/to/folder/CLAUDE.md`
-  - Describe:
-    - purpose of that folder
-    - key files
-    - local conventions
-    - how this folder relates to the rest of the project.
+### Project-level file
 
----
+- `CLAUDE.project.md` (or project-specific equivalent)
+- Describes:
+  - project mission at a high level
+  - domain concepts
+  - key constraints
+  - links to core project docs:
+    - `docs/project/mission.md`
+    - `docs/project/roadmap.md`
+    - `docs/project/tech-stack.md`
+    - `docs/project/changelog.md`
 
-## 2. Goals
+### Folder-level files
 
-- Avoid overloading root `CLAUDE.base.md` with project-specific details.
-- Keep context **local** and **discoverable**:
-  - when working in `contracts/`, read `contracts/CLAUDE.md`.
-  - when working in `apps/web/`, read `apps/web/CLAUDE.md`.
-
----
-
-## 3. Suggested Content for Folder-level `CLAUDE.md`
-
-Each folder’s `CLAUDE.md` should briefly cover:
-
-1. **Purpose**
-   - What lives in this folder?
-   - What problem does it solve?
-
-2. **Key Files**
-   - Pointers to main entrypoints or important modules.
-
-3. **Local Conventions**
-   - Naming patterns, architectural patterns, tech choices.
-
-4. **Dependencies**
-   - Which other folders or services this code depends on.
-
-5. **Gotchas / Notes**
-   - Any special constraints, legacy quirks, or things to be careful about.
-
-Keep it short and link to deeper docs when necessary.
+- `path/to/folder/CLAUDE.md`
+- Describe:
+  - purpose of that folder
+  - key files and entrypoints
+  - local conventions and patterns
+  - how this folder relates to the rest of the project
+  - any gotchas
 
 ---
 
-## 4. Procedural Reading Order for Project Context
+## 2. Core Project Docs (Generated from Product Templates)
 
-When performing work in a project, agents should aim to read:
+We treat these as the canonical “project brain” documents:
 
-1. Root OS context:
+- `docs/project/mission.md`
+  - Generated/updated from `product-templates/mission.template.md`
+  - Captures:
+    - product mission
+    - target users
+    - value proposition
+    - differentiation
+    - long-term vision
+
+- `docs/project/roadmap.md`
+  - Generated/updated from `product-templates/roadmap.template.md`
+  - Captures:
+    - current stage
+    - near / mid / long-term priorities
+    - phased milestones
+
+- `docs/project/tech-stack.md`
+  - Generated/updated from `product-templates/tech-stack.template.md`
+  - Captures:
+    - frontend stack
+    - backend stack
+    - smart contract / web3 stack (if any)
+    - infra & DevOps
+
+- `docs/project/changelog.md`
+  - Generated/bootstrapped from `product-templates/changelog.template.md`
+  - Then maintained over time to track meaningful changes.
+
+These docs are created/updated via the `/product-plan` workflow, not edited manually from scratch.
+
+---
+
+## 3. Procedural Reading Order for Project Context
+
+When performing work in a project, agents should read context in this order:
+
+1. **Global OS context**
    - `CLAUDE.base.md`
 
-2. Project context:
-   - `CLAUDE.project.md` (or equivalent)
+2. **Project context**
+   - `CLAUDE.project.md`
 
-3. Project meta-docs (if they exist):
-   - `docs/project/plan.md`
+3. **Project docs (product-level)**
+   - `docs/project/mission.md`
    - `docs/project/roadmap.md`
+   - `docs/project/tech-stack.md`
    - `docs/project/changelog.md`
 
-4. Local folder context:
+4. **Local folder context**
    - `path/to/folder/CLAUDE.md`
 
-5. Relevant specs:
-   - under `docs/specs/` or `specs/`
+5. **Feature specs**
+   - Under `docs/specs/<feature>/`:
+     - `feature-spec.md`
+     - `tasks-breakdown.md`
+     - `verification-checklist.md`
+   - These are generated/updated via `/spec-and-plan` using `spec-templates/*.template.md`.
 
-This creates a **stacked, layered view** from global → project → local → feature.
+6. **Code**
+
+This creates a stacked, layered view from global → project → folder → feature → code.
+
+---
+
+## 4. When to add a folder-level `CLAUDE.md`
+
+Add `CLAUDE.md` to a folder when:
+
+- It contains domain logic or important abstractions.
+- It has reusable code or multiple submodules.
+- It uses local conventions that differ from the rest of the repo.
+- It’s easy to misunderstand without explanation.
+
+Keep folder-level context short and link to deeper docs where needed.
+
+---
+
+## 5. Context Maintenance
+
+- Use `/product-plan` to create and evolve `docs/project/*` docs.
+- Use `/spec-and-plan` to create and evolve feature specs.
+- Use `/context-sync` (via `context-steward`) to:
+  - detect missing or obviously stale context
+  - suggest or trigger the above workflows
+  - keep root `CLAUDE.base.md` lean by moving project-specific details into:
+    - `CLAUDE.project.md`
+    - `docs/project/*`
+    - folder-level `CLAUDE.md`.

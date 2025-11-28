@@ -105,11 +105,15 @@ These mirror the commands but in human-readable form.
 
 ## `docs/` — Project Documentation (including LEGO OS docs)
 
-- `/project/plan.md`  
-- `/project/roadmap.md`  
-- `/project/changelog.md`  
-- `/lego-os/*` → this handbook  
-- `/specs/*` → feature specifications  
+## `docs/` — Project Documentation (including LEGO OS docs)
+
+- `docs/project/mission.md`      ← from mission.template.md  
+- `docs/project/roadmap.md`      ← from roadmap.template.md  
+- `docs/project/tech-stack.md`   ← from tech-stack.template.md  
+- `docs/project/changelog.md`    ← from changelog.template.md  
+
+- `docs/lego-os/` → this OS handbook  
+- `docs/specs/`   → feature specifications (from spec-templates)  
 
 ---
 

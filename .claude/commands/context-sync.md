@@ -3,88 +3,112 @@
 You are running the **Context Sync** workflow.
 
 Goal:
-Ensure LEGO OS context files (CLAUDE.* and project meta-docs) are present, clean, and properly layered.
+Ensure LEGO OS context files and project meta-docs are present, clean, layered, and aligned with templates.
 
 Primary Agent:
 - @context-steward
 
 Supporting Agents:
-- @docs-writer (for richer docs if needed)
-- @senior-architect (for high-level project structure)
+- @docs-writer (for richer docs)
+- @senior-architect (for high-level structure)
 
 ---
 
-## Steps
-
-### 1. Clarify Scope
+## STEP 1 – Clarify Scope
 
 Ask the user:
-- Which project or root folder to operate on?
+- Which root folder or project to operate on?
 - Any folders to ignore?
 - Whether this is:
   - a dry run (report only), or
   - allowed to create/update files.
 
-Summarize in your own words.
+Summarize scope.
 
 ---
 
-### 2. Scan Repo Structure
+## STEP 2 – Scan Repo Structure
 
-Using `Glob` and/or `Grep`:
-- list top-level and key sub-folders (e.g., `apps/`, `packages/`, `contracts/`, `services/`, `docs/`)
-- detect existing:
+Using Glob/Grep, detect:
+
+- Global context:
   - `CLAUDE.base.md`
   - `CLAUDE.project.md`
-  - folder-level `CLAUDE.md`
-  - project docs: `docs/project/plan.md`, `roadmap.md`, `changelog.md`
+
+- Project docs:
+  - `docs/project/mission.md`
+  - `docs/project/roadmap.md`
+  - `docs/project/tech-stack.md`
+  - `docs/project/changelog.md`
+
+- Folder-level context:
+  - `**/CLAUDE.md` (excluding base/project)
+
+- Feature specs under:
+  - `docs/specs/<feature>/`
+
+And note which product/spec templates exist:
+- `product-templates/*.template.md`
+- `spec-templates/*.template.md`
 
 ---
 
-### 3. Identify Gaps & Problems
+## STEP 3 – Identify Gaps & Problems
 
 Look for:
-- Missing `CLAUDE.md` in important folders
-- Very large `CLAUDE.md` that might be better split or moved into `docs/`
-- Missing project meta-docs:
-  - `docs/project/plan.md`
-  - `docs/project/roadmap.md`
-  - `docs/project/changelog.md`
+- Missing project docs (mission/roadmap/tech-stack/changelog)
+- Code/features with no corresponding spec docs
+- Missing `CLAUDE.md` in key folders
+- Oversized or obviously outdated context files
 
 Prepare a short report:
+- Summary
 - Strengths
 - Primary concerns
 
 ---
 
-### 4. Propose Context Plan
+## STEP 4 – Propose Actions
 
-For each issue, propose:
-- New `CLAUDE.md` to create (path + quick outline)
-- Existing `CLAUDE.*` to be trimmed or refactored
-- New project docs to draft (and where)
+For each gap:
 
-Ask user for confirmation before making large changes.
+- For missing project docs:
+  - Propose running `/product-plan` to generate them from product-templates.
 
----
+- For missing feature docs:
+  - Propose running `/spec-and-plan` for each detected feature.
 
-### 5. Apply Changes (If Approved)
+- For missing folder-level `CLAUDE.md`:
+  - Propose generating them using the Context Files Standard.
 
-- Generate new `CLAUDE.md` files using Context Files Standard.
-- Optionally:
-  - create stub project docs (using `/write-docs` as a mental model)
-  - move long narrative out of CLAUDE files into `docs/`.
+Ask for user confirmation before making changes.
 
 ---
 
-### 6. Final Report
+## STEP 5 – Apply Changes (If Approved)
+
+With user approval:
+
+- Run the equivalent of `/product-plan` to create/update:
+  - `docs/project/mission.md`
+  - `docs/project/roadmap.md`
+  - `docs/project/tech-stack.md`
+  - `docs/project/changelog.md`
+
+- Run the equivalent of `/spec-and-plan` for missing feature specs.
+
+- Create/update folder-level `CLAUDE.md` files.
+
+---
+
+## STEP 6 – Final Report
 
 Use Review Structure to output:
 
 1. Summary  
 2. Strengths (where context is already good)  
-3. Primary Concerns (remaining gaps)  
-4. Detailed Findings (folder by folder)  
+3. Primary Concerns  
+4. Detailed Findings (by category: project docs, specs, CLAUDE files)  
 5. Recommendations  
 6. Next Actions  
 7. Reviewer Confidence  

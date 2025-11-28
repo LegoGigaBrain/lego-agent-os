@@ -1,69 +1,98 @@
 # Context Files (CLAUDE Files)
 
-CLAUDE files are structured context documents that give agents layered understanding of your project.
+CLAUDE files and core project docs give agents a layered understanding of your project.
 
 ---
 
 ## Purpose
 
-- Avoid context overload  
-- Keep global OS rules separate from project rules  
-- Maintain folder-level clarity  
-- Make onboarding easy  
-- Ensure agents always read context in the correct order  
+- Avoid context overload.
+- Keep global OS rules separate from project rules.
+- Maintain folder-level clarity.
+- Make onboarding easy.
+- Ensure agents read context in the correct order.
 
 ---
 
-## Types of Context Files
+## Types of Context
 
 ### 1. Global OS Context
+
 `CLAUDE.base.md`  
 Defines:
-- OS rules  
-- agent behaviour  
-- global standards  
-- review philosophy  
+- OS rules
+- agent behaviour
+- global standards
+- review philosophy
 
 ---
 
 ### 2. Project Context
+
 `CLAUDE.project.md`  
 Defines:
-- project mission  
-- constraints  
-- vocabulary  
-- key components  
-- links to roadmap, plan, changelog  
+- project mission at a high level
+- domain vocabulary
+- constraints
+- pointers to core project docs:
+  - `docs/project/mission.md`
+  - `docs/project/roadmap.md`
+  - `docs/project/tech-stack.md`
+  - `docs/project/changelog.md`
 
 ---
 
 ### 3. Folder-Level Context
+
 `path/to/folder/CLAUDE.md`  
 Defines:
-- purpose of that folder  
-- key files  
-- local conventions  
-- dependencies (imports, services)  
-- things to be careful about  
+- purpose of that folder
+- key files & entrypoints
+- local conventions
+- dependencies (imports, services)
+- footguns / gotchas
 
-Short, precise, linked to deeper docs.
+Short, precise, and linked to deeper docs.
 
 ---
 
-### 4. Project Meta-Docs
-
+### 4. Project Meta-Docs (Product-Level)
 docs/project/
-plan.md
-roadmap.md
-changelog.md
+mission.md ← from mission.template.md
+roadmap.md ← from roadmap.template.md
+tech-stack.md ← from tech-stack.template.md
+changelog.md ← from changelog.template.md
 
 
-These track:
-- strategic direction  
-- what is being built next  
-- what changed when  
+Generated/updated via `/product-plan`.  
+These capture:
+- what we’re building
+- for whom
+- when (roadmap)
+- with what stack
+- how it has changed over time.
 
-Agents read these *before* working on features.
+---
+
+### 5. Feature Specs
+
+For each feature:
+docs/specs/<feature>/
+feature-spec.md
+tasks-breakdown.md
+verification-checklist.md
+
+
+Generated/updated via `/spec-and-plan`, using:
+
+- `spec-templates/feature-spec.template.md`
+- `spec-templates/tasks-breakdown.template.md`
+- `spec-templates/verification-checklist.template.md`
+
+These drive:
+- spec review
+- implementation planning
+- verification / QA.
 
 ---
 
@@ -72,40 +101,30 @@ Agents read these *before* working on features.
 Agents read context in layers:
 
 1. `CLAUDE.base.md` — OS-level rules  
-2. `CLAUDE.project.md` — project definitions  
-3. `docs/project/plan.md`  
+2. `CLAUDE.project.md` — project-level intentions  
+3. `docs/project/mission.md`  
 4. `docs/project/roadmap.md`  
-5. `docs/project/changelog.md`  
-6. folder-level `CLAUDE.md`  
-7. standards  
-8. specs  
+5. `docs/project/tech-stack.md`  
+6. `docs/project/changelog.md`  
+7. folder-level `CLAUDE.md`  
+8. feature specs under `docs/specs/<feature>/`  
 9. code  
 
-This builds a stacked, hierarchical understanding.
+This produces a stacked hierarchical understanding.
 
 ---
 
-## When to Add a New CLAUDE File
+## When /context-sync Gets Involved
 
-Add `CLAUDE.md` to a folder when:
-- it contains domain logic  
-- it has reusable code  
-- it has multiple submodules  
-- it has conventions or footguns  
-- it’s easy to misunderstand  
+- On new or evolving projects:
+  - `/context-sync` (via `context-steward`) checks:
+    - whether these docs exist
+    - whether there are obvious gaps (e.g., code for features with no specs)
+  - If missing:
+    - it suggests or triggers `/product-plan` and `/spec-and-plan`.
+- Over time:
+  - it helps split large `CLAUDE.md` files
+  - moves narrative into proper docs
+  - keeps context clean and layered.
 
-Examples:
-- `/contracts/`  
-- `/apps/web/`  
-- `/packages/ui/`  
-- `/services/booking/`  
 
----
-
-## Keeping Context Fresh
-
-Use `/context-sync` to:
-- identify missing CLAUDE files  
-- regenerate outdated ones  
-- move long context into docs  
-- ensure consistent layering  
