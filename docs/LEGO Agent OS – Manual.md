@@ -12,16 +12,38 @@ It gives you:
 
 You can copy this into any project and adapt it.
 
-## 2. How to install into a new project
+## 2. The 3-layer context model
 
-1. Copy the `.claude` folder into the project root.
-2. Copy `CLAUDE.base.md` content into the project's `CLAUDE.md`, then:
-   - add project-specific context (stack, goals, architecture)
-3. Commit the files.
+LEGO Agent OS follows the same principles as modern Agent OS designs:
 
-Now open the project in Claude Code:
-- Use `/agents` to see available sub-agents.
-- Use `/spec-and-plan` and `/implement-feature` for structured workflows.
+1. **Standards (how we build)**
+   - Live under `standards/` and `.claude/skills/`.
+   - Examples:
+     - global naming and style
+     - backend API design
+     - frontend component patterns
+     - security and testing principles.
+   - They define what “good” looks like, independent of any single product.
+
+2. **Product (what we are building)**
+   - For each project, we fill in templates from `product-templates/`:
+     - `mission`
+     - `roadmap`
+     - `tech-stack`.
+   - These files describe the domain, audience, and technical constraints.
+
+3. **Specs (what we are building next)**
+   - Individual features use templates from `spec-templates/`:
+     - feature spec
+     - tasks breakdown
+     - verification checklist.
+   - Specs plug into commands like `/spec-and-plan` and `/verify-implementation`.
+
+Claude Code uses all three layers:
+- Standards → via **skills** and agent prompts.
+- Product → via project-specific `CLAUDE.md` and product docs.
+- Specs → via commands that explicitly read spec files.
+
 
 ## 3. How to create a new agent
 
@@ -63,3 +85,37 @@ Now open the project in Claude Code:
 When you enable MCP servers (e.g. Playwright for UI checks), note them in:
 - `CLAUDE.md` under Tools
 - relevant agents (e.g. UX agent) with short instructions on when to use them.
+
+## 8. Built-in workflows (commands)
+
+LEGO Agent OS comes with several reusable Claude Code commands:
+
+- `/spec-and-plan`
+  - Turn a vague feature idea into:
+    - a spec (using `spec-templates/feature-spec.template.md`)
+    - a tasks breakdown
+    - a testing strategy.
+
+- `/implement-feature`
+  - Implement one slice of a spec with:
+    - code changes
+    - updated tests
+    - a short change log.
+
+- `/code-review`
+  - Perform a structured code review of a diff / PR.
+  - Group findings by severity and suggest concrete fixes.
+
+- `/security-review`
+  - Perform a security-focused review across backend, frontend, or contracts.
+  - Use checklists and threat modeling to surface real risks.
+
+- `/smart-contract-audit`
+  - Specialized workflow for auditing smart contracts.
+  - Uses the Smart Contract Audit Checklist skill.
+
+- `/verify-implementation`
+  - Check whether an implementation matches a given spec.
+  - Maps acceptance criteria → code → tests and highlights gaps.
+
+You can add new commands by dropping additional markdown files into `.claude/commands/` following the templates in `templates/`.
