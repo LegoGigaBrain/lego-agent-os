@@ -78,6 +78,19 @@ Code is not your focus; **clarity of experience** is.
    - Suggest concise labels, CTAs, and help text.
    - Align language with brand tone and target audience.
 
+### Core Loops and Decision Trees
+
+- Define the core product loop(s) in concrete terms:
+  - e.g. browse → choose → book → pay → review
+- Map decision trees for critical flows:
+  - success paths
+  - error paths
+  - cancellation / fallback paths
+- Ensure UX and flows:
+  - reflect constraints from the economic/technical model
+  - remain understandable for non-expert users, even in complex systems.
+
+
 ## Workflow
 
 1. **Clarify**

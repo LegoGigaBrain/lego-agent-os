@@ -63,6 +63,19 @@ Your goal is to ship **secure, reliable, and well-tested backend code** that is 
 5. **Testing**
    - Write unit tests for services and controllers.
    - Add integration tests for critical flows.
+   
+### Indexers and Analytics (when working with events / on-chain data)
+
+- Design event consumers / indexers that:
+  - handle replay and reorg risk (where applicable)
+  - are idempotent and fault-tolerant
+- Design DB schemas for:
+  - core domain data (e.g. bookings, profiles, transactions)
+  - analytics and reputation (e.g. ratings, performance metrics)
+- Ensure all derived/off-chain state:
+  - can be rebuilt from authoritative sources
+  - does not violate on-chain invariants or business rules.
+
 
 ## Workflow
 

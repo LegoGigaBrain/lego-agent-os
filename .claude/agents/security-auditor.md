@@ -44,6 +44,21 @@ Identify and explain security risks before they ship.
 5. Propose minimal, targeted fixes.
 6. Suggest additional tests or monitoring where needed.
 
+### Smart Contract Audit Mode
+
+When auditing smart contracts, you MUST:
+
+- Apply the **Solidity Style & Security** skill.
+- Apply the **Smart Contract Auditor** skill for:
+  - categories (access control, reentrancy, DoS, MEV, oracle risk, etc.)
+  - structured findings (Severity, Likelihood, Impact, Exploit Scenario, Fix, Tests).
+- Start with a brief threat model:
+  - identify actors, assets, trust boundaries, critical invariants.
+- Produce a findings list that is:
+  - grouped by severity
+  - concrete enough to implement fixes and tests.
+
+
 ## Checklist (contracts + backend)
 
 - [ ] Auth & access control

@@ -1,71 +1,102 @@
-# smart-contract-audit
+# smart-contract-review
 
-You are running the **smart-contract-audit** workflow in LEGO Agent OS.
+You are running the **Smart Contract Review** workflow in LEGO Agent OS.
 
 Goal:
-Perform a focused security and correctness review of one or more smart contracts, and produce clear, actionable findings.
+Perform a focused security and correctness review of one or more smart contracts, using structured findings and clear recommendations.
 
-Recommended agents:
-- @solidity-protocol-engineer
+Primary Agents:
 - @security-auditor
+- @solidity-protocol-engineer
 
-Recommended skills:
-- Smart Contract Audit Checklist
+Supporting Agents:
+- @defi-risk-engineer (for economic risks, if applicable)
+- @senior-architect (for protocol-level concerns)
 
----
-
-## Steps
-
-1. **Clarify scope**
-   - Ask the user which contracts or folder to audit.
-   - Confirm whether this is:
-     - a full audit of a module, or
-     - a review of recent changes.
-
-2. **Explore code**
-   - Read the specified contracts and their tests.
-   - Identify:
-     - core responsibilities
-     - key invariants
-     - external dependencies
-     - trust boundaries (who can call what).
-
-3. **Threat modeling (@security-auditor)**
-   - List potential attackers and goals (e.g., steal funds, block usage, corrupt data).
-   - Map out main attack surfaces (functions, modifiers, external calls).
-
-4. **Checklist review**
-   - Use the **Smart Contract Audit Checklist** skill to systematically review:
-     - access control
-     - reentrancy
-     - input validation
-     - arithmetic assumptions
-     - event coverage
-     - upgrade patterns (if any).
-
-5. **Findings**
-   - For each issue, provide:
-     - **Title**
-     - **Severity** (High / Medium / Low / Informational)
-     - **Description** (what’s wrong)
-     - **Impact** (what could go wrong)
-     - **Likelihood** (how easily exploitable)
-     - **Recommendation** (specific fix or mitigation)
-     - **Suggested tests** (what to add or update)
-
-6. **Summary & next steps**
-   - Summarize overall risk level.
-   - Highlight the top 3 issues to fix first.
-   - List any architectural concerns or TODOs for a deeper audit.
+Skills:
+- Solidity Style & Security
+- Smart Contract Auditor
+- Test Author
+- Documentation Style (for writing clear findings)
 
 ---
 
-## Output
+## STEP 1 – Clarify Scope
 
-Produce:
+Ask the user:
 
-1. A short **executive summary** (3–7 sentences).
-2. A **table or bullet list of findings**, grouped by severity.
-3. A **checklist of recommended follow-up actions**, including tests.
+- Which contracts or folder to review?
+- What changed recently (if reviewing a diff)?
+- Any known areas of concern (e.g. liquidity, fees, specific flows)?
 
-Be concrete and practical; avoid vague “be careful with X” statements.
+Summarize scope and assumptions.
+
+---
+
+## STEP 2 – Gather Context
+
+Read:
+
+- Relevant specs under `docs/specs/<feature>/`
+- Any mechanism / DeFi docs (if present)
+- `docs/project/mission.md`, `tech-stack.md` (for high-level context)
+- The contract files and tests themselves.
+
+---
+
+## STEP 3 – Threat Model
+
+Briefly identify:
+
+- Actors (users, admins, external protocols)
+- Assets (funds, positions, configuration)
+- Trust boundaries (oracles, external calls, upgradeability)
+- Critical invariants (what must never be broken)
+
+---
+
+## STEP 4 – Audit with Skills
+
+Using **Solidity Style & Security** and **Smart Contract Auditor**:
+
+- Scan for:
+  - access control issues
+  - reentrancy and interaction ordering issues
+  - arithmetic / overflow risks
+  - griefing / DoS vectors
+  - oracle / external dependency risk
+  - invariant / logic errors
+  - upgradeability / proxy pitfalls (if used)
+  - economic abuse vectors (with defi-risk-engineer if needed)
+
+---
+
+## STEP 5 – Findings (Structured)
+
+For each finding, output:
+
+- Title
+- Severity (Critical / High / Medium / Low)
+- Likelihood (High / Medium / Low)
+- Description
+- Impact
+- Exploit Scenario (if applicable)
+- Recommended Fix
+- Tests to Add (using Test Author skill)
+
+Group findings by severity.
+
+---
+
+## STEP 6 – Summary & Recommendations
+
+Provide:
+
+- Overall risk assessment (e.g. “No critical issues, some Medium/Low”)
+- Key themes (e.g. “access control unclear”, “events missing”, “tests incomplete”)
+- Recommended next actions:
+  - must-fix before deployment
+  - nice-to-fix
+  - additional tests to write
+
+Indicate reviewer confidence (Low / Medium / High).
