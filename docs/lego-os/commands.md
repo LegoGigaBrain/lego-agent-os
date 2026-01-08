@@ -160,6 +160,17 @@ Use for:
 
 ---
 
+## `/brand-narrative`
+Use for:
+- origin story development
+- brand mythology creation
+- narrative moat documentation
+- story principles and storytelling guidelines
+
+**Agents:** brand-strategist, archetype-analyst, copywriter
+
+---
+
 # Marketing Commands
 
 ## `/gtm-strategy`
@@ -427,7 +438,7 @@ Use for:
 | Category | Commands |
 |----------|----------|
 | **Review** | `/pragmatic-code-review`, `/design-review`, `/ux-review`, `/ux-copy-review`, `/security-review`, `/smart-contract-review`, `/smart-contract-audit`, `/architecture-review`, `/spec-review`, `/migration-review` |
-| **Brand Strategy** | `/brand-strategy`, `/archetype-analysis`, `/brand-positioning`, `/onliness-statement` |
+| **Brand Strategy** | `/brand-strategy`, `/archetype-analysis`, `/brand-positioning`, `/onliness-statement`, `/brand-narrative` |
 | **Marketing** | `/gtm-strategy`, `/growth-review`, `/campaign-plan` |
 | **Content & Social** | `/content-strategy`, `/social-strategy`, `/community-strategy`, `/content-matrix` |
 | **Communication** | `/verbal-identity`, `/naming` |
@@ -436,4 +447,4 @@ Use for:
 | **Documentation** | `/write-docs`, `/gitbook-docs` |
 | **Context & Planning** | `/context-sync`, `/product-plan`, `/spec-and-plan`, `/implement-feature`, `/verify-implementation`, `/project-matrix`, `/project-matrix-sync` |
 
-**Total: 40 commands**
+**Total: 41 commands**
