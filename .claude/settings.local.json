@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where:*)",
+      "Bash(dir \"C:\\Program Files\\7-Zip\\7z.exe\")",
+      "Bash(dir /s /b C:UsersBeytDocumentsGitHublego-agent-osframeworks)"
+    ]
+  }
+}
