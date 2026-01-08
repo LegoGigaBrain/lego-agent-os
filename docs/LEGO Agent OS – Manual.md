@@ -228,6 +228,7 @@ Skills enforce standards across every agent.
 | `/content-strategy` | Content pillar development |
 | `/social-strategy` | Platform strategy |
 | `/community-strategy` | Tribe building |
+| `/content-matrix` | Notion-based content production system |
 
 ### Communication Design Commands
 | Command | Purpose |
@@ -263,13 +264,13 @@ Skills enforce standards across every agent.
 | `/implement-feature` | Feature implementation |
 | `/verify-implementation` | Implementation verification |
 
-**Total: 37 commands**
+**Total: 38 commands**
 
 ---
 
 ## 8. Skills Library
 
-LEGO OS includes 53 skills organized by domain:
+LEGO OS includes 54 skills organized by domain:
 
 ### Engineering Skills
 - skill-naming-standards
@@ -310,6 +311,7 @@ LEGO OS includes 53 skills organized by domain:
 
 ### Content & Social Skills
 - skill-content-strategy
+- skill-content-matrix
 - skill-social-media-strategy
 - skill-editorial-calendar
 - skill-community-management
@@ -410,8 +412,8 @@ It is a full AI engineering and brand organization that you can drop into any re
 | Count | Type |
 |-------|------|
 | 29 | Agents |
-| 37 | Commands |
-| 53 | Skills |
+| 38 | Commands |
+| 54 | Skills |
 | 9 | Departments |
 
 ---

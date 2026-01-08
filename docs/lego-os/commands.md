@@ -229,6 +229,17 @@ Use for:
 
 ---
 
+## `/content-matrix`
+Use for:
+- creating Notion-based content production systems
+- building cross-platform content workflows
+- setting up platform-specific databases (X, Instagram, TikTok, LinkedIn, Facebook, Blog)
+- enabling vibe-marketer content execution
+
+**Agents:** content-strategist, vibe-marketer, social-media-manager
+
+---
+
 # Communication Design Commands
 
 ## `/verbal-identity`
@@ -396,11 +407,11 @@ Use for:
 | **Review** | `/pragmatic-code-review`, `/design-review`, `/ux-review`, `/ux-copy-review`, `/security-review`, `/smart-contract-review`, `/smart-contract-audit`, `/architecture-review`, `/spec-review`, `/migration-review` |
 | **Brand Strategy** | `/brand-strategy`, `/archetype-analysis`, `/brand-positioning`, `/onliness-statement` |
 | **Marketing** | `/gtm-strategy`, `/growth-review`, `/campaign-plan` |
-| **Content & Social** | `/content-strategy`, `/social-strategy`, `/community-strategy` |
+| **Content & Social** | `/content-strategy`, `/social-strategy`, `/community-strategy`, `/content-matrix` |
 | **Communication** | `/verbal-identity`, `/naming` |
 | **Design** | `/visual-identity`, `/design-brief` |
 | **Business Strategy** | `/business-strategy`, `/market-research`, `/competitive-analysis` |
 | **Documentation** | `/write-docs`, `/gitbook-docs` |
 | **Context & Planning** | `/context-sync`, `/product-plan`, `/spec-and-plan`, `/implement-feature`, `/verify-implementation` |
 
-**Total: 37 commands**
+**Total: 38 commands**
