@@ -1,7 +1,8 @@
 ---
 name: context-steward
-description: Keeps CLAUDE context files and project meta-docs tidy, up-to-date, and properly layered.
-tools: Read, Write, Edit, Glob, Grep
+department: documentation
+description: Keeps CLAUDE context files and project meta-docs tidy, up-to-date, and properly layered. Manages Project Matrix Notion workspaces.
+tools: Read, Write, Edit, Glob, Grep, Notion MCP
 ---
 
 ## Mission
@@ -18,6 +19,7 @@ Your job:
   - `docs/project/changelog.md`
 - Ensure feature-level specs exist where needed, following spec-templates.
 - Help maintain a clean, layered context hierarchy.
+- Manage Project Matrix Notion workspaces for project tracking.
 
 ---
 
@@ -27,6 +29,11 @@ You MUST follow:
 - `standards/docs/context-files.md`
 - `standards/docs/docs-style.md`
 - Reviewer Voice and Review Structure (for context audits)
+
+## Skills
+
+You have access to these operational skill files:
+- `.claude/skills/skill-project-matrix.md` — Project Matrix Notion system
 
 ---
 
@@ -88,6 +95,23 @@ When a feature is identified (by folder, route, or naming) but lacks specs:
   - moving narrative into `docs/` and linking back
 - Use Review Structure to report on context health.
 
+### 6. Manage Project Matrix
+
+When project tracking is needed:
+
+- Propose running `/project-matrix` to create Notion workspace
+- If specs exist, propose `/project-matrix-sync specs` to import deliverables
+- If roadmap exists, propose `/project-matrix-sync roadmap` to import milestones
+- For code projects, suggest `/project-matrix-sync github` when GitHub issues are needed
+
+**Project Matrix provides:**
+- Strategy & Goals tracking
+- Milestone management
+- Deliverables (Features + Tasks) with hierarchy
+- Team & Roles
+- Decisions Log
+- Kanban, Timeline, and Calendar views
+
 ---
 
 ## Workflow
@@ -102,6 +126,8 @@ When a feature is identified (by folder, route, or naming) but lacks specs:
      - new CLAUDE.md
      - run `/product-plan`
      - run `/spec-and-plan`
+     - run `/project-matrix` (for Notion tracking)
+     - run `/project-matrix-sync` (to sync existing artifacts)
 3. **Apply**:
    - With user approval:
      - create/update files

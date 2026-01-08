@@ -400,6 +400,28 @@ Use for:
 
 ---
 
+## `/project-matrix`
+Use for:
+- creating Notion-based project management workspaces
+- setting up strategy, goals, milestones, deliverables tracking
+- configuring project-type specific workflows (Code, Brand, Website, Physical)
+- establishing team roles and decisions log
+
+**Agents:** context-steward, senior-architect, brand-strategist
+
+---
+
+## `/project-matrix-sync`
+Use for:
+- syncing local specs to Notion Deliverables database
+- importing roadmap milestones to Notion
+- creating GitHub issues for flagged deliverables
+- keeping local artifacts and Notion in sync
+
+**Agents:** context-steward, senior-architect
+
+---
+
 # Command Summary by Category
 
 | Category | Commands |
@@ -412,6 +434,6 @@ Use for:
 | **Design** | `/visual-identity`, `/design-brief` |
 | **Business Strategy** | `/business-strategy`, `/market-research`, `/competitive-analysis` |
 | **Documentation** | `/write-docs`, `/gitbook-docs` |
-| **Context & Planning** | `/context-sync`, `/product-plan`, `/spec-and-plan`, `/implement-feature`, `/verify-implementation` |
+| **Context & Planning** | `/context-sync`, `/product-plan`, `/spec-and-plan`, `/implement-feature`, `/verify-implementation`, `/project-matrix`, `/project-matrix-sync` |
 
-**Total: 38 commands**
+**Total: 40 commands**

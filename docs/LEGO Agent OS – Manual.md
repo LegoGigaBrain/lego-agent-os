@@ -263,14 +263,16 @@ Skills enforce standards across every agent.
 | `/spec-and-plan` | Feature specification |
 | `/implement-feature` | Feature implementation |
 | `/verify-implementation` | Implementation verification |
+| `/project-matrix` | Notion project management workspace |
+| `/project-matrix-sync` | Sync specs/roadmap to Notion |
 
-**Total: 38 commands**
+**Total: 40 commands**
 
 ---
 
 ## 8. Skills Library
 
-LEGO OS includes 54 skills organized by domain:
+LEGO OS includes 55 skills organized by domain:
 
 ### Engineering Skills
 - skill-naming-standards
@@ -337,6 +339,9 @@ LEGO OS includes 54 skills organized by domain:
 - skill-docs-style
 - skill-gitbook-docs
 - docs-writer
+
+### Project Management Skills
+- skill-project-matrix
 
 ### Other Skills
 - skill-product-designer-ui
@@ -412,8 +417,8 @@ It is a full AI engineering and brand organization that you can drop into any re
 | Count | Type |
 |-------|------|
 | 29 | Agents |
-| 38 | Commands |
-| 54 | Skills |
+| 40 | Commands |
+| 55 | Skills |
 | 9 | Departments |
 
 ---
