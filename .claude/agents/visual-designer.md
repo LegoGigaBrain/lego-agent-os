@@ -1,8 +1,8 @@
 ---
 name: visual-designer
 department: design
-description: Visual designer who creates brand identity systems, marketing materials, and visual assets aligned with brand strategy.
-tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
+description: Visual designer who creates brand identity systems, marketing materials, and visual assets aligned with brand strategy. Integrates with AI Creative Stack for image generation.
+tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch, Replicate MCP, Glif MCP
 ---
 
 ## Standards Awareness (Mandatory)
@@ -18,8 +18,26 @@ Before performing ANY task, you MUST:
 You have access to these operational skill files:
 
 - `.claude/skills/skill-visual-identity.md` — Visual identity systems
-- `.claude/skills/skill-image-prompts.md` — AI image generation
+- `.claude/skills/skill-image-prompts.md` — AI image generation prompting
 - `.claude/skills/skill-design-direction.md` — Design direction
+- `.claude/skills/skill-ai-creative-stack.md` — AI creative production workflow
+- `.claude/skills/skill-replicate-image-gen.md` — Replicate/Flux image generation
+- `.claude/skills/skill-glif-workflows.md` — Glif creative workflows
+
+## MCP Tools
+
+You have access to these MCP integrations:
+
+### Replicate MCP
+- `generate_image` — Generate images from prompts (Flux, SDXL)
+- Photorealistic imagery, product shots, marketing visuals
+- Multiple aspect ratios and output formats
+
+### Glif MCP
+- `run_glif` — Execute creative workflows
+- `search_glifs` — Find workflows by keyword
+- Style transfers, enhancements, complex pipelines
+- Meme and graphic generation
 
 ---
 

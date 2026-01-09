@@ -127,7 +127,7 @@ LEGO OS organizes agents into functional departments:
 | Department | Focus | Agents |
 |------------|-------|--------|
 | **Engineering** | Code, architecture, security | senior-architect, backend-engineer, solidity-protocol-engineer, security-auditor, defi-risk-engineer |
-| **Design & UX** | Visual design, user experience | design-reviewer, design-strategist, visual-designer, ux-product-strategist, ux-writer |
+| **Design & UX** | Visual design, user experience, AI creative | design-reviewer, design-strategist, visual-designer, ux-product-strategist, ux-writer, ai-creative-strategist |
 | **Brand Strategy** | Brand positioning, archetypes | brand-strategist, archetype-analyst, brand-identity-architect |
 | **Marketing** | GTM, growth, campaigns | marketing-strategist, vibe-marketer, growth-engineer |
 | **Content & Social** | Content strategy, community | content-strategist, social-media-manager, community-manager |
@@ -136,7 +136,7 @@ LEGO OS organizes agents into functional departments:
 | **Documentation** | Docs, context management | docs-writer, context-steward |
 | **Code Review** | Code quality, security | pragmatic-code-reviewer, security-review-agent |
 
-**Total: 29 agents across 9 departments**
+**Total: 30 agents across 9 departments**
 
 ---
 
@@ -241,6 +241,14 @@ Skills enforce standards across every agent.
 |---------|---------|
 | `/visual-identity` | Visual identity system |
 | `/design-brief` | Creative brief creation |
+| `/generate-image` | AI image generation (Replicate/Flux) |
+| `/creative-brief` | AI Creative Stack orchestration |
+
+### Content Optimization Commands
+| Command | Purpose |
+|---------|---------|
+| `/seo-content` | Search-optimized content creation |
+| `/geo-content` | AI/LLM citation optimization |
 
 ### Business Strategy Commands
 | Command | Purpose |
@@ -266,13 +274,13 @@ Skills enforce standards across every agent.
 | `/project-matrix` | Notion project management workspace |
 | `/project-matrix-sync` | Sync specs/roadmap to Notion |
 
-**Total: 40 commands**
+**Total: 47 commands**
 
 ---
 
 ## 8. Skills Library
 
-LEGO OS includes 55 skills organized by domain:
+LEGO OS includes 63 skills organized by domain:
 
 ### Engineering Skills
 - skill-naming-standards
@@ -329,6 +337,18 @@ LEGO OS includes 55 skills organized by domain:
 - skill-image-prompts
 - skill-design-direction
 - skill-design-principles
+- skill-ai-creative-stack
+- skill-replicate-image-gen
+- skill-glif-workflows
+
+### Content Optimization Skills
+- skill-seo-content
+- skill-geo-content
+
+### MCP Integration Skills
+- skill-perplexity-research
+- skill-firecrawl-scraping
+- skill-playwright-automation
 
 ### Business Strategy Skills
 - skill-business-strategy
@@ -371,14 +391,52 @@ LEGO OS includes 55 skills organized by domain:
 
 ## 10. MCP Integration
 
-LEGO OS is MCP-ready.
+LEGO OS integrates with external services via Model Context Protocol (MCP) servers:
 
-Recommended MCPs:
-- Playwright MCP (end-to-end UI testing)
-- Filesystem / Git MCP (repo changes, commits)
-- HTTP/Webhook MCP (API mocks, payment/onramp flows)
-- ESLint/Prettier MCPs (lint/fix frontend code)
-- Solidity compiler/formatter MCP (if available)
+### MCP Stack Overview
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                             │
+│    RESEARCH STACK              CREATIVE STACK           AUTOMATION STACK   │
+│    ──────────────              ──────────────           ────────────────   │
+│                                                                             │
+│    ┌──────────────┐            ┌──────────────┐         ┌──────────────┐   │
+│    │  Perplexity  │            │  Replicate   │         │  Playwright  │   │
+│    │  AI Search   │            │  Image Gen   │         │  Browser     │   │
+│    └──────────────┘            └──────────────┘         └──────────────┘   │
+│                                                                             │
+│    ┌──────────────┐            ┌──────────────┐         ┌──────────────┐   │
+│    │  Firecrawl   │            │    Glif      │         │    Notion    │   │
+│    │  Scraping    │            │  Workflows   │         │  Databases   │   │
+│    └──────────────┘            └──────────────┘         └──────────────┘   │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Integrated MCPs
+
+| MCP | Purpose | Key Agents |
+|-----|---------|------------|
+| **Perplexity** | AI-powered research with citations | research-analyst, content-strategist |
+| **Firecrawl** | Deep web scraping (JS rendering) | research-analyst, content-strategist |
+| **Replicate** | AI image generation (Flux, SDXL) | visual-designer, ai-creative-strategist, vibe-marketer |
+| **Glif** | Creative workflows and pipelines | visual-designer, ai-creative-strategist |
+| **Playwright** | Browser automation | research-analyst, security-auditor |
+| **Notion** | Database management | context-steward, vibe-marketer, content-strategist |
+
+### New Commands with MCP Integration
+
+| Command | MCPs Used | Purpose |
+|---------|-----------|---------|
+| `/generate-image` | Replicate | AI image generation |
+| `/creative-brief` | Replicate, Glif | Full creative production |
+| `/seo-content` | Perplexity, Firecrawl | Search-optimized content |
+| `/geo-content` | Perplexity | AI/LLM citation optimization |
+
+### Configuration
+
+See `docs/MCP-INTEGRATIONS.md` for full setup instructions.
 
 Document enabled MCPs inside:
 - CLAUDE.project.md or project-specific CLAUDE.md
@@ -416,10 +474,11 @@ It is a full AI engineering and brand organization that you can drop into any re
 
 | Count | Type |
 |-------|------|
-| 29 | Agents |
-| 40 | Commands |
-| 55 | Skills |
+| 30 | Agents |
+| 47 | Commands |
+| 63 | Skills |
 | 9 | Departments |
+| 6 | MCP Integrations |
 
 ---
 

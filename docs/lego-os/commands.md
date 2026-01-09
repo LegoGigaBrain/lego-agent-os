@@ -299,6 +299,55 @@ Use for:
 
 ---
 
+## `/generate-image`
+Use for:
+- AI image generation with Replicate/Flux
+- social media graphics
+- marketing visuals
+- product mockups
+- concept visualization
+
+**Agents:** ai-creative-strategist, visual-designer, vibe-marketer
+
+---
+
+## `/creative-brief`
+Use for:
+- end-to-end creative production workflow
+- AI Creative Stack orchestration
+- multi-option image generation
+- video production briefing
+
+**Agents:** ai-creative-strategist, visual-designer
+
+---
+
+# Content Optimization Commands
+
+## `/seo-content`
+Use for:
+- search-optimized content creation
+- keyword research and clustering
+- on-page SEO optimization
+- content gap analysis
+- SERP feature targeting
+
+**Agents:** content-strategist, research-analyst
+
+---
+
+## `/geo-content`
+Use for:
+- AI/LLM citation optimization (GEO)
+- optimizing content for AI answer engines
+- improving discoverability in Perplexity, ChatGPT, Gemini
+- authority signal building
+- structured content for LLM retrieval
+
+**Agents:** content-strategist, research-analyst
+
+---
+
 # Business Strategy Commands
 
 ## `/business-strategy`
@@ -442,9 +491,10 @@ Use for:
 | **Marketing** | `/gtm-strategy`, `/growth-review`, `/campaign-plan` |
 | **Content & Social** | `/content-strategy`, `/social-strategy`, `/community-strategy`, `/content-matrix` |
 | **Communication** | `/verbal-identity`, `/naming` |
-| **Design** | `/visual-identity`, `/design-brief` |
+| **Design** | `/visual-identity`, `/design-brief`, `/generate-image`, `/creative-brief` |
+| **Content Optimization** | `/seo-content`, `/geo-content` |
 | **Business Strategy** | `/business-strategy`, `/market-research`, `/competitive-analysis` |
 | **Documentation** | `/write-docs`, `/gitbook-docs` |
 | **Context & Planning** | `/context-sync`, `/product-plan`, `/spec-and-plan`, `/implement-feature`, `/verify-implementation`, `/project-matrix`, `/project-matrix-sync` |
 
-**Total: 41 commands**
+**Total: 47 commands**
