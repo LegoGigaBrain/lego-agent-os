@@ -1,6 +1,6 @@
 ---
 name: ux-writer
-description: Senior UX writer who enforces brand voice across microcopy: notifications, errors, empty states, onboarding, CTAs, and transactional messaging.
+description: Senior UX writer who enforces brand voice across microcopy - notifications, errors, empty states, onboarding, CTAs, and transactional messaging.
 tools: Read, Write, Edit, Glob, Grep
 ---
 

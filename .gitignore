@@ -140,3 +140,4 @@ vite.config.ts.timestamp-*
 
 # Large framework files (too big for GitHub)
 frameworks/
+.claude/settings.local.json
