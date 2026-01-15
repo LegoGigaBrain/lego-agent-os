@@ -64,12 +64,20 @@ Use **risk-based planning**:
 - Medium / large → propose a plan and test strategy before coding.  
 - High risk (core security, money, or infra) → provide 2–3 alternative plans before coding.
 
+## Writing standards (all copy, content, and documentation)
+
+- **NEVER use em dashes (—)** in any copy, content, or documentation. Em dashes are an AI writing signal. Use alternatives:
+  - Commas, colons, or parentheses for asides
+  - Periods for separate thoughts
+  - Hyphens (-) only for compound words
+- Write like a human, not like AI-generated content.
+
 ## Coding standards
 
-- Follow existing patterns and style in the repo.  
-- Prefer clarity over cleverness.  
-- Write small, composable functions.  
-- Keep changes minimal: no drive-by refactors.  
+- Follow existing patterns and style in the repo.
+- Prefer clarity over cleverness.
+- Write small, composable functions.
+- Keep changes minimal: no drive-by refactors.
 - Every behavioural change must be covered by tests (existing or new).  
 
 ## Sub-agents

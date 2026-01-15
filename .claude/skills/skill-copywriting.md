@@ -534,6 +534,7 @@ Examples to avoid: [Links]
 - Generic, could-be-anyone copy
 - Ignoring the brief
 - Not testing variations
+- **Using em dashes (—)** - this is an AI writing signal. Use commas, colons, parentheses, or periods instead
 
 ---
 

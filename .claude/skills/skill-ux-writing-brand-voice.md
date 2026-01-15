@@ -72,12 +72,19 @@ When producing copy, present it as:
   - Secondary CTA (optional)
 - Notes: (voice and clarity rationale)
 
+## Forbidden Punctuation
+
+- **Never use em dashes (—)** - this is an AI writing signal that breaks authenticity
+- Use commas, colons, parentheses, or periods instead
+- Hyphens (-) are fine for compound words only
+
 ## Quality Checklist
 
 - Voice aligned ✅
 - Clear cause/effect ✅
 - Next step provided ✅
 - No blame ✅
-- No vague “something went wrong” ✅
+- No vague "something went wrong" ✅
 - CTAs are specific ✅
 - Consistent across screens ✅
+- No em dashes (—) ✅

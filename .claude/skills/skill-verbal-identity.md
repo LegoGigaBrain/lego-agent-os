@@ -145,6 +145,11 @@ Terms we never use
 |------|--------------|
 | [Term] | [Rationale] |
 
+FORBIDDEN PUNCTUATION:
+| Character | Why We Avoid |
+|-----------|--------------|
+| — (em dash) | AI writing signal. Use commas, colons, parentheses, or periods instead. |
+
 INSIDER LANGUAGE:
 Terms our tribe uses/recognizes
 
