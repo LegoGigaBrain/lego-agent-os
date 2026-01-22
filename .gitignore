@@ -140,4 +140,7 @@ vite.config.ts.timestamp-*
 
 # Large framework files (too big for GitHub)
 frameworks/
+
+# Local config with API keys
 .claude/settings.local.json
+.mcp.json
