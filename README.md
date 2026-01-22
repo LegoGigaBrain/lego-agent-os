@@ -125,7 +125,9 @@ Docs Writer
 
 DeFi Risk Engineer
 
-…and more
+Ralph Loop Architect
+
+...and more (30 total)
 
 🔧 Included Skills
 
@@ -141,7 +143,9 @@ Test Author
 
 Marketing Writer
 
-…plus mirrored global standards
+Ralph Wiggum Iterative Development
+
+...plus mirrored global standards
 
 🛠 Commands (Workflows)
 
@@ -160,6 +164,8 @@ Marketing Writer
 /write-docs
 
 /gitbook-docs
+
+/ralph-loop
 
 📘 Documentation
 

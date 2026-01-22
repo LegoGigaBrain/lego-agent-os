@@ -328,6 +328,20 @@ Works with:
 
 ---
 
+# Automation Agents
+
+## ralph-loop-architect
+- designs optimal Ralph Wiggum iterative development loops
+- analyzes tasks for automatic verification methods
+- creates phased execution plans with self-correction
+- estimates iterations and cost
+- warns about subscription limits
+
+Works with:
+- `/ralph-loop`
+
+---
+
 # How Agents Work Together
 
 Agents collaborate inside commands.
@@ -363,5 +377,6 @@ Agents collaborate inside commands.
 | **Business Strategy** | business-strategist, research-analyst |
 | **Documentation** | docs-writer, context-steward |
 | **Code Review** | pragmatic-code-reviewer, pragmatic-code-review-subagent, security-review-agent |
+| **Automation** | ralph-loop-architect |
 
-**Total: 29 agents**
+**Total: 30 agents**

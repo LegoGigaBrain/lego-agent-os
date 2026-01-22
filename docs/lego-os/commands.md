@@ -482,6 +482,31 @@ Use for:
 
 ---
 
+# Automation Commands
+
+## `/ralph-loop`
+Use for:
+- autonomous iterative development loops
+- tasks with automatic verification (tests, linters, Playwright)
+- overnight development runs
+- large refactors with existing test coverage
+- E2E testing with Playwright
+- browser automation tasks
+
+**Agents:** ralph-loop-architect
+
+**Example:**
+```bash
+/ralph-loop "Build login form with E2E tests. Output <promise>COMPLETE</promise> when all pass." --max-iterations 40 --completion-promise "COMPLETE"
+```
+
+**Requirements:**
+- Ralph Loop plugin must be installed
+- Task must have automatic verification method
+- Clear completion criteria required
+
+---
+
 # Command Summary by Category
 
 | Category | Commands |
@@ -496,5 +521,6 @@ Use for:
 | **Business Strategy** | `/business-strategy`, `/market-research`, `/competitive-analysis` |
 | **Documentation** | `/write-docs`, `/gitbook-docs` |
 | **Context & Planning** | `/context-sync`, `/product-plan`, `/spec-and-plan`, `/implement-feature`, `/verify-implementation`, `/project-matrix`, `/project-matrix-sync` |
+| **Automation** | `/ralph-loop` |
 
-**Total: 47 commands**
+**Total: 48 commands**

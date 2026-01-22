@@ -82,20 +82,22 @@ Use **risk-based planning**:
 
 ## Sub-agents
 
-This project uses Claude Code sub-agents defined in `.claude/agents/`.  
+This project uses Claude Code sub-agents defined in `.claude/agents/`.
 Examples:
 
-- `senior-architect` – systems thinking, high-level design.  
-- `solidity-protocol-engineer` – smart contracts & gas-aware design.  
-- `security-auditor` – threat modeling & vulnerability scanning.  
-- `backend-engineer` – APIs, DB, services.  
-- `ux-product-strategist` – UX flows, mental models, naming.
+- `senior-architect` - systems thinking, high-level design.
+- `solidity-protocol-engineer` - smart contracts & gas-aware design.
+- `security-auditor` - threat modeling & vulnerability scanning.
+- `backend-engineer` - APIs, DB, services.
+- `ux-product-strategist` - UX flows, mental models, naming.
+- `ralph-loop-architect` - designs autonomous iterative development loops.
 
 When a task is complex, you SHOULD delegate:
 
-- Use `/spec-and-plan` to get a spec and implementation plan.  
-- Ask `@senior-architect` for architecture questions.  
-- Ask `@security-auditor` for reviews of security-sensitive code.  
+- Use `/spec-and-plan` to get a spec and implementation plan.
+- Ask `@senior-architect` for architecture questions.
+- Ask `@security-auditor` for reviews of security-sensitive code.
+- Use `/ralph-loop` for autonomous iterative tasks with automatic verification.  
 
 ## Tools & boundaries
 

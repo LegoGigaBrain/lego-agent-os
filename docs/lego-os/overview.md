@@ -80,6 +80,9 @@ Each agent represents a senior role, organized by department:
 - docs-writer
 - context-steward
 
+**Automation**
+- ralph-loop-architect
+
 They read standards and context, then act accordingly.
 
 ---
@@ -156,6 +159,9 @@ Slash commands orchestrate multi-agent workflows:
 - `/implement-feature`
 - `/verify-implementation`
 
+**Automation Commands**
+- `/ralph-loop`
+
 These are reusable across *all* projects.
 
 ---
@@ -186,6 +192,7 @@ LEGO OS organizes agents into functional departments:
 | **Communication Design** | Verbal identity, copy | verbal-identity-designer, copywriter, ux-writer |
 | **Business Strategy** | Strategy, research | business-strategist, research-analyst |
 | **Documentation** | Docs, context management | docs-writer, context-steward |
+| **Automation** | Iterative development loops | ralph-loop-architect |
 
 ---
 
