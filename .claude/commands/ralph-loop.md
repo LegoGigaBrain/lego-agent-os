@@ -163,6 +163,92 @@ This command requires the Ralph Loop plugin. If not installed:
 /plugin install ralph-loop@claude-plugins-official
 ```
 
+## LEGO OS Integration
+
+The ralph-loop workflow automatically integrates with the LEGO OS ecosystem to ensure your autonomous loops follow project standards and leverage specialist agents.
+
+### Auto-Detection
+
+Based on your task description, the `@ralph-loop-architect` agent will automatically:
+
+| Task Keywords | What Gets Loaded |
+|---------------|------------------|
+| API, endpoint, backend, REST | Backend standards, security skills, @security-auditor delegation |
+| React, component, frontend, UI | Frontend standards, design system skills, @ux-product-strategist delegation |
+| Solidity, contract, token, DeFi | Security standards, smart contract skills, @solidity-protocol-engineer delegation |
+| Test, coverage, spec | Testing principles, test standards, @pragmatic-code-reviewer delegation |
+| Copy, content, marketing | SignalOS standards, copywriting skills, @copywriter delegation |
+| Docs, readme, documentation | Docs standards, docs style skills, @docs-writer delegation |
+
+### Integration Levels
+
+Choose how deeply to integrate with LEGO OS:
+
+**Light** (default for simple tasks)
+- Load relevant standards at each iteration
+- Apply appropriate skills
+
+**Medium** (recommended for most tasks)
+- Light +
+- Agent delegation for specialist review phases
+- Example: Security review by @security-auditor before completion
+
+**Full** (for critical or complex tasks)
+- Medium +
+- Command verification gates between phases
+- Example: Must pass `/security-review` before proceeding
+
+### Integrated Prompt Structure
+
+When LEGO OS integration is active, prompts include:
+
+```markdown
+## Standards (load at start of each iteration)
+- standards/global/code-style.md
+- [Auto-detected standards based on task type]
+
+## Skills to Apply
+- [Auto-detected skills based on task type]
+
+## Phases
+### Phase N: [Implementation]
+...
+
+### Phase N+1: [Review Gate]
+Delegate to @[agent-name]:
+- [Specific review task]
+- [Expected deliverable]
+
+Run `/[verification-command]` - must pass before continuing.
+```
+
+### Verification Gates
+
+Common verification gates by task type:
+
+| Task Type | Verification Command |
+|-----------|---------------------|
+| Backend/API | `/security-review` |
+| Frontend/UI | `/design-review`, `/ux-review` |
+| Smart Contract | `/smart-contract-review` |
+| Testing | `/pragmatic-code-review` |
+| Content/Copy | `/ux-copy-review` |
+| Documentation | `/write-docs` |
+
+### Example: Full Integration
+
+```bash
+/ralph-loop "Build user settings API with full LEGO OS integration"
+```
+
+Generated prompt includes:
+- Backend and security standards loaded each iteration
+- `skill-backend-api-standards` and `skill-secure-coding-standards` applied
+- Phase for @backend-engineer to implement
+- Phase for @security-auditor to review
+- `/security-review` gate before completion
+- `/pragmatic-code-review` final quality check
+
 ## Output
 
 After the workflow completes, provide:

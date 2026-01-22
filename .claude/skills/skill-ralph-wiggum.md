@@ -510,3 +510,300 @@ Example: 50 iterations x 10,000 tokens x $0.000015 = $7.50
 - Original technique: https://ghuntley.com/ralph/
 - Official plugin: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/ralph-loop
 - Ralph Orchestrator (advanced): https://github.com/mikeyobrien/ralph-orchestrator
+
+---
+
+## LEGO OS Integration
+
+Ralph loops become more powerful when integrated with the LEGO OS ecosystem. The `ralph-loop-architect` agent auto-detects relevant standards, skills, agents, and commands based on your task.
+
+### Task Type Detection Matrix
+
+| Task Keywords | Standards | Skills | Agents | Verification Commands |
+|--------------|-----------|--------|--------|----------------------|
+| API, endpoint, backend, REST | `backend/*`, `security/*` | `skill-backend-api-standards`, `skill-secure-coding-standards` | @backend-engineer, @security-auditor | `/security-review` |
+| React, component, frontend, UI | `frontend/*` | `skill-react-components-standards`, `skill-design-system-standards` | @ux-product-strategist, @design-reviewer | `/design-review`, `/ux-review` |
+| Solidity, contract, token, DeFi | `security/*` | `skill-solidity-style-security`, `skill-smart-contract-auditor` | @solidity-protocol-engineer, @security-auditor, @defi-risk-engineer | `/smart-contract-review` |
+| Test, coverage, spec, TDD | `global/testing-principles.md` | `skill-testing-standards` | @pragmatic-code-reviewer | `/pragmatic-code-review` |
+| Copy, content, marketing, brand | `signalos/*` | `skill-copywriting`, `skill-verbal-identity` | @copywriter, @ux-writer | `/ux-copy-review` |
+| Docs, readme, documentation | `docs/*` | `skill-docs-style`, `skill-gitbook-docs` | @docs-writer | `/write-docs` |
+| E2E, playwright, browser, automation | `frontend/*`, `global/*` | `skill-testing-standards`, `skill-ux-review-checklist` | @ux-product-strategist | `/ux-review` |
+
+### Integration Blocks
+
+Include these blocks in Ralph prompts for full LEGO OS integration:
+
+#### Standards Loading Block
+
+```
+## Standards (load at start of each iteration)
+- `standards/global/code-style.md`
+- [Additional standards based on task type]
+
+Apply these standards throughout all code changes.
+```
+
+#### Skill Application Block
+
+```
+## Skills to Apply
+- [Auto-detected skills based on task type]
+
+Reference these skills for implementation patterns and quality checks.
+```
+
+#### Agent Delegation Block
+
+```
+## Agent Delegation
+
+### Phase N: [Review/Audit Phase]
+Delegate to @[agent-name]:
+- [Specific review task]
+- [Expected deliverable]
+
+Proceed only when agent confirms phase passes.
+```
+
+#### Command Verification Block
+
+```
+## Verification Gates
+
+After Phase N:
+- Run `/[command-name]`
+- Review output for issues
+- Fix any problems before proceeding
+- Re-run until clean
+```
+
+---
+
+## Integrated Prompt Templates
+
+### Template: Backend API with Security Gate
+
+```markdown
+## Task
+Build [API FEATURE] with full security review.
+
+## Standards (load each iteration)
+- `standards/global/code-style.md`
+- `standards/global/testing-principles.md`
+- `standards/backend/api-design.md`
+- `standards/backend/data-modelling.md`
+- `standards/security/secure-coding.md`
+
+## Skills to Apply
+- `skill-backend-api-standards`
+- `skill-data-modelling-standards`
+- `skill-secure-coding-standards`
+- `skill-testing-standards`
+
+## Phases
+
+### Phase 1: API Design
+Delegate to @senior-architect:
+- Define endpoints and contracts
+- Document request/response schemas
+- Identify security considerations
+
+### Phase 2: Implementation
+- Implement endpoints following standards
+- Write unit and integration tests
+- Run `npm test` after each change
+- Ensure test coverage > 80%
+
+### Phase 3: Security Gate
+Delegate to @security-auditor:
+- Review for OWASP Top 10 vulnerabilities
+- Check authentication/authorization logic
+- Verify input validation and sanitization
+- Review error handling (no sensitive data leaks)
+
+Run `/security-review` on new code - must pass.
+
+### Phase 4: Code Quality Gate
+Run `/pragmatic-code-review`
+- Fix any correctness issues
+- Address maintainability concerns
+- Re-run until clean
+
+## Iteration Protocol
+1. Run `npm test` to check current state
+2. Fix one failing test or implement one feature
+3. Run `npm run typecheck` if TypeScript
+4. Commit working increments
+
+## Completion Signal
+When all tests pass AND all gates clear:
+<promise>COMPLETE</promise>
+```
+
+### Template: Frontend Component with Design Review
+
+```markdown
+## Task
+Build [UI COMPONENT] with design system compliance.
+
+## Standards (load each iteration)
+- `standards/frontend/react-components.md`
+- `standards/frontend/design-system.md`
+- `standards/frontend/design-principles.md`
+- `standards/global/testing-principles.md`
+
+## Skills to Apply
+- `skill-react-components-standards`
+- `skill-design-system-standards`
+- `skill-design-principles`
+- `skill-ux-review-checklist`
+
+## Phases
+
+### Phase 1: Component Architecture
+- Create component file structure
+- Define TypeScript props interface
+- Set up Playwright test file
+
+### Phase 2: Implementation
+- Build component following design system tokens
+- Implement all interactive states
+- Ensure accessibility (ARIA, keyboard nav)
+- Pass Playwright tests
+
+### Phase 3: UX Gate
+Delegate to @ux-product-strategist:
+- Review user flow clarity
+- Check error states and empty states
+- Validate loading states
+- Verify accessibility
+
+Run `/ux-review` - must pass.
+
+### Phase 4: Design Gate
+Run `/design-review`
+- Verify design system compliance
+- Check visual hierarchy
+- Validate responsive behavior
+- Fix any issues
+
+## Playwright Commands
+- Run tests: `npx playwright test [component].spec.ts`
+- Debug: `npx playwright test --debug`
+- Report: `npx playwright show-report`
+
+## Completion Signal
+When Playwright tests pass AND all gates clear:
+<promise>COMPLETE</promise>
+```
+
+### Template: Smart Contract with Audit
+
+```markdown
+## Task
+Build [CONTRACT NAME] with security audit.
+
+## Standards (load each iteration)
+- `standards/security/secure-coding.md`
+
+## Skills to Apply
+- `skill-solidity-style-security`
+- `skill-smart-contract-auditor`
+
+## Phases
+
+### Phase 1: Contract Design
+Delegate to @senior-architect:
+- Define state variables and access control
+- Document invariants
+- Identify attack vectors
+
+Delegate to @defi-risk-engineer (if DeFi):
+- Review economic model
+- Analyze liquidity risks
+- Check for manipulation vectors
+
+### Phase 2: Implementation
+- Implement contract following Solidity best practices
+- Write Foundry/Hardhat tests
+- Run `forge test` or `npx hardhat test` after each change
+- Achieve 100% test coverage on critical paths
+
+### Phase 3: Security Audit Gate
+Delegate to @security-auditor:
+- Check for reentrancy vulnerabilities
+- Review access control
+- Verify arithmetic safety
+- Check external call handling
+
+Delegate to @solidity-protocol-engineer:
+- Gas optimization review
+- Storage layout analysis
+- Upgrade safety (if upgradeable)
+
+Run `/smart-contract-review` - must pass.
+
+### Phase 4: Final Verification
+- Run full test suite with coverage
+- Run static analysis (Slither/Mythril)
+- Document any known limitations
+
+## Completion Signal
+When all tests pass AND audit gates clear:
+<promise>COMPLETE</promise>
+```
+
+### Template: Content with Copy Review
+
+```markdown
+## Task
+Create [CONTENT TYPE] aligned with brand voice.
+
+## Standards (load each iteration)
+- `standards/signalos/brand-strategy.md`
+- `standards/signalos/vibe-marketing.md`
+
+## Skills to Apply
+- `skill-copywriting`
+- `skill-verbal-identity`
+- `skill-ux-writing-brand-voice`
+
+## Writing Standards
+- NEVER use em dashes (AI signal)
+- Use commas, colons, or periods instead
+- Write like a human, not AI-generated content
+
+## Phases
+
+### Phase 1: Brief Analysis
+- Review brand voice guidelines
+- Identify target audience
+- Define key messages
+
+### Phase 2: Draft Creation
+- Write initial draft following brand voice
+- Apply copywriting frameworks (AIDA, PAS)
+- Ensure clear CTAs
+
+### Phase 3: Copy Review Gate
+Delegate to @copywriter:
+- Check brand voice alignment
+- Verify message clarity
+- Review CTA effectiveness
+
+Delegate to @ux-writer (if UI copy):
+- Check microcopy patterns
+- Verify error message tone
+- Review button labels
+
+Run `/ux-copy-review` - must pass.
+
+### Phase 4: Final Polish
+- Remove any AI-sounding phrases
+- Tighten language
+- Verify no em dashes remain
+
+## Completion Signal
+When copy review passes:
+<promise>COMPLETE</promise>
+```

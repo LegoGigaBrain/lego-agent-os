@@ -61,6 +61,42 @@ TASK ANALYSIS:
    - Any human checkpoints needed?
 ```
 
+### Step 1.5: LEGO OS Integration Analysis
+
+After analyzing the task, auto-detect relevant LEGO OS resources:
+
+#### Task Type Classification
+
+Classify the task into one or more categories:
+- **Backend/API**: API, endpoint, REST, GraphQL, database, server
+- **Frontend/UI**: React, component, UI, form, modal, page
+- **Smart Contract**: Solidity, contract, token, DeFi, blockchain
+- **Testing**: test, coverage, spec, TDD, E2E
+- **Content/Copy**: copy, content, marketing, brand, messaging
+- **Documentation**: docs, readme, documentation, guide
+- **E2E/Browser**: playwright, E2E, browser, automation
+
+#### Auto-Detection Matrix
+
+| Task Type | Standards | Skills | Agents | Verification Commands |
+|-----------|-----------|--------|--------|----------------------|
+| Backend/API | `backend/*`, `security/*` | `skill-backend-api-standards`, `skill-secure-coding-standards` | @backend-engineer, @security-auditor | `/security-review` |
+| Frontend/UI | `frontend/*` | `skill-react-components-standards`, `skill-design-system-standards` | @ux-product-strategist, @design-reviewer | `/design-review`, `/ux-review` |
+| Smart Contract | `security/*` | `skill-solidity-style-security`, `skill-smart-contract-auditor` | @solidity-protocol-engineer, @security-auditor | `/smart-contract-review` |
+| Testing | `global/testing-principles.md` | `skill-testing-standards` | @pragmatic-code-reviewer | `/pragmatic-code-review` |
+| Content/Copy | `signalos/*` | `skill-copywriting`, `skill-verbal-identity` | @copywriter, @ux-writer | `/ux-copy-review` |
+| Documentation | `docs/*` | `skill-docs-style`, `skill-gitbook-docs` | @docs-writer | `/write-docs` |
+| E2E/Browser | `frontend/*`, `global/*` | `skill-testing-standards` | @ux-product-strategist | `/ux-review` |
+
+#### Integration Output
+
+For each detected task type, include in the prompt:
+
+1. **Standards Block**: List specific standards to load
+2. **Skills Block**: List skills to apply
+3. **Agent Delegation**: Identify phases where specialists should review
+4. **Verification Gates**: Add command checkpoints between phases
+
 ### Step 2: Verification Method Selection
 
 | Task Type | Primary Verification | Command |
@@ -77,11 +113,22 @@ TASK ANALYSIS:
 
 ### Step 3: Prompt Construction
 
-Build the prompt using this structure:
+Build the prompt using this structure (with LEGO OS integration):
 
 ```markdown
 ## Task
 [Clear description from user input]
+
+## Standards (load at start of each iteration)
+- `standards/global/code-style.md`
+- [Auto-detected standards based on task type]
+
+Apply these standards throughout all changes.
+
+## Skills to Apply
+- [Auto-detected skills based on task type]
+
+Reference these skills for implementation patterns.
 
 ## Success Criteria
 - [ ] [Criterion 1 - must be verifiable]
@@ -104,6 +151,13 @@ Steps:
 - [Step 1]
 - [Step 2]
 
+### Phase N: [Review Gate]
+Delegate to @[agent-name]:
+- [Specific review task]
+- [Expected deliverable]
+
+Run `/[verification-command]` - must pass before continuing.
+
 ## Iteration Protocol
 1. Run verification command: `[COMMAND]`
 2. If passing, move to next incomplete criterion
@@ -119,7 +173,7 @@ After [N] iterations on the same issue:
 3. Output: <blocker>DESCRIPTION</blocker>
 
 ## Completion Signal
-When ALL success criteria verified:
+When ALL success criteria verified AND all gates pass:
 <promise>COMPLETE</promise>
 
 Do NOT output completion promise until all criteria pass.
@@ -159,9 +213,25 @@ Provide:
 ```markdown
 # Ralph Loop Prompt: [Task Name]
 
+## LEGO OS Integration
+
+**Task Type Detected**: [Backend/Frontend/Contract/etc.]
+
+**Standards Loaded**:
+- [List of standards]
+
+**Skills Applied**:
+- [List of skills]
+
+**Agent Delegation**:
+- Phase [N]: @[agent-name] for [task]
+
+**Verification Gates**:
+- `/[command]` after Phase [N]
+
 ## Prompt
 
-[Full prompt content here]
+[Full prompt content here - including Standards, Skills, and Agent Delegation blocks]
 
 ## Command
 
@@ -182,6 +252,7 @@ Provide:
 - [ ] Git working directory is clean
 - [ ] Max iterations is set appropriately
 - [ ] Cost is acceptable
+- [ ] Relevant standards are accessible
 - [ ] Ready to let it run autonomously
 ```
 
@@ -196,6 +267,12 @@ Before outputting a prompt:
 - [ ] Completion promise is explicit
 - [ ] Cost estimate is provided
 - [ ] Max iterations recommendation given
+- [ ] LEGO OS Integration:
+  - [ ] Task type correctly classified
+  - [ ] Relevant standards included
+  - [ ] Appropriate skills referenced
+  - [ ] Agent delegation phases identified
+  - [ ] Verification gates configured
 
 ## Anti-Patterns to Avoid
 
