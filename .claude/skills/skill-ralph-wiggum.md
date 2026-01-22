@@ -807,3 +807,404 @@ Run `/ux-copy-review` - must pass.
 When copy review passes:
 <promise>COMPLETE</promise>
 ```
+
+---
+
+## Firm-Level Smart Contract Audit Template
+
+This template mimics the methodology used by professional audit firms like Trail of Bits, OpenZeppelin, Consensys Diligence, and Spearbit. It follows their multi-phase approach with automated tools, manual review, and structured verification.
+
+**Reference**: See `docs/research/smart-contract-audit-methodology.md` for full research.
+
+### Template: Firm-Level Smart Contract Security Audit
+
+```markdown
+## Task
+Perform a comprehensive security audit of [CONTRACT/PROTOCOL NAME] following professional audit firm methodology.
+
+## Scope
+- Contracts: [List all contract files in scope]
+- Commit hash: [Frozen commit]
+- External dependencies: [List dependencies]
+- Out of scope: [Explicitly list what's NOT being audited]
+
+## Standards (load each iteration)
+- `standards/security/secure-coding.md`
+- `docs/research/smart-contract-audit-methodology.md`
+
+## Skills to Apply
+- `skill-solidity-style-security`
+- `skill-smart-contract-auditor`
+
+## Success Criteria
+- [ ] All automated tools executed (Slither, tests, coverage)
+- [ ] Invariant suite developed and passing
+- [ ] OWASP SCSVS checklist completed (14 categories)
+- [ ] All findings documented with severity
+- [ ] Proof of concepts for High/Critical findings
+- [ ] Final audit report generated
+
+---
+
+## Phase 1: Preparation and Scoping
+
+### 1.1 Documentation Review
+- [ ] Read all available documentation
+- [ ] Understand intended behavior
+- [ ] Map trust assumptions
+- [ ] Identify external dependencies
+- [ ] List all privileged roles
+
+### 1.2 Architecture Analysis
+Delegate to @senior-architect:
+- Create mental model of the system
+- Document contract interactions
+- Map state transitions
+- Identify crown jewels (what must never fail)
+
+### 1.3 Threat Model
+Document:
+- What are the assets at risk?
+- Who are the potential attackers?
+- What are the attack surfaces?
+- What are the trust boundaries?
+
+---
+
+## Phase 2: Automated Analysis
+
+### 2.1 Static Analysis
+Run and document findings:
+```bash
+slither . --print human-summary
+slither . --print contract-summary
+slither . 2>&1 | tee slither-report.txt
+```
+
+Triage all Slither findings:
+- [ ] High severity items addressed or documented
+- [ ] Medium severity items reviewed
+- [ ] False positives marked with justification
+
+### 2.2 Test Coverage
+```bash
+forge coverage --report summary
+forge coverage --report lcov
+```
+
+Requirements:
+- [ ] Overall coverage > 90%
+- [ ] Critical paths at 100%
+- [ ] All external functions tested
+- [ ] Edge cases covered
+
+### 2.3 Gas Analysis
+```bash
+forge test --gas-report
+```
+
+Document any functions with unexpectedly high gas usage.
+
+---
+
+## Phase 3: Invariant Development and Fuzzing
+
+### 3.1 Define Invariants
+Document system invariants that must ALWAYS hold:
+
+**Balance Invariants:**
+- [ ] Total supply equals sum of all balances
+- [ ] No balance exceeds total supply
+- [ ] Contract balance matches accounting
+
+**Access Control Invariants:**
+- [ ] Only authorized roles can call privileged functions
+- [ ] Role changes require proper authorization
+- [ ] Paused state blocks expected operations
+
+**Protocol-Specific Invariants:**
+- [ ] [Define based on protocol type]
+- [ ] [DeFi: xy=k, collateral ratios, etc.]
+
+### 3.2 Write Fuzz Tests
+Create invariant tests in Foundry:
+```solidity
+function invariant_totalSupplyMatchesBalances() public {
+    // Implementation
+}
+```
+
+### 3.3 Run Fuzzing Campaign
+```bash
+forge test --match-contract Invariant -vvv
+```
+
+Requirements:
+- [ ] All invariants pass after 10,000+ runs
+- [ ] No violations found
+- [ ] Edge cases documented
+
+---
+
+## Phase 4: OWASP SCSVS Systematic Review
+
+Check each category systematically:
+
+### V1: Architecture, Design and Threat Modeling
+- [ ] System architecture is documented
+- [ ] Trust boundaries are identified
+- [ ] Attack surfaces are minimized
+
+### V2: Access Control (CRITICAL - 67% of 2024 losses)
+- [ ] All privileged functions have proper modifiers
+- [ ] Role-based access is correctly implemented
+- [ ] No missing access controls on sensitive functions
+- [ ] Ownership transfer is two-step
+- [ ] No privilege escalation paths
+
+### V3: Blockchain Data
+- [ ] Private data is not stored on-chain
+- [ ] Block data is not relied upon for randomness
+- [ ] Transaction ordering attacks considered
+
+### V4: Communications
+- [ ] External calls are properly handled
+- [ ] Return values are checked
+- [ ] Reentrancy protections in place
+
+### V5: Arithmetic
+- [ ] No overflow/underflow vulnerabilities
+- [ ] SafeMath or Solidity 0.8+ used correctly
+- [ ] Precision loss is acceptable
+
+### V6: Malicious Input Handling
+- [ ] All inputs are validated
+- [ ] Array bounds are checked
+- [ ] No unbounded loops with external input
+
+### V7: Gas Usage and Limitations
+- [ ] No unbounded loops
+- [ ] No DoS via gas exhaustion
+- [ ] Appropriate gas limits on external calls
+
+### V8: Business Logic
+- [ ] Logic matches specification
+- [ ] Edge cases handled
+- [ ] State machine transitions are valid
+
+### V9: Denial of Service
+- [ ] No griefing attacks possible
+- [ ] No blocking of legitimate users
+- [ ] Withdrawal patterns used vs push
+
+### V10: Token (if applicable)
+- [ ] ERC standard correctly implemented
+- [ ] Transfer hooks handled
+- [ ] Decimal handling correct
+
+### V11: Code Clarity
+- [ ] Code is readable and documented
+- [ ] No dead code
+- [ ] Consistent naming
+
+### V12: Test Coverage
+- [ ] Adequate test coverage
+- [ ] Tests are meaningful
+- [ ] Edge cases tested
+
+### V13: Known Attacks
+- [ ] Reentrancy: protected
+- [ ] Front-running: mitigated or accepted
+- [ ] Flash loans: considered
+- [ ] Oracle manipulation: protected
+
+### V14: Decentralized Finance (if DeFi)
+Delegate to @defi-risk-engineer:
+- [ ] Price oracle manipulation resistant
+- [ ] Flash loan attack resistant
+- [ ] Sandwich attack resistant
+- [ ] Economic model is sound
+- [ ] Liquidation logic is correct
+- [ ] Interest calculations are accurate
+
+---
+
+## Phase 5: Manual Deep Review
+
+### 5.1 Line-by-Line Review
+For each contract in scope:
+- [ ] Read every line of code
+- [ ] Understand every state change
+- [ ] Question every assumption
+- [ ] Check every external call
+
+### 5.2 Attack Vector Analysis
+Think like an attacker:
+- [ ] How would I steal funds?
+- [ ] How would I DoS the protocol?
+- [ ] How would I manipulate governance?
+- [ ] How would I exploit trust assumptions?
+
+### 5.3 Cross-Contract Interaction Review
+- [ ] Trace all cross-contract calls
+- [ ] Check for composability risks
+- [ ] Verify callback safety
+- [ ] Check for reentrancy across contracts
+
+### 5.4 Upgrade Safety (if upgradeable)
+- [ ] Storage layout is preserved
+- [ ] Initializers are protected
+- [ ] Proxy patterns correctly implemented
+- [ ] No selfdestruct in implementation
+
+---
+
+## Phase 6: Findings Documentation
+
+### Severity Classification
+
+For each finding, classify:
+
+| Severity | Impact | Likelihood |
+|----------|--------|------------|
+| Critical | Direct fund loss, protocol takeover | High |
+| High | Significant loss under conditions | Medium-High |
+| Medium | Limited impact, specific circumstances | Medium |
+| Low | Minor issues, best practices | Low |
+| Informational | Suggestions, optimizations | N/A |
+
+### Finding Template
+For each finding document:
+```markdown
+### [SEVERITY]-[NUMBER]: [Title]
+
+**Location**: `contract.sol:L123`
+
+**Description**:
+[What is the issue]
+
+**Impact**:
+[What could happen if exploited]
+
+**Proof of Concept**:
+[Code or steps to reproduce]
+
+**Recommendation**:
+[How to fix]
+
+**Status**: [Open/Fixed/Acknowledged]
+```
+
+---
+
+## Phase 7: Remediation Verification
+
+After fixes are applied:
+
+### 7.1 Verify Each Fix
+- [ ] Fix addresses root cause
+- [ ] No new vulnerabilities introduced
+- [ ] Tests added for the fix
+
+### 7.2 Re-run Automated Analysis
+```bash
+slither .
+forge test
+forge coverage
+```
+
+### 7.3 Re-run Invariant Tests
+```bash
+forge test --match-contract Invariant
+```
+
+### 7.4 Final Review
+Delegate to @security-auditor:
+- [ ] All Critical/High findings resolved
+- [ ] Remediation is correct
+- [ ] No regressions
+
+---
+
+## Phase 8: Report Generation
+
+Generate final audit report:
+
+### Executive Summary
+- Scope and objectives
+- Key findings overview
+- Risk assessment
+
+### Methodology
+- Tools used
+- Manual review approach
+- Testing methodology
+
+### Findings Summary
+| Severity | Count | Fixed | Acknowledged |
+|----------|-------|-------|--------------|
+| Critical | X | X | 0 |
+| High | X | X | 0 |
+| Medium | X | X | X |
+| Low | X | X | X |
+| Info | X | - | - |
+
+### Detailed Findings
+[All findings with details]
+
+### Appendix
+- Full Slither output
+- Test coverage report
+- Gas analysis
+
+---
+
+## Iteration Protocol
+
+1. Start with Phase 1, complete before proceeding
+2. Run automated tools (Phase 2-3) continuously
+3. Document findings as discovered
+4. After each finding, assess if it affects other areas
+5. Complete SCSVS checklist systematically
+6. Generate report incrementally
+
+## If Stuck
+
+After 5 iterations on same issue:
+1. Document the blocker
+2. List what was tried
+3. Output: <blocker>DESCRIPTION</blocker>
+
+## Completion Signal
+
+When ALL of the following are true:
+- [ ] All phases completed
+- [ ] All SCSVS categories reviewed
+- [ ] All findings documented
+- [ ] Remediation verified (if fixes provided)
+- [ ] Final report generated
+
+Output: <promise>AUDIT_COMPLETE</promise>
+```
+
+### Estimated Iterations and Cost
+
+| Audit Scope | Estimated Iterations | Estimated Cost |
+|-------------|---------------------|----------------|
+| Single contract (<500 LOC) | 30-50 | $5-15 |
+| Small protocol (500-2000 LOC) | 50-100 | $15-40 |
+| Medium protocol (2000-5000 LOC) | 100-200 | $40-100 |
+| Large protocol (5000+ LOC) | 200-500 | $100-300 |
+
+**Note**: These are estimates. Complex DeFi protocols with economic risks may require significantly more iterations.
+
+### Pre-Flight Checklist
+
+Before starting firm-level audit:
+- [ ] All contract code is frozen (commit hash)
+- [ ] Documentation exists
+- [ ] Foundry/Hardhat is set up
+- [ ] Slither is installed (`pip install slither-analyzer`)
+- [ ] Tests exist and pass
+- [ ] You have time for a thorough review (not rushing)
+- [ ] Cost budget is acceptable for scope
