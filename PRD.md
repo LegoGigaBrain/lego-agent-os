@@ -148,13 +148,13 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user, I want documentation explaining how the facilitator layer works and how to extend it.
 
 **Acceptance Criteria:**
-- [ ] Create `docs/lego-os/facilitator-layer.md`
-- [ ] Explain the problem facilitators solve vs traditional AI assistants
-- [ ] Document @brand-facilitator with phases and output
-- [ ] Document @ideation-facilitator with phases and output
-- [ ] Include Facilitator vs. Executor comparison table
-- [ ] Include design principles (Questions Over Assumptions, etc.)
-- [ ] Include instructions for extending facilitators
+- [x] Create `docs/lego-os/facilitator-layer.md`
+- [x] Explain the problem facilitators solve vs traditional AI assistants
+- [x] Document @brand-facilitator with phases and output
+- [x] Document @ideation-facilitator with phases and output
+- [x] Include Facilitator vs. Executor comparison table
+- [x] Include design principles (Questions Over Assumptions, etc.)
+- [x] Include instructions for extending facilitators
 
 ---
 
