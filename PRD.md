@@ -213,12 +213,12 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user building a website, I want a workflow command that orchestrates all agents from brand to deployed site.
 
 **Acceptance Criteria:**
-- [ ] Create `.claude/commands/workflow-website.md`
-- [ ] Define prerequisites (brand strategy, verbal identity, visual identity)
-- [ ] Define 8 workflow steps: Design Brief, UX Strategy, UX Copy, Design Review, Technical Architecture, Implementation, Security Review, Code Review
-- [ ] Specify agent for each step
-- [ ] Include success criteria checklist
-- [ ] Include agents involved table
+- [x] Create `.claude/commands/workflow-website.md`
+- [x] Define prerequisites (brand strategy, verbal identity, visual identity)
+- [x] Define 8 workflow steps: Design Brief, UX Strategy, UX Copy, Design Review, Technical Architecture, Implementation, Security Review, Code Review
+- [x] Specify agent for each step
+- [x] Include success criteria checklist
+- [x] Include agents involved table
 
 ---
 

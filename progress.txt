@@ -287,3 +287,24 @@
   - "Related Skills" section provides navigation between complementary skills
   - Skill files follow consistent pattern: Purpose, Standards Awareness, Core Philosophy, Process Steps, Platform Guidelines, Templates, Anti-Patterns, Quality Checklist, Metrics, Agents Using, Related Skills, Integration
 ---
+
+## Iteration 16 - US-016: Create Website Workflow Command
+- Created `.claude/commands/workflow-website.md`
+- Key sections included:
+  - Prerequisites section requiring brand-strategy.md, verbal-identity.md, visual-identity.md
+  - 8 workflow steps: Design Brief, UX Strategy, UX Copy, Design Review, Technical Architecture, Implementation, Security Review, Code Review
+  - Agent assignments for each step with detailed responsibilities
+  - Agents Involved table with 8 roles: design-strategist, ux-product-strategist, ux-writer, design-reviewer, senior-architect, backend-engineer, security-auditor, pragmatic-code-reviewer
+  - Success criteria checklist (10 items)
+  - Handoff structure ASCII diagram
+  - Dependencies table showing command sequencing
+  - Output structure showing expected file locations
+  - Example session with full workflow walkthrough
+- Files changed: `.claude/commands/workflow-website.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Workflow commands should include Prerequisites section when dependencies exist
+  - Each step needs Command, Agents, and Output subsections
+  - Handoff structure ASCII diagrams clarify agent sequencing
+  - Dependencies table helps users understand command order
+  - Example sessions should show realistic output from each step
+---
