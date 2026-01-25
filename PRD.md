@@ -95,12 +95,12 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As brand agents, I need a customer design skill defining how to think about who customers BECOME, not just who they are.
 
 **Acceptance Criteria:**
-- [ ] Create `.claude/skills/skill-customer-design.md`
-- [ ] Include Customer Design Framework (Identity, Transformation, Journey)
-- [ ] Include key questions for Current State and Transformed State
-- [ ] Include Brand Commitment Scale (Satisfaction -> Empowerment)
-- [ ] Include Brand Commitment Matrix integration
-- [ ] List which agents use this skill
+- [x] Create `.claude/skills/skill-customer-design.md`
+- [x] Include Customer Design Framework (Identity, Transformation, Journey)
+- [x] Include key questions for Current State and Transformed State
+- [x] Include Brand Commitment Scale (Satisfaction -> Empowerment)
+- [x] Include Brand Commitment Matrix integration
+- [x] List which agents use this skill
 
 ---
 
