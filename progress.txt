@@ -21,3 +21,49 @@
   - Session Best Practices and Quality Checklist are useful additions
   - Handoff decision trees provide clarity for routing
 ---
+
+## Iteration 2 - US-002: Create Brand Facilitator Agent
+- Created `.claude/agents/brand-facilitator.md`
+- Included frontmatter: name (brand-facilitator), department (strategy), description, tools (Read, Write, Edit, Glob, Grep, AskUserQuestion)
+- Referenced PRIMARY skill: skill-brand-facilitation.md
+- Defined mission as interview/document NOT execute with "Critical Distinction" and "What You Do NOT Do" sections
+- Included workflow: Opening, Phase-by-Phase Discovery, Synthesis, Handoff
+- Included quality checklist (9 items) and collaboration section with primary/support handoffs
+- Files changed: `.claude/agents/brand-facilitator.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Agent files follow pattern: frontmatter, Standards Awareness, Skills, Identity, Mission, Responsibilities, Workflow, Output Format, Quality Checklist, Communication Style, Collaboration
+  - Facilitator agents need explicit "What You Do NOT Do" section to clarify boundaries
+  - Include "Receives From" in collaboration to show inbound handoffs
+  - Commands section at the end lists associated slash commands
+---
+
+## Iteration 3 - US-003: Create Brand Discovery Command
+- Created `.claude/commands/brand-discovery.md`
+- Command structure follows pattern: Goal, Primary Agent, Supporting Agents, Skills, Standards, Overview, Steps/Phases, Output Location, Success Criteria, Handoff Recommendations, Notes, Agents Involved, Getting Started
+- Included "When to Use This Command" table with comparison to other commands
+- Listed all 6 discovery phases from the brand-facilitation skill
+- Success criteria checklist with 9 items
+- Handoff table maps discovery results to specific commands/agents
+- "Important Notes" section clarifies what brand discovery IS vs IS NOT
+- Files changed: `.claude/commands/brand-discovery.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Command files for facilitator workflows should clearly distinguish from executor workflows
+  - "When to Use" comparison tables help users route to correct command
+  - Mirroring the phases from the skill in the command helps users understand the process
+  - Include "What This Is NOT" section to prevent misuse
+---
+
+## Iteration 4 - US-004: Create Product Ideation Skill
+- Created `.claude/skills/skill-product-ideation.md`
+- Included 5 discovery phases: Problem Space, Solution Exploration, Market Fit, Feasibility, Vision
+- Each phase has 7-8 questions focused on founder discovery
+- Output format: product-ideation-brief.md with structured sections
+- Handoff decision tree covers: @brand-facilitator, @user-researcher, @research-analyst, @senior-architect, @business-strategist, @product-manager
+- Added "Red Flags to Surface" section to help facilitators identify common concerns
+- Files changed: `.claude/skills/skill-product-ideation.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Product ideation is explicitly positioned as BEFORE brand (problem-first thinking)
+  - Include "Red Flags" section for facilitator skills to guide honest assessment
+  - Recommended Path in output format helps route to appropriate next steps
+  - Quality checklist mirrors the phases to ensure complete coverage
+---

@@ -57,11 +57,11 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As an ideation facilitator agent, I need a skill file defining the product discovery methodology so I can help founders clarify their product before brand work.
 
 **Acceptance Criteria:**
-- [ ] Create `.claude/skills/skill-product-ideation.md`
-- [ ] Include 5 discovery phases: Problem Space, Solution Exploration, Market Fit, Feasibility, Vision
-- [ ] Include questions for each phase
-- [ ] Define output format (product-ideation-brief.md)
-- [ ] Define handoff decision tree (brand-facilitator, research-analyst, product-manager)
+- [x] Create `.claude/skills/skill-product-ideation.md`
+- [x] Include 5 discovery phases: Problem Space, Solution Exploration, Market Fit, Feasibility, Vision
+- [x] Include questions for each phase
+- [x] Define output format (product-ideation-brief.md)
+- [x] Define handoff decision tree (brand-facilitator, research-analyst, product-manager)
 
 ---
 
