@@ -102,6 +102,25 @@
   - Success criteria should directly map to what the skill captures in each phase
 ---
 
+## Iteration 11 - US-011: Create Facilitator Layer Documentation
+- Created `docs/lego-os/facilitator-layer.md`
+- Key sections included:
+  - The Problem Facilitators Solve (traditional vs facilitator approach)
+  - Available Facilitators (@brand-facilitator with 6 phases, @ideation-facilitator with 5 phases)
+  - Facilitator vs. Executor comparison table
+  - Design Principles (5 principles: Questions Over Assumptions, Capture Over Create, Gaps Are Discoveries, Depth Over Breadth, Handoff Clarity)
+  - When to Use Facilitators (use cases for each facilitator + skip conditions)
+  - Extending the Facilitator Layer (4 steps with file locations)
+  - Best Practices for both users and facilitator agents
+- Files changed: `docs/lego-os/facilitator-layer.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Documentation should include both "what this is" and "what this is NOT" to prevent misuse
+  - Anti-pattern/pattern examples make principles concrete and actionable
+  - ASCII flow diagrams help visualize layer relationships
+  - Design principles should include numbered list with examples
+  - Extension documentation should list file locations and required components
+---
+
 ## Iteration 7 - US-007: Create Customer Design Skill
 - Created `.claude/skills/skill-customer-design.md`
 - Included Customer Design Framework with three dimensions: Identity, Transformation, Journey
@@ -185,4 +204,86 @@
   - "Next Steps After Path X" tables help with path transitions
   - "Combining Paths" section shows real-world workflow combinations
   - Related Documentation links at the end tie into other docs
+---
+
+## Iteration 12 - US-012: Create Brand Architecture Documentation
+- Created `docs/lego-os/brand-architecture.md` with comprehensive brand architecture guide
+- Key sections included:
+  - Why Brand Architecture Matters (decision factors, folder structure impact)
+  - 4 Architecture Models:
+    - Branded House (Google example) with folder structure, agent behavior, when to use
+    - House of Brands (P&G example) with folder structure, agent behavior, when to use
+    - Endorsed Brands (Marriott example) with folder structure, agent behavior, when to use
+    - Hybrid (Virgin example) with folder structure, agent behavior, when to use
+  - Agent Behavior for Portfolio Analysis (Discovery, Strategy, Execution phase tables)
+  - Portfolio-Specific Questions agents ask for multi-brand contexts
+  - Relevant Commands table with workflow for multi-brand organizations
+  - Choosing Your Architecture comparison table and decision questions
+  - Setting Up Your Brand Architecture (5-step guide)
+- Files changed: `docs/lego-os/brand-architecture.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Brand architecture docs should include real-world company examples (Google, P&G, Marriott, Virgin)
+  - Folder structure examples make abstract architecture concepts concrete
+  - Agent behavior tables should cover Discovery, Strategy, and Execution phases separately
+  - Portfolio-specific questions help agents detect and handle multi-brand contexts
+  - Decision questions and comparison tables help users choose appropriate architecture
+---
+
+## Iteration 13 - US-013: Update README with Getting Started
+- Updated `README.md` with new "📖 Getting Started" section
+- Added link to `docs/getting-started.md`
+- Created "Common Starting Points" table with 4 entry paths:
+  - Just an idea → /product-discovery
+  - Validated product, need brand → /brand-discovery
+  - Brand ready, need features → /ralph-plan
+  - Specs ready, need code → /implement-feature
+- Added Quick Decision Guide ASCII tree for fast routing
+- All existing README content preserved intact
+- Files changed: `README.md` (updated), `PRD.md` (updated)
+- Learnings for future iterations:
+  - README updates should be additive, not replace existing content
+  - Decision trees (ASCII art) help users self-route quickly
+  - Common Starting Points table mirrors docs/getting-started.md structure
+  - Keep new sections focused and link to comprehensive docs for details
+---
+
+## Iteration 14 - US-014: Create Discovery Brief Templates
+- Created `templates/brand-discovery-brief.template.md`
+  - Frontmatter with brand name, date, facilitator, session duration
+  - Executive Summary section
+  - 6 discovery phase sections matching skill-brand-facilitation.md
+  - Onliness Statement section with structured template
+  - Brand Commitment Matrix with I AM + POV alignment
+  - Gaps & Open Questions section
+  - Recommended Next Steps with handoff decision matrix
+  - Session Notes for key quotes and energy observations
+- Created `templates/product-ideation-brief.template.md`
+  - Frontmatter with product name, date, facilitator, session duration
+  - Executive Summary section
+  - 5 discovery phase sections matching skill-product-ideation.md
+  - Assessment section with strengths, concerns, open questions
+  - Recommended Path section with path options table
+  - Red Flags Identified section
+  - Session Notes for key quotes and energy observations
+- Both templates use {{placeholder}} syntax for template variables
+- Both include "Generated by LEGO Agent OS" footer with Template Version
+- Files changed: `templates/brand-discovery-brief.template.md` (new), `templates/product-ideation-brief.template.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Templates should mirror the Output Format section from the corresponding skill file
+  - Use tables for structured data (Risk Inventory, Handoff Matrix, etc.)
+  - Include Session Notes section for qualitative observations (quotes, energy)
+  - Template Version footer helps track template evolution
+  - Frontmatter with metadata helps organize output documents
+---
+
+## Iteration 15 - US-015: Create Vibe Marketing Skill
+- Skill file `.claude/skills/skill-vibe-marketing.md` already existed with most content
+- Added missing "Agents Using This Skill" section listing @vibe-marketer, @marketing-strategist, @content-strategist, @social-media-manager, @community-manager
+- Added "Related Skills" section linking to channel-strategy, content-matrix, replicate-image-gen, glif-workflows, perplexity-research
+- Files changed: `.claude/skills/skill-vibe-marketing.md` (updated), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Always check if skill file already exists before creating new one
+  - "Agents Using This Skill" section is required per PRD acceptance criteria
+  - "Related Skills" section provides navigation between complementary skills
+  - Skill files follow consistent pattern: Purpose, Standards Awareness, Core Philosophy, Process Steps, Platform Guidelines, Templates, Anti-Patterns, Quality Checklist, Metrics, Agents Using, Related Skills, Integration
 ---

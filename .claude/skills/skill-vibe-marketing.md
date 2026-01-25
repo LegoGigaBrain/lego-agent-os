@@ -415,6 +415,26 @@ Before shipping:
 
 ---
 
+## Agents Using This Skill
+
+- **@vibe-marketer** — Primary agent for rapid content execution
+- **@marketing-strategist** — Reference for campaign architecture
+- **@content-strategist** — Alignment on content pillars
+- **@social-media-manager** — Platform-specific execution
+- **@community-manager** — Tribe engagement and response
+
+---
+
+## Related Skills
+
+- `skill-channel-strategy.md` — Platform selection and optimization
+- `skill-content-matrix.md` — Content production system
+- `skill-replicate-image-gen.md` — AI image generation
+- `skill-glif-workflows.md` — Creative workflows
+- `skill-perplexity-research.md` — Trend research
+
+---
+
 ## Integration with SignalOS™
 
 Vibe Marketing is the **EMIT phase** in rapid-iteration mode:

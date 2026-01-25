@@ -199,13 +199,13 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As vibe marketer and content agents, I need a vibe marketing skill with rapid-execution methodology.
 
 **Acceptance Criteria:**
-- [ ] Create `.claude/skills/skill-vibe-marketing.md`
-- [ ] Include core philosophy and 5 principles (Speed Over Perfection, Platform-Native, Trend Surfing, Authentic Voice, Signal Amplification)
-- [ ] Include process: Signal Check, Trend Scan, Rapid Ideation, Vibe Filter, Ship & Learn
-- [ ] Include platform guidelines for X, Instagram, TikTok, LinkedIn
-- [ ] Include metrics that matter (signal metrics, vibe metrics)
-- [ ] Include anti-patterns to avoid
-- [ ] List which agents use this skill
+- [x] Create `.claude/skills/skill-vibe-marketing.md`
+- [x] Include core philosophy and 5 principles (Speed Over Perfection, Platform-Native, Trend Surfing, Authentic Voice, Signal Amplification)
+- [x] Include process: Signal Check, Trend Scan, Rapid Ideation, Vibe Filter, Ship & Learn
+- [x] Include platform guidelines for X, Instagram, TikTok, LinkedIn
+- [x] Include metrics that matter (signal metrics, vibe metrics)
+- [x] Include anti-patterns to avoid
+- [x] List which agents use this skill
 
 ---
 
