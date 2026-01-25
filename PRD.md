@@ -121,12 +121,12 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a new user, I want Getting Started documentation so I know which entry point to use based on what I have.
 
 **Acceptance Criteria:**
-- [ ] Create `docs/getting-started.md`
-- [ ] Include "What Do You Have?" decision tree with 5 paths
-- [ ] Include Discovery -> Execution flow diagram (ASCII art)
-- [ ] Include Key Concepts section (Facilitators vs. Executors, Living Documents, Agent Handoffs)
-- [ ] Include Quick Commands table
-- [ ] Include Need Help? section with links
+- [x] Create `docs/getting-started.md`
+- [x] Include "What Do You Have?" decision tree with 5 paths
+- [x] Include Discovery -> Execution flow diagram (ASCII art)
+- [x] Include Key Concepts section (Facilitators vs. Executors, Living Documents, Agent Handoffs)
+- [x] Include Quick Commands table
+- [x] Include Need Help? section with links
 
 ---
 
