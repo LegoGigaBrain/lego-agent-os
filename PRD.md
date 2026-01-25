@@ -31,12 +31,12 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user, I want a brand facilitator agent that interviews me through brand discovery so I can articulate my brand foundations.
 
 **Acceptance Criteria:**
-- [ ] Create `.claude/agents/brand-facilitator.md`
-- [ ] Include frontmatter with name, department (strategy), description, tools (Read, Write, Edit, Glob, Grep, AskUserQuestion)
-- [ ] Reference PRIMARY skill: skill-brand-facilitation.md
-- [ ] Define mission: interview and document, NOT execute
-- [ ] Include workflow: Opening, Phase-by-Phase Discovery, Synthesis, Handoff
-- [ ] Include quality checklist and collaboration section
+- [x] Create `.claude/agents/brand-facilitator.md`
+- [x] Include frontmatter with name, department (strategy), description, tools (Read, Write, Edit, Glob, Grep, AskUserQuestion)
+- [x] Reference PRIMARY skill: skill-brand-facilitation.md
+- [x] Define mission: interview and document, NOT execute
+- [x] Include workflow: Opening, Phase-by-Phase Discovery, Synthesis, Handoff
+- [x] Include quality checklist and collaboration section
 
 ---
 
