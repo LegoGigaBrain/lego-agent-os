@@ -44,12 +44,12 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user, I want a `/brand-discovery` command that initiates a brand discovery session with the facilitator.
 
 **Acceptance Criteria:**
-- [ ] Create `.claude/commands/brand-discovery.md`
-- [ ] Define overview and when to use
-- [ ] Specify @brand-facilitator as primary agent
-- [ ] Define output location: `brand/brand-discovery-brief.md`
-- [ ] Include success criteria checklist
-- [ ] Define handoff to `/brand-strategy`, `/verbal-identity`
+- [x] Create `.claude/commands/brand-discovery.md`
+- [x] Define overview and when to use
+- [x] Specify @brand-facilitator as primary agent
+- [x] Define output location: `brand/brand-discovery-brief.md`
+- [x] Include success criteria checklist
+- [x] Define handoff to `/brand-strategy`, `/verbal-identity`
 
 ---
 
