@@ -176,11 +176,11 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user landing on the repo, I want a Quick Start section in the README pointing to Getting Started docs.
 
 **Acceptance Criteria:**
-- [ ] Read current `README.md`
-- [ ] Add Quick Start section after the first heading
-- [ ] Link to `docs/getting-started.md`
-- [ ] List common starting points: /product-discovery, /brand-discovery, /ralph-plan
-- [ ] Keep all existing README content intact
+- [x] Read current `README.md`
+- [x] Add Quick Start section after the first heading
+- [x] Link to `docs/getting-started.md`
+- [x] List common starting points: /product-discovery, /brand-discovery, /ralph-plan
+- [x] Keep all existing README content intact
 
 ---
 

@@ -4,6 +4,29 @@ A reusable multi-agent development operating system for Claude Code
 
 This repository contains a complete multi-agent framework designed to help you build world-class software, protocols, and products using Claude Code.
 
+## 📖 Getting Started
+
+**New to LEGO OS?** Start here: [**docs/getting-started.md**](docs/getting-started.md)
+
+### Common Starting Points
+
+| What You Have | Start With | Command |
+|--------------|------------|---------|
+| Just an idea | Product Discovery | `/product-discovery` |
+| Validated product, need brand | Brand Discovery | `/brand-discovery` |
+| Brand ready, need features | Feature Planning | `/ralph-plan` |
+| Specs ready, need code | Implementation | `/implement-feature` |
+
+### Quick Decision Guide
+
+```
+Do you have a validated product idea?
+├── NO → /product-discovery (clarify your idea first)
+└── YES → Do you have brand foundations?
+          ├── NO → /brand-discovery (build your brand)
+          └── YES → /ralph-plan or /spec-and-plan (build features)
+```
+
 LEGO OS gives you:
 
 Senior-level multi-agent teams
@@ -90,6 +113,8 @@ spec-templates/
 standards/
 docs/
 templates/
+ai-docs/
+prp-templates/
 CLAUDE.base.md
 README.md
 
@@ -125,9 +150,17 @@ Docs Writer
 
 DeFi Risk Engineer
 
-Ralph Loop Architect
+Ralph PRD Architect
 
-...and more (30 total)
+PRP Analyst
+
+Product Manager (NEW)
+
+User Researcher (NEW)
+
+Analytics Strategist (NEW)
+
+...and more (34 total)
 
 🔧 Included Skills
 
@@ -144,6 +177,8 @@ Test Author
 Marketing Writer
 
 Ralph Wiggum Iterative Development
+
+PRPs Methodology (Issue Investigation & Debugging)
 
 ...plus mirrored global standards
 
@@ -165,7 +200,23 @@ Ralph Wiggum Iterative Development
 
 /gitbook-docs
 
-/ralph-loop
+/ralph-plan (generates PRD for autonomous development)
+
+/prp-investigate
+
+/prp-debug
+
+/prp-fix
+
+/ai-docs-sync (NEW)
+
+/workflow-new-feature (NEW)
+
+/workflow-bug-fix (NEW)
+
+/workflow-brand-launch (NEW)
+
+/workflow-smart-contract (NEW)
 
 📘 Documentation
 
@@ -185,6 +236,16 @@ commands
 review framework
 
 context rules
+
+PRPs integration
+
+resource allocation (NEW)
+
+Ralph Wiggum Canonical Workflow
+
+agent registry (NEW)
+
+escalation matrix (NEW)
 
 🧩 Extend LEGO OS
 
