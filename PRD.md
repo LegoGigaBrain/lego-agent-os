@@ -226,11 +226,11 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a developer, I want gitignored GUI folders created for private development.
 
 **Acceptance Criteria:**
-- [ ] Create `gui/README.md` with purpose explanation
-- [ ] Create `schemas/README.md` with purpose explanation
-- [ ] Create `ui-components/README.md` with purpose explanation
-- [ ] Each README states folder is gitignored and for private GUI development
-- [ ] Verify these folders are already in .gitignore (gui/, schemas/, ui-components/)
+- [x] Create `gui/README.md` with purpose explanation
+- [x] Create `schemas/README.md` with purpose explanation
+- [x] Create `ui-components/README.md` with purpose explanation
+- [x] Each README states folder is gitignored and for private GUI development
+- [x] Verify these folders are already in .gitignore (gui/, schemas/, ui-components/)
 
 ---
 
