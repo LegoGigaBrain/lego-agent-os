@@ -90,14 +90,94 @@ Examples:
 - `security-auditor` - threat modeling & vulnerability scanning.
 - `backend-engineer` - APIs, DB, services.
 - `ux-product-strategist` - UX flows, mental models, naming.
-- `ralph-loop-architect` - designs autonomous iterative development loops.
+- `ralph-loop-architect` - designs PRDs for autonomous Ralph Wiggum development loops.
 
 When a task is complex, you SHOULD delegate:
 
 - Use `/spec-and-plan` to get a spec and implementation plan.
 - Ask `@senior-architect` for architecture questions.
 - Ask `@security-auditor` for reviews of security-sensitive code.
-- Use `/ralph-loop` for autonomous iterative tasks with automatic verification.  
+
+## Ralph Wiggum (Autonomous Development)
+
+For multi-story features requiring autonomous iteration, use the canonical Ralph workflow:
+
+```
+STEP 1: Ideate (in Claude Code)
+   "I want to build X with features Y and Z"
+   Claude asks clarifying questions (1A, 2B, 3C style)
+        ↓
+STEP 2: Generate PRD (/ralph-plan)
+   Creates PRD.md (user stories with [ ] checkboxes)
+   Creates progress.txt (learnings log)
+   Suggests iteration count
+        ↓
+STEP 3: Run Ralph (in terminal)
+   ./scripts/ralph/ralph.ps1 -MaxIterations 25
+   Each iteration: fresh Claude instance, implements ONE task, runs tests
+        ↓
+STEP 4: Review (back in Claude Code)
+   "Ralph finished, please review"
+   Runs /security-review, /code-review
+```
+
+**Key Rule**: Each story must be completable in ONE context window (~10 min of AI work).
+
+**Why external script?** Each iteration spawns a NEW Claude Code instance with fresh context. Memory persists ONLY through files (PRD.md, progress.txt, git commits).
+
+## Facilitator Layer (Discovery Workflows)
+
+Before building, use facilitators to interview users and capture foundations. Facilitators ask questions and document - they do NOT execute.
+
+**Available Facilitators:**
+
+| Facilitator | Command | When to Use |
+|-------------|---------|-------------|
+| `@brand-facilitator` | `/brand-discovery` | Founder has validated product, needs brand articulation |
+| `@ideation-facilitator` | `/product-discovery` | Founder has idea but needs to clarify product before brand |
+
+**Facilitator Workflow:**
+
+```
+Discovery Phase                    Execution Phase
+─────────────────                  ────────────────
+@ideation-facilitator    ──→      @brand-facilitator    ──→    @brand-strategist
+(product-ideation-brief.md)       (brand-discovery-brief.md)   (brand-strategy.md)
+```
+
+**Key Distinction:**
+- **Facilitators** interview and document what founders already know (discovery)
+- **Executors** build strategy and artifacts based on discovery outputs (execution)
+
+For comprehensive onboarding, see `docs/getting-started.md`.
+
+---
+
+## Workflow Paths
+
+For common scenarios, use pre-built workflow paths:
+
+- `/workflow-new-feature` - End-to-end feature development
+- `/workflow-bug-fix` - PRPs-based bug resolution
+- `/workflow-brand-launch` - Complete brand system creation
+- `/workflow-smart-contract` - Secure contract development with audit
+
+## Escalation Protocol
+
+When blocked or facing uncertainty, follow the escalation matrix in `.claude/escalation-matrix.md`:
+
+- Security-sensitive code: MUST escalate to `@security-auditor`
+- Architecture decisions: MUST escalate to `@senior-architect`
+- After 5 failed attempts: MUST escalate with `<blocker>` tag
+- DeFi/economic logic: MUST escalate to `@defi-risk-engineer`
+
+## Agent Registry
+
+The agent registry (`.claude/agent-registry.json`) enables programmatic task routing:
+
+- Task categories map to primary and supporting agents
+- Keywords trigger automatic agent selection
+- `/ralph-plan` uses the registry for story-to-agent mapping during PRD generation  
 
 ## Tools & boundaries
 

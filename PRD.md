@@ -261,11 +261,11 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As the system, I need CLAUDE.base.md updated to reference new facilitator workflows and documentation.
 
 **Acceptance Criteria:**
-- [ ] Read current `CLAUDE.base.md`
-- [ ] Add Facilitator Layer section explaining brand-facilitator and ideation-facilitator
-- [ ] Reference `/brand-discovery` and `/product-discovery` commands
-- [ ] Add link to Getting Started documentation
-- [ ] Keep all existing content intact
+- [x] Read current `CLAUDE.base.md`
+- [x] Add Facilitator Layer section explaining brand-facilitator and ideation-facilitator
+- [x] Reference `/brand-discovery` and `/product-discovery` commands
+- [x] Add link to Getting Started documentation
+- [x] Keep all existing content intact
 
 ---
 

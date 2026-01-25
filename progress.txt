@@ -308,3 +308,93 @@
   - Dependencies table helps users understand command order
   - Example sessions should show realistic output from each step
 ---
+
+## Iteration 17 - US-017: Create GUI Folder Structure
+- Created gitignored folder structure for private GUI development
+- Files created:
+  - `gui/README.md` - Main GUI application folder with purpose and guidelines
+  - `schemas/README.md` - JSON schemas for agent/skill/workflow validation
+  - `ui-components/README.md` - Reusable UI components for the interface
+- Each README includes:
+  - Purpose section explaining folder's role
+  - "Why Gitignored" section explaining privacy rationale
+  - Suggested structure for future development
+  - "Related Folders" section linking to other GUI folders
+  - Footer noting contents are local-only
+- Verified .gitignore already contains gui/, schemas/, ui-components/ (lines 152-154)
+- Files changed: `gui/README.md` (new), `schemas/README.md` (new), `ui-components/README.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Gitignored folders still need README placeholders for documentation
+  - README files in gitignored folders explain purpose and suggested structure
+  - Cross-references between related folders help developers navigate
+  - "Why Gitignored" section explains rationale to new developers
+---
+
+## Iteration 18 - US-018: Create Agent Index Documentation
+- Created `docs/lego-os/agent-index.md` with comprehensive agent index
+- Key sections included:
+  - Quick Reference table with department counts and focus areas
+  - 10 department sections: Engineering (9), Strategy (3), Brand (4), Design (4), Content (3), Marketing (5), Research (2), Product (2), Analytics (1), Operations (3)
+  - Each agent entry includes: Primary Skills, Key Commands, Escalates To/Escalation Target, When to Use
+  - Agent Selection Guide with Task Type and Workflow Phase matrices
+  - Related Documentation links
+- Data sourced from:
+  - `.claude/agents/*.md` files (35 agent files)
+  - `.claude/agent-registry.json` for metadata (capabilities, skills, commands, when_to_use)
+- Files changed: `docs/lego-os/agent-index.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Agent registry JSON is the authoritative source for agent metadata
+  - Organize agents by department for discoverability (engineering, brand, content, etc.)
+  - Include both "Escalates To" and "Escalation Target" to show handoff directions
+  - Agent Selection Guide tables help users find the right agent for their task
+  - Cross-reference related docs at the end (skills-index, workflow-paths, etc.)
+---
+
+## Iteration 19 - US-019: Create Skills Index Documentation
+- Created `docs/lego-os/skills-index.md` with comprehensive skills index
+- Key sections included:
+  - Quick Reference table with 11 categories and skill counts
+  - Brand Strategy (11 skills): zag-positioning, brand-flip, onliness-statement, archetypes, etc.
+  - Content & Marketing (10 skills): content-strategy, vibe-marketing, growth-loops, etc.
+  - Design & Visual (6 skills): visual-identity, design-direction, image-prompts, etc.
+  - Development Standards (9 skills): code-style, testing, api-standards, solidity, etc.
+  - Review & Quality (5 skills): review-structure, review-dimensions, ux-review-checklist
+  - Writing & Copy (6 skills): verbal-identity, copywriting, ux-writing, docs-style
+  - Research & Intelligence (4 skills): market-research, competitive-analysis, user-research
+  - MCP & Automation (8 skills): perplexity-research, firecrawl, playwright, replicate, glif
+  - Smart Contracts (3 skills): smart-contract-auditor, audit-checklist, test-author
+  - Facilitation (3 skills): brand-facilitation, product-ideation, customer-design
+  - Workflows & Methodologies (6 skills): ralph-wiggum, prps-methodology, product-management
+  - Each skill entry includes: name, purpose, key frameworks, key outputs, used by agents
+  - Skill Selection Guide with Task Type and Workflow Phase matrices
+  - Related Documentation links to agent-index, workflow-paths, facilitator-layer
+- Data sourced from:
+  - `.claude/skills/*.md` files (71 skill files)
+  - Read sample skills from each category to extract metadata
+- Files changed: `docs/lego-os/skills-index.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Skills naturally group into 11 categories based on function
+  - Key metadata: purpose, key frameworks, key outputs, agents using skill
+  - Organization by category (brand, content, development) mirrors agent-index pattern
+  - Skill Selection Guide tables help users find right skill for task/workflow phase
+  - Cross-reference related docs at the end for navigation
+---
+
+## Iteration 20 - US-020: Update CLAUDE.base.md with New Workflows
+- Updated `CLAUDE.base.md` with new "Facilitator Layer (Discovery Workflows)" section
+- Key content added:
+  - Explanation of facilitators: ask questions and document, do NOT execute
+  - Available Facilitators table with @brand-facilitator and @ideation-facilitator
+  - Commands table referencing `/brand-discovery` and `/product-discovery`
+  - ASCII workflow diagram showing Discovery Phase to Execution Phase flow
+  - Key Distinction explaining Facilitators vs Executors
+  - Link to `docs/getting-started.md` for comprehensive onboarding
+- Placed section after "Ralph Wiggum" and before "Workflow Paths" (logical flow: ideation -> discovery -> execution)
+- All existing CLAUDE.base.md content preserved intact
+- Files changed: `CLAUDE.base.md` (updated), `PRD.md` (updated), `progress.txt` (updated)
+- Learnings for future iterations:
+  - CLAUDE.base.md updates should be minimal and reference detailed docs rather than duplicating content
+  - ASCII diagrams in base specs should be concise (detailed diagrams go in docs)
+  - Key Distinction sections help clarify role boundaries (facilitator vs executor)
+  - Section ordering in CLAUDE.base.md follows the workflow sequence
+---
