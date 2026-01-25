@@ -101,3 +101,44 @@
   - "When to Use" tables help users choose the right entry point
   - Success criteria should directly map to what the skill captures in each phase
 ---
+
+## Iteration 7 - US-007: Create Customer Design Skill
+- Created `.claude/skills/skill-customer-design.md`
+- Included Customer Design Framework with three dimensions: Identity, Transformation, Journey
+- Current State questions: demographics (who, where, goals) + psychographics (tribe, identity)
+- Transformed State questions: who they want to become, identity contribution, highest good
+- Brand Commitment Scale with 4 levels: Satisfaction → Delight → Engagement → Empowerment
+- Brand Commitment Matrix integration with I AM + POV alignment framework
+- Agents Using This Skill: @brand-facilitator, @brand-strategist, @user-researcher, @content-strategist, @copywriter
+- Files changed: `.claude/skills/skill-customer-design.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Customer design is distinct from customer research - it's about designing transformation, not just understanding
+  - The Brand Flip research notes contain excellent case studies (Google, Apple, Ritz-Carlton, etc.)
+  - Anti-Patterns section helps agents avoid common mistakes (Las Vegas anti-pattern)
+  - Transformation Depth Scale (Functional → Symbolic → Experiential → Transformational) guides aspiration level
+---
+
+## Iteration 8 - US-008: Update Agent Registry with Facilitators
+- Updated `.claude/agent-registry.json` with brand-facilitator and ideation-facilitator agents
+- Added to agents section:
+  - brand-facilitator: department strategy, capabilities (brand-discovery, founder-interviews, etc.), skills (skill-brand-facilitation, skill-customer-design), escalates_to (brand-strategist, verbal-identity-designer, visual-designer)
+  - ideation-facilitator: department strategy, capabilities (product-discovery, product-ideation, etc.), skills (skill-product-ideation), escalates_to (brand-facilitator, user-researcher, research-analyst, etc.)
+- Added to task_routing section:
+  - "discovery": primary [brand-facilitator, ideation-facilitator], supporting [user-researcher, research-analyst]
+  - "facilitation": primary [brand-facilitator, ideation-facilitator], supporting [user-researcher]
+- Added to keyword_to_category:
+  - discovery, facilitation, facilitator, brand-discovery, product-discovery, ideation, founder-interview
+- Added to skill_to_agents:
+  - skill-brand-facilitation: [brand-facilitator]
+  - skill-product-ideation: [ideation-facilitator]
+  - skill-customer-design: [brand-facilitator, brand-strategist, user-researcher, content-strategist, copywriter]
+- Added to command_to_agents:
+  - brand-discovery: [brand-facilitator]
+  - product-discovery: [ideation-facilitator]
+- Files changed: `.claude/agent-registry.json` (updated), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Agent registry entries need: department, capabilities, skills, commands, escalates_to (or escalation_target), when_to_use
+  - Task routing sections have primary, supporting, and review arrays
+  - New categories need corresponding keywords in keyword_to_category for proper routing
+  - Always validate JSON after edits with node -e "JSON.parse(...)"
+---

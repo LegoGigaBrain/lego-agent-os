@@ -108,12 +108,12 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As the system, I need the agent registry updated with the new facilitator agents so they can be properly routed.
 
 **Acceptance Criteria:**
-- [ ] Read current `.claude/agent-registry.json`
-- [ ] Add brand-facilitator entry with department, capabilities, skills, commands, escalates_to, when_to_use
-- [ ] Add ideation-facilitator entry with same structure
-- [ ] Add "discovery" and "facilitation" to task_routing section
-- [ ] Add new skills to skill_to_agents mapping
-- [ ] Ensure JSON is valid (no trailing commas, proper syntax)
+- [x] Read current `.claude/agent-registry.json`
+- [x] Add brand-facilitator entry with department, capabilities, skills, commands, escalates_to, when_to_use
+- [x] Add ideation-facilitator entry with same structure
+- [x] Add "discovery" and "facilitation" to task_routing section
+- [x] Add new skills to skill_to_agents mapping
+- [x] Ensure JSON is valid (no trailing commas, proper syntax)
 
 ---
 

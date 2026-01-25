@@ -1,0 +1,576 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "description": "LEGO Agent OS Agent Registry - Enables programmatic task-to-agent routing",
+  "last_updated": "2026-01-22",
+
+  "agents": {
+    "senior-architect": {
+      "department": "engineering",
+      "capabilities": ["architecture", "system-design", "interfaces", "boundaries", "risk-assessment"],
+      "skills": ["skill-backend-design-checklist", "skill-code-style-standards", "skill-secure-coding-standards"],
+      "commands": ["architecture-review", "spec-and-plan", "migration-review"],
+      "escalation_target": true,
+      "when_to_use": "System architecture decisions, module boundaries, technical tradeoffs, when other engineers are blocked"
+    },
+    "backend-engineer": {
+      "department": "engineering",
+      "capabilities": ["backend", "api", "database", "services", "typescript", "node"],
+      "skills": ["skill-backend-api-standards", "skill-data-modelling-standards", "skill-testing-standards", "skill-secure-coding-standards"],
+      "commands": ["implement-feature", "pragmatic-code-review"],
+      "escalates_to": ["senior-architect", "security-auditor"],
+      "when_to_use": "API development, database work, backend services, Node.js/TypeScript implementation"
+    },
+    "solidity-protocol-engineer": {
+      "department": "engineering",
+      "capabilities": ["smart-contracts", "solidity", "evm", "gas-optimization", "protocol-design"],
+      "skills": ["skill-solidity-style-security", "skill-smart-contract-auditor", "skill-smart-contract-audit-checklist", "skill-testing-standards"],
+      "commands": ["implement-feature", "smart-contract-review"],
+      "escalates_to": ["senior-architect", "security-auditor", "defi-risk-engineer"],
+      "when_to_use": "Smart contract development, Solidity implementation, protocol design, EVM development"
+    },
+    "security-auditor": {
+      "department": "engineering",
+      "capabilities": ["security", "audit", "vulnerability-assessment", "threat-modeling", "penetration-testing"],
+      "skills": ["skill-secure-coding-standards", "skill-smart-contract-auditor", "skill-smart-contract-audit-checklist"],
+      "commands": ["security-review", "smart-contract-review", "smart-contract-audit"],
+      "escalation_target": true,
+      "when_to_use": "Security-sensitive code, smart contract audits, vulnerability assessment, threat modeling"
+    },
+    "defi-risk-engineer": {
+      "department": "engineering",
+      "capabilities": ["defi", "economic-modeling", "tokenomics", "risk-analysis", "liquidity", "oracles"],
+      "skills": ["skill-smart-contract-auditor", "skill-smart-contract-audit-checklist"],
+      "commands": ["smart-contract-review"],
+      "escalation_target": true,
+      "when_to_use": "DeFi mechanisms, liquidity flows, risk parameters, economic/regulatory risk, oracle design"
+    },
+    "pragmatic-code-reviewer": {
+      "department": "engineering",
+      "capabilities": ["code-review", "correctness", "maintainability", "clarity", "safety"],
+      "skills": ["skill-code-style-standards", "skill-testing-standards", "skill-review-structure", "skill-review-dimensions", "skill-reviewer-voice"],
+      "commands": ["pragmatic-code-review", "code-review"],
+      "when_to_use": "Code review, PR review, code quality assessment"
+    },
+    "pragmatic-code-reviewer-subagent": {
+      "department": "engineering",
+      "capabilities": ["code-review-support", "pattern-detection", "focused-analysis"],
+      "skills": ["skill-review-structure", "skill-review-dimensions"],
+      "commands": [],
+      "internal_only": true,
+      "when_to_use": "Supporting the primary code reviewer with focused analysis"
+    },
+    "security-review-agent": {
+      "department": "engineering",
+      "capabilities": ["security-review", "threat-modeling", "vulnerability-scanning"],
+      "skills": ["skill-secure-coding-standards"],
+      "commands": ["security-review"],
+      "when_to_use": "Focused security reviews, threat modeling for changes"
+    },
+    "design-reviewer": {
+      "department": "design",
+      "capabilities": ["design-review", "ux-review", "ui-review", "component-review"],
+      "skills": ["skill-design-principles", "skill-ux-review-checklist", "skill-design-system-standards"],
+      "commands": ["design-review"],
+      "when_to_use": "Design review for UX flows, UI screens, component implementations"
+    },
+    "ux-product-strategist": {
+      "department": "product",
+      "capabilities": ["ux", "user-flows", "product-strategy", "ux-states", "product-copy"],
+      "skills": ["skill-product-designer-ui", "skill-feature-idea-validator", "skill-ux-review-checklist", "skill-design-principles"],
+      "commands": ["ux-review", "design-review", "spec-and-plan"],
+      "when_to_use": "User flows, UX states, product copy, product strategy alignment"
+    },
+    "ux-writer": {
+      "department": "content",
+      "capabilities": ["ux-writing", "microcopy", "brand-voice", "notifications", "errors", "onboarding", "ctas"],
+      "skills": ["skill-ux-writing-brand-voice", "skill-copywriting"],
+      "commands": ["ux-copy-review"],
+      "when_to_use": "Microcopy, notifications, errors, empty states, onboarding, CTAs, transactional messaging"
+    },
+    "brand-strategist": {
+      "department": "brand",
+      "capabilities": ["brand-strategy", "positioning", "brand-systems", "founder-discovery", "cultural-tension"],
+      "skills": ["skill-zag-positioning", "skill-brand-flip", "skill-onliness-statement", "skill-brand-launch", "skill-brand-archetypes", "skill-brand-narrative", "skill-tribe-building", "skill-commodity-differentiation", "skill-cultural-brand-laws"],
+      "commands": ["brand-strategy", "brand-positioning", "onliness-statement", "archetype-analysis", "brand-narrative"],
+      "when_to_use": "Brand strategy, positioning, founder discovery, cultural tension mapping, brand systems"
+    },
+    "archetype-analyst": {
+      "department": "brand",
+      "capabilities": ["archetypes", "jungian-analysis", "brand-personality", "founder-mapping"],
+      "skills": ["skill-brand-archetypes"],
+      "commands": ["archetype-analysis"],
+      "when_to_use": "Jungian archetype mapping for brands and founders"
+    },
+    "brand-identity-architect": {
+      "department": "brand",
+      "capabilities": ["brand-identity", "naming", "visual-direction", "brand-architecture"],
+      "skills": ["skill-naming-systems", "skill-visual-identity", "skill-brand-launch"],
+      "commands": ["naming", "visual-identity"],
+      "when_to_use": "Brand identity systems, naming, visual direction, brand architecture"
+    },
+    "verbal-identity-designer": {
+      "department": "brand",
+      "capabilities": ["verbal-identity", "voice", "tone", "vocabulary", "messaging-architecture"],
+      "skills": ["skill-verbal-identity", "skill-copywriting"],
+      "commands": ["verbal-identity"],
+      "when_to_use": "Verbal identity systems, voice, tone, vocabulary, messaging architecture"
+    },
+    "copywriter": {
+      "department": "content",
+      "capabilities": ["copywriting", "headlines", "long-form", "conversion-copy", "storytelling"],
+      "skills": ["skill-copywriting", "skill-marketing-writer"],
+      "commands": [],
+      "when_to_use": "Compelling copy across touchpoints, headlines, long-form, conversion copy"
+    },
+    "content-strategist": {
+      "department": "content",
+      "capabilities": ["content-strategy", "editorial-calendar", "content-pillars", "content-systems"],
+      "skills": ["skill-content-strategy", "skill-editorial-calendar", "skill-content-matrix"],
+      "commands": ["content-strategy", "content-matrix"],
+      "when_to_use": "Content systems, editorial calendars, content pillars, content strategy"
+    },
+    "vibe-marketer": {
+      "department": "marketing",
+      "capabilities": ["vibe-marketing", "trend-content", "rapid-iteration", "platform-content"],
+      "skills": ["skill-vibe-marketing", "skill-content-matrix", "skill-ai-creative-stack"],
+      "commands": ["content-matrix"],
+      "when_to_use": "Rapid content execution, trend-native content, platform-specific campaigns"
+    },
+    "marketing-strategist": {
+      "department": "marketing",
+      "capabilities": ["marketing-strategy", "campaign-architecture", "growth-loops", "gtm"],
+      "skills": ["skill-campaign-architecture", "skill-go-to-market", "skill-growth-loops", "skill-channel-strategy"],
+      "commands": ["gtm-strategy", "campaign-plan"],
+      "when_to_use": "Campaign architecture, growth loops, go-to-market strategies"
+    },
+    "growth-engineer": {
+      "department": "marketing",
+      "capabilities": ["growth", "funnels", "acquisition", "retention", "data-driven"],
+      "skills": ["skill-growth-loops", "skill-channel-strategy"],
+      "commands": ["growth-review"],
+      "when_to_use": "Growth loops, funnel optimization, acquisition/retention engines"
+    },
+    "social-media-manager": {
+      "department": "marketing",
+      "capabilities": ["social-media", "platform-strategy", "community-engagement", "tribe-presence"],
+      "skills": ["skill-social-media-strategy", "skill-content-strategy"],
+      "commands": ["social-strategy"],
+      "when_to_use": "Platform strategies, community engagement, social presence"
+    },
+    "community-manager": {
+      "department": "marketing",
+      "capabilities": ["community", "tribe-spaces", "member-engagement", "community-growth"],
+      "skills": ["skill-community-management", "skill-tribe-building"],
+      "commands": ["community-strategy"],
+      "when_to_use": "Community building, member engagement, tribe cultivation"
+    },
+    "design-strategist": {
+      "department": "design",
+      "capabilities": ["design-strategy", "visual-direction", "creative-briefs", "design-grounding"],
+      "skills": ["skill-design-direction", "skill-design-principles", "skill-visual-identity"],
+      "commands": ["design-brief"],
+      "when_to_use": "Visual direction, creative briefs, strategic design grounding"
+    },
+    "visual-designer": {
+      "department": "design",
+      "capabilities": ["visual-design", "brand-identity", "marketing-materials", "visual-assets", "image-generation"],
+      "skills": ["skill-visual-identity", "skill-image-prompts", "skill-replicate-image-gen", "skill-glif-workflows", "skill-ai-creative-stack"],
+      "commands": ["visual-identity", "generate-image", "creative-brief"],
+      "when_to_use": "Brand identity systems, marketing materials, visual assets, AI image generation"
+    },
+    "ai-creative-strategist": {
+      "department": "design",
+      "capabilities": ["ai-creative", "image-generation", "video-production", "creative-stack"],
+      "skills": ["skill-ai-creative-stack", "skill-replicate-image-gen", "skill-glif-workflows", "skill-image-prompts"],
+      "commands": ["generate-image", "creative-brief"],
+      "when_to_use": "AI creative production, image generation, video production"
+    },
+    "business-strategist": {
+      "department": "strategy",
+      "capabilities": ["business-strategy", "market-positioning", "competitive-analysis", "strategic-planning"],
+      "skills": ["skill-business-strategy", "skill-competitive-analysis", "skill-market-research"],
+      "commands": ["business-strategy", "competitive-analysis", "market-research"],
+      "when_to_use": "Business strategy, market positioning, competitive analysis, strategic planning"
+    },
+    "research-analyst": {
+      "department": "research",
+      "capabilities": ["market-research", "competitive-analysis", "customer-research", "trend-analysis"],
+      "skills": ["skill-market-research", "skill-competitive-analysis", "skill-perplexity-research", "skill-firecrawl-scraping", "skill-playwright-automation"],
+      "commands": ["market-research", "competitive-analysis"],
+      "when_to_use": "Market research, competitive analysis, customer research, trend analysis"
+    },
+    "context-steward": {
+      "department": "operations",
+      "capabilities": ["context-management", "claude-files", "project-docs", "notion-sync"],
+      "skills": ["skill-project-matrix"],
+      "commands": ["context-sync", "project-matrix-sync"],
+      "when_to_use": "CLAUDE context files, project meta-docs, Notion workspace management"
+    },
+    "ralph-loop-architect": {
+      "department": "operations",
+      "capabilities": ["prd-generation", "iterative-development", "autonomous-workflows", "story-sizing"],
+      "skills": ["skill-ralph-wiggum"],
+      "commands": ["ralph-plan"],
+      "when_to_use": "PRD generation for Ralph Wiggum canonical workflow, story sizing, autonomous development preparation"
+    },
+    "prp-analyst": {
+      "department": "operations",
+      "capabilities": ["prp-methodology", "bug-investigation", "debugging", "root-cause-analysis"],
+      "skills": ["skill-prps-methodology"],
+      "commands": ["prp-investigate", "prp-debug", "prp-fix"],
+      "when_to_use": "Bug investigation, debugging, root cause analysis using PRPs methodology"
+    },
+    "analytics-strategist": {
+      "department": "analytics",
+      "capabilities": ["measurement-frameworks", "kpis", "dashboards", "data-storytelling", "metrics-governance"],
+      "skills": ["skill-measurement-frameworks", "skill-data-modelling-standards", "skill-business-strategy"],
+      "commands": [],
+      "when_to_use": "Measurement frameworks, KPI definition, dashboard design, data-driven decision making"
+    },
+    "user-researcher": {
+      "department": "research",
+      "capabilities": ["user-research", "interviews", "usability-testing", "surveys", "insight-synthesis"],
+      "skills": ["skill-user-research", "skill-market-research", "skill-competitive-analysis"],
+      "commands": [],
+      "when_to_use": "User interviews, usability testing, research synthesis, customer insights"
+    },
+    "product-manager": {
+      "department": "product",
+      "capabilities": ["product-strategy", "roadmap", "prioritization", "requirements", "specs", "stakeholder-alignment"],
+      "skills": ["skill-product-management", "skill-feature-idea-validator", "skill-business-strategy", "skill-measurement-frameworks"],
+      "commands": ["spec-and-plan", "product-plan"],
+      "when_to_use": "Product strategy, roadmap planning, feature prioritization, requirements definition"
+    },
+    "brand-facilitator": {
+      "department": "strategy",
+      "capabilities": ["brand-discovery", "founder-interviews", "brand-foundations", "facilitation", "discovery"],
+      "skills": ["skill-brand-facilitation", "skill-customer-design"],
+      "commands": ["brand-discovery"],
+      "escalates_to": ["brand-strategist", "verbal-identity-designer", "visual-designer"],
+      "when_to_use": "Brand discovery sessions, founder interviews to uncover brand foundations before strategy execution"
+    },
+    "ideation-facilitator": {
+      "department": "strategy",
+      "capabilities": ["product-discovery", "product-ideation", "founder-interviews", "facilitation", "discovery"],
+      "skills": ["skill-product-ideation"],
+      "commands": ["product-discovery"],
+      "escalates_to": ["brand-facilitator", "user-researcher", "research-analyst", "senior-architect", "business-strategist", "product-manager"],
+      "when_to_use": "Product discovery sessions, clarifying product concepts before brand development"
+    }
+  },
+
+  "task_routing": {
+    "backend": {
+      "primary": ["backend-engineer"],
+      "supporting": ["senior-architect", "security-auditor"],
+      "review": ["pragmatic-code-reviewer"]
+    },
+    "frontend": {
+      "primary": ["ux-product-strategist"],
+      "supporting": ["design-reviewer", "ux-writer"],
+      "review": ["pragmatic-code-reviewer", "design-reviewer"]
+    },
+    "smart-contract": {
+      "primary": ["solidity-protocol-engineer"],
+      "supporting": ["security-auditor", "defi-risk-engineer", "senior-architect"],
+      "review": ["security-auditor", "pragmatic-code-reviewer"]
+    },
+    "defi": {
+      "primary": ["defi-risk-engineer", "solidity-protocol-engineer"],
+      "supporting": ["security-auditor", "senior-architect"],
+      "review": ["security-auditor"]
+    },
+    "security": {
+      "primary": ["security-auditor"],
+      "supporting": ["senior-architect", "defi-risk-engineer"],
+      "review": ["security-auditor"]
+    },
+    "architecture": {
+      "primary": ["senior-architect"],
+      "supporting": ["backend-engineer", "solidity-protocol-engineer"],
+      "review": ["pragmatic-code-reviewer"]
+    },
+    "brand": {
+      "primary": ["brand-strategist"],
+      "supporting": ["archetype-analyst", "brand-identity-architect", "verbal-identity-designer"],
+      "review": []
+    },
+    "content": {
+      "primary": ["content-strategist"],
+      "supporting": ["copywriter", "ux-writer", "vibe-marketer"],
+      "review": []
+    },
+    "marketing": {
+      "primary": ["marketing-strategist"],
+      "supporting": ["growth-engineer", "social-media-manager", "vibe-marketer"],
+      "review": ["growth-engineer"]
+    },
+    "design": {
+      "primary": ["design-strategist", "visual-designer"],
+      "supporting": ["ai-creative-strategist", "ux-product-strategist"],
+      "review": ["design-reviewer"]
+    },
+    "research": {
+      "primary": ["research-analyst", "user-researcher"],
+      "supporting": ["business-strategist", "analytics-strategist"],
+      "review": []
+    },
+    "product": {
+      "primary": ["product-manager", "ux-product-strategist"],
+      "supporting": ["senior-architect", "business-strategist", "user-researcher"],
+      "review": ["design-reviewer"]
+    },
+    "analytics": {
+      "primary": ["analytics-strategist"],
+      "supporting": ["business-strategist", "growth-engineer"],
+      "review": []
+    },
+    "bug-fix": {
+      "primary": ["prp-analyst"],
+      "supporting": ["backend-engineer", "solidity-protocol-engineer"],
+      "review": ["pragmatic-code-reviewer"]
+    },
+    "sprint": {
+      "primary": ["ralph-loop-architect"],
+      "supporting": ["context-steward"],
+      "review": []
+    },
+    "discovery": {
+      "primary": ["brand-facilitator", "ideation-facilitator"],
+      "supporting": ["user-researcher", "research-analyst"],
+      "review": []
+    },
+    "facilitation": {
+      "primary": ["brand-facilitator", "ideation-facilitator"],
+      "supporting": ["user-researcher"],
+      "review": []
+    }
+  },
+
+  "keyword_to_category": {
+    "api": "backend",
+    "endpoint": "backend",
+    "database": "backend",
+    "schema": "backend",
+    "migration": "backend",
+    "service": "backend",
+    "node": "backend",
+    "typescript": "backend",
+    "express": "backend",
+
+    "react": "frontend",
+    "component": "frontend",
+    "ui": "frontend",
+    "ux": "frontend",
+    "interface": "frontend",
+    "layout": "frontend",
+    "style": "frontend",
+
+    "solidity": "smart-contract",
+    "contract": "smart-contract",
+    "evm": "smart-contract",
+    "hardhat": "smart-contract",
+    "foundry": "smart-contract",
+    "ethers": "smart-contract",
+
+    "defi": "defi",
+    "liquidity": "defi",
+    "tokenomics": "defi",
+    "oracle": "defi",
+    "lending": "defi",
+    "amm": "defi",
+    "swap": "defi",
+
+    "security": "security",
+    "audit": "security",
+    "vulnerability": "security",
+    "threat": "security",
+    "exploit": "security",
+
+    "architecture": "architecture",
+    "system": "architecture",
+    "design": "architecture",
+    "module": "architecture",
+    "boundary": "architecture",
+
+    "brand": "brand",
+    "positioning": "brand",
+    "archetype": "brand",
+    "identity": "brand",
+    "naming": "brand",
+
+    "content": "content",
+    "copy": "content",
+    "editorial": "content",
+    "article": "content",
+    "blog": "content",
+
+    "marketing": "marketing",
+    "campaign": "marketing",
+    "growth": "marketing",
+    "gtm": "marketing",
+    "launch": "marketing",
+    "social": "marketing",
+
+    "visual": "design",
+    "graphic": "design",
+    "image": "design",
+    "creative": "design",
+
+    "research": "research",
+    "analysis": "research",
+    "competitive": "research",
+    "market": "research",
+    "user-research": "research",
+    "interview": "research",
+    "usability": "research",
+    "survey": "research",
+
+    "analytics": "analytics",
+    "metrics": "analytics",
+    "kpi": "analytics",
+    "dashboard": "analytics",
+    "measurement": "analytics",
+
+    "product": "product",
+    "feature": "product",
+    "spec": "product",
+    "roadmap": "product",
+
+    "bug": "bug-fix",
+    "fix": "bug-fix",
+    "debug": "bug-fix",
+    "error": "bug-fix",
+    "issue": "bug-fix",
+
+    "sprint": "sprint",
+    "ralph": "sprint",
+    "loop": "sprint",
+    "autonomous": "sprint",
+
+    "discovery": "discovery",
+    "facilitation": "facilitation",
+    "facilitator": "facilitation",
+    "brand-discovery": "discovery",
+    "product-discovery": "discovery",
+    "ideation": "discovery",
+    "founder-interview": "facilitation"
+  },
+
+  "skill_to_agents": {
+    "skill-backend-api-standards": ["backend-engineer"],
+    "skill-data-modelling-standards": ["backend-engineer"],
+    "skill-testing-standards": ["backend-engineer", "solidity-protocol-engineer", "pragmatic-code-reviewer"],
+    "skill-secure-coding-standards": ["backend-engineer", "security-auditor", "security-review-agent", "senior-architect"],
+    "skill-code-style-standards": ["backend-engineer", "solidity-protocol-engineer", "pragmatic-code-reviewer", "senior-architect"],
+    "skill-solidity-style-security": ["solidity-protocol-engineer"],
+    "skill-smart-contract-auditor": ["security-auditor", "solidity-protocol-engineer", "defi-risk-engineer"],
+    "skill-smart-contract-audit-checklist": ["security-auditor", "solidity-protocol-engineer", "defi-risk-engineer"],
+    "skill-design-principles": ["design-reviewer", "ux-product-strategist", "design-strategist"],
+    "skill-ux-review-checklist": ["design-reviewer", "ux-product-strategist"],
+    "skill-design-system-standards": ["design-reviewer"],
+    "skill-product-designer-ui": ["ux-product-strategist"],
+    "skill-feature-idea-validator": ["ux-product-strategist"],
+    "skill-review-structure": ["pragmatic-code-reviewer", "pragmatic-code-reviewer-subagent"],
+    "skill-review-dimensions": ["pragmatic-code-reviewer", "pragmatic-code-reviewer-subagent"],
+    "skill-reviewer-voice": ["pragmatic-code-reviewer"],
+    "skill-zag-positioning": ["brand-strategist"],
+    "skill-brand-flip": ["brand-strategist"],
+    "skill-onliness-statement": ["brand-strategist"],
+    "skill-brand-launch": ["brand-strategist", "brand-identity-architect"],
+    "skill-brand-archetypes": ["brand-strategist", "archetype-analyst"],
+    "skill-brand-narrative": ["brand-strategist"],
+    "skill-tribe-building": ["brand-strategist", "community-manager"],
+    "skill-commodity-differentiation": ["brand-strategist"],
+    "skill-cultural-brand-laws": ["brand-strategist"],
+    "skill-naming-systems": ["brand-identity-architect"],
+    "skill-visual-identity": ["brand-identity-architect", "visual-designer", "design-strategist"],
+    "skill-verbal-identity": ["verbal-identity-designer"],
+    "skill-copywriting": ["copywriter", "verbal-identity-designer", "ux-writer"],
+    "skill-ux-writing-brand-voice": ["ux-writer"],
+    "skill-marketing-writer": ["copywriter", "vibe-marketer"],
+    "skill-content-strategy": ["content-strategist", "social-media-manager"],
+    "skill-editorial-calendar": ["content-strategist"],
+    "skill-content-matrix": ["content-strategist", "vibe-marketer"],
+    "skill-vibe-marketing": ["vibe-marketer"],
+    "skill-campaign-architecture": ["marketing-strategist"],
+    "skill-go-to-market": ["marketing-strategist"],
+    "skill-growth-loops": ["marketing-strategist", "growth-engineer"],
+    "skill-channel-strategy": ["marketing-strategist", "growth-engineer"],
+    "skill-social-media-strategy": ["social-media-manager"],
+    "skill-community-management": ["community-manager"],
+    "skill-design-direction": ["design-strategist"],
+    "skill-image-prompts": ["visual-designer", "ai-creative-strategist"],
+    "skill-ai-creative-stack": ["ai-creative-strategist", "visual-designer", "vibe-marketer"],
+    "skill-replicate-image-gen": ["ai-creative-strategist", "visual-designer"],
+    "skill-glif-workflows": ["ai-creative-strategist", "visual-designer"],
+    "skill-business-strategy": ["business-strategist"],
+    "skill-competitive-analysis": ["business-strategist", "research-analyst"],
+    "skill-market-research": ["research-analyst", "business-strategist"],
+    "skill-perplexity-research": ["research-analyst"],
+    "skill-firecrawl-scraping": ["research-analyst"],
+    "skill-playwright-automation": ["research-analyst"],
+    "skill-project-matrix": ["context-steward"],
+    "skill-ralph-wiggum": ["ralph-loop-architect"],
+    "skill-prps-methodology": ["prp-analyst"],
+    "skill-measurement-frameworks": ["analytics-strategist", "product-manager", "growth-engineer"],
+    "skill-user-research": ["user-researcher", "ux-product-strategist"],
+    "skill-product-management": ["product-manager", "ux-product-strategist"],
+    "skill-brand-facilitation": ["brand-facilitator"],
+    "skill-product-ideation": ["ideation-facilitator"],
+    "skill-customer-design": ["brand-facilitator", "brand-strategist", "user-researcher", "content-strategist", "copywriter"]
+  },
+
+  "command_to_agents": {
+    "implement-feature": ["backend-engineer", "solidity-protocol-engineer"],
+    "code-review": ["pragmatic-code-reviewer"],
+    "pragmatic-code-review": ["pragmatic-code-reviewer"],
+    "verify-implementation": ["pragmatic-code-reviewer"],
+    "design-review": ["design-reviewer", "ux-product-strategist"],
+    "security-review": ["security-auditor", "security-review-agent"],
+    "architecture-review": ["senior-architect"],
+    "ux-review": ["ux-product-strategist"],
+    "smart-contract-review": ["security-auditor", "solidity-protocol-engineer"],
+    "smart-contract-audit": ["security-auditor"],
+    "spec-review": ["senior-architect", "ux-product-strategist"],
+    "migration-review": ["senior-architect"],
+    "ux-copy-review": ["ux-writer"],
+    "write-docs": ["context-steward"],
+    "gitbook-docs": ["context-steward"],
+    "product-plan": ["ux-product-strategist"],
+    "context-sync": ["context-steward"],
+    "spec-and-plan": ["senior-architect", "ux-product-strategist"],
+    "brand-strategy": ["brand-strategist"],
+    "brand-positioning": ["brand-strategist"],
+    "brand-narrative": ["brand-strategist"],
+    "onliness-statement": ["brand-strategist"],
+    "archetype-analysis": ["archetype-analyst"],
+    "naming": ["brand-identity-architect"],
+    "visual-identity": ["brand-identity-architect", "visual-designer"],
+    "verbal-identity": ["verbal-identity-designer"],
+    "design-brief": ["design-strategist"],
+    "gtm-strategy": ["marketing-strategist"],
+    "campaign-plan": ["marketing-strategist"],
+    "growth-review": ["growth-engineer"],
+    "content-strategy": ["content-strategist"],
+    "content-matrix": ["content-strategist", "vibe-marketer"],
+    "social-strategy": ["social-media-manager"],
+    "community-strategy": ["community-manager"],
+    "business-strategy": ["business-strategist"],
+    "market-research": ["research-analyst"],
+    "competitive-analysis": ["research-analyst", "business-strategist"],
+    "project-matrix": ["context-steward"],
+    "project-matrix-sync": ["context-steward"],
+    "creative-brief": ["ai-creative-strategist"],
+    "generate-image": ["ai-creative-strategist", "visual-designer"],
+    "seo-content": ["content-strategist"],
+    "geo-content": ["content-strategist"],
+    "ralph-plan": ["ralph-loop-architect"],
+    "prp-investigate": ["prp-analyst"],
+    "prp-debug": ["prp-analyst"],
+    "prp-fix": ["prp-analyst"],
+    "brand-discovery": ["brand-facilitator"],
+    "product-discovery": ["ideation-facilitator"]
+  }
+}
