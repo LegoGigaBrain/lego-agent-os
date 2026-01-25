@@ -162,13 +162,13 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user managing multiple brands, I want documentation explaining how LEGO OS supports brand architecture.
 
 **Acceptance Criteria:**
-- [ ] Create `docs/lego-os/brand-architecture.md`
-- [ ] Explain Branded House with example (Google) and folder structure
-- [ ] Explain House of Brands with example (P&G) and folder structure
-- [ ] Explain Endorsed Brands with example (Marriott)
-- [ ] Explain Hybrid with example (Virgin)
-- [ ] Document agent behavior for portfolio analysis
-- [ ] Include relevant commands table
+- [x] Create `docs/lego-os/brand-architecture.md`
+- [x] Explain Branded House with example (Google) and folder structure
+- [x] Explain House of Brands with example (P&G) and folder structure
+- [x] Explain Endorsed Brands with example (Marriott)
+- [x] Explain Hybrid with example (Virgin)
+- [x] Document agent behavior for portfolio analysis
+- [x] Include relevant commands table
 
 ---
 
