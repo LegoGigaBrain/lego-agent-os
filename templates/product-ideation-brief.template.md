@@ -1,0 +1,253 @@
+# Product Ideation Brief
+
+> **Product:** {{product_name}}
+> **Date:** {{date}}
+> **Facilitator:** @ideation-facilitator
+> **Session Duration:** {{session_duration}}
+
+---
+
+## Executive Summary
+
+{{executive_summary}}
+
+---
+
+## Phase 1: Problem Space
+
+### Problem Statement
+> {{problem_statement}}
+
+### Who Experiences This Problem
+{{problem_who}}
+
+### How They Currently Solve It (or Cope)
+{{current_alternatives}}
+
+### Problem Frequency
+{{problem_frequency}}
+
+### Cost of Not Solving
+- **Time:** {{cost_time}}
+- **Money:** {{cost_money}}
+- **Frustration:** {{cost_frustration}}
+- **Missed Opportunity:** {{cost_opportunity}}
+
+### How the Problem Was Discovered
+{{problem_discovery_origin}}
+
+### Why It Hasn't Been Solved Well Before
+{{why_unsolved}}
+
+### Why Now Is the Right Time
+{{timing_factors}}
+
+### Problem Severity Assessment
+**Rating:** {{problem_severity}} (High / Medium / Low)
+
+{{problem_severity_rationale}}
+
+---
+
+## Phase 2: Solution Hypothesis
+
+### Solution Statement
+> {{solution_statement}}
+
+### Core Insight / Innovation
+{{core_insight}}
+
+### How It Solves the Problem Differently
+{{differentiation}}
+
+### User Journey (Typical Use Case)
+{{user_journey}}
+
+### What Success Looks Like for Users
+{{user_success}}
+
+### Minimum Viable Product (MVP)
+{{mvp_definition}}
+
+### Essential Features
+{{essential_features}}
+
+### Nice-to-Have Features
+{{nice_to_have_features}}
+
+### Existing Solutions/Technologies We Build Upon
+{{build_upon}}
+
+---
+
+## Phase 3: Market Assessment
+
+### Market Size
+- **TAM (Total Addressable Market):** {{tam}}
+- **SAM (Serviceable Addressable Market):** {{sam}}
+- **SOM (Serviceable Obtainable Market):** {{som}}
+
+*Qualitative Assessment:* {{market_size_qualitative}}
+
+### Ideal First Customers
+{{ideal_customer_profile}}
+
+### Where They Gather
+- **Online:** {{customer_gathering_online}}
+- **Offline:** {{customer_gathering_offline}}
+
+### What They Currently Pay for Alternatives
+{{current_spending}}
+
+### Competitive Landscape
+
+#### Direct Competitors
+{{direct_competitors}}
+
+#### Indirect Competitors
+{{indirect_competitors}}
+
+### Why Customers Would Choose Us
+{{why_choose_us}}
+
+### Market Trends Making This Attractive
+{{market_trends}}
+
+### Vitamin vs Painkiller Assessment
+**Classification:** {{vitamin_or_painkiller}}
+
+{{vitamin_painkiller_rationale}}
+
+---
+
+## Phase 4: Feasibility
+
+### Technical Requirements
+{{technical_requirements}}
+
+### Resources Available
+
+| Resource | Status | Notes |
+|----------|--------|-------|
+| Team | {{team_status}} | {{team_notes}} |
+| Tools | {{tools_status}} | {{tools_notes}} |
+| Capital | {{capital_status}} | {{capital_notes}} |
+
+### Unfair Advantage
+{{unfair_advantage}}
+
+### Risk Inventory
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| {{risk_1}} | {{risk_1_likelihood}} | {{risk_1_impact}} | {{risk_1_mitigation}} |
+| {{risk_2}} | {{risk_2_likelihood}} | {{risk_2_impact}} | {{risk_2_mitigation}} |
+| {{risk_3}} | {{risk_3_likelihood}} | {{risk_3_impact}} | {{risk_3_mitigation}} |
+
+### Key Assumptions
+{{key_assumptions}}
+
+### Riskiest Assumption
+> {{riskiest_assumption}}
+
+### Validation Experiment
+{{validation_experiment}}
+
+### What Would Prove Us Wrong
+{{prove_wrong}}
+
+### What Would Prove Us Right
+{{prove_right}}
+
+---
+
+## Phase 5: Vision
+
+### 5-Year Vision
+> {{five_year_vision}}
+
+### Founder's Personal Motivation
+{{founder_motivation}}
+
+### Founder-Market Fit
+{{founder_market_fit}}
+
+### What Legacy This Product Leaves
+{{legacy}}
+
+### Regret Minimization
+{{regret_consideration}}
+
+### Ambition Level
+**Building a:** {{ambition_level}} (Feature / Product / Company)
+
+{{ambition_rationale}}
+
+### The 10x Version
+{{ten_x_version}}
+
+### North Star
+{{north_star}}
+
+---
+
+## Assessment
+
+### Strengths
+{{strengths}}
+
+### Concerns
+{{concerns}}
+
+### Open Questions
+{{open_questions}}
+
+---
+
+## Recommended Path
+
+### Primary Recommendation
+**Path:** {{recommended_path}}
+
+{{recommendation_rationale}}
+
+### Path Options
+
+| Path | When to Choose | Agent |
+|------|----------------|-------|
+| Proceed to Brand Discovery | Product is clear, ready for brand development | @brand-facilitator |
+| Conduct Customer Research | Need to validate problem/solution with real users | @user-researcher |
+| Technical Validation | Need to prove technical feasibility first | @senior-architect |
+| Market Research | Need deeper competitive/market analysis | @research-analyst |
+| Business Strategy | Need to clarify business model | @business-strategist |
+| Product Planning | Ready to build, need product roadmap | @product-manager |
+| Pivot or Refine | Significant concerns suggest revisiting core idea | Continue with @ideation-facilitator |
+
+### Recommended Command
+```
+{{recommended_command}}
+```
+
+---
+
+## Red Flags Identified
+
+{{red_flags}}
+
+---
+
+## Session Notes
+
+### Key Quotes from Founder
+{{founder_quotes}}
+
+### Energy Observations
+{{energy_observations}}
+
+### Additional Context
+{{additional_context}}
+
+---
+
+*Generated by LEGO Agent OS - Ideation Facilitator*
+*Template Version: 1.0*
