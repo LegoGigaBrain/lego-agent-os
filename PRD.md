@@ -238,11 +238,11 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user, I want a comprehensive index of all agents so I can quickly find the right one.
 
 **Acceptance Criteria:**
-- [ ] Create `docs/lego-os/agent-index.md`
-- [ ] Read all agents from `.claude/agents/` folder
-- [ ] Read agent-registry.json for additional metadata
-- [ ] Include for each: name, department, primary skill, key commands, when to use
-- [ ] Organize by department (strategy, content, engineering, etc.)
+- [x] Create `docs/lego-os/agent-index.md`
+- [x] Read all agents from `.claude/agents/` folder
+- [x] Read agent-registry.json for additional metadata
+- [x] Include for each: name, department, primary skill, key commands, when to use
+- [x] Organize by department (strategy, content, engineering, etc.)
 
 ---
 
