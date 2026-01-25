@@ -67,3 +67,37 @@
   - Recommended Path in output format helps route to appropriate next steps
   - Quality checklist mirrors the phases to ensure complete coverage
 ---
+
+## Iteration 5 - US-005: Create Ideation Facilitator Agent
+- Created `.claude/agents/ideation-facilitator.md`
+- Included frontmatter: name (ideation-facilitator), department (strategy), description, tools (Read, Write, Edit, Glob, Grep, AskUserQuestion)
+- Referenced PRIMARY skill: skill-product-ideation.md
+- Defined mission as product discovery BEFORE brand with "Critical Distinction" and "What You Do NOT Do" sections
+- Included workflow: Opening, Phase-by-Phase Discovery, Synthesis, Handoff
+- Included quality checklist (10 items) matching skill phases
+- Collaboration section includes bidirectional handoffs with @brand-facilitator
+- Files changed: `.claude/agents/ideation-facilitator.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Facilitator agents should mirror their skill's phases in the workflow section
+  - Include "Receives From" section showing when this agent is invoked by others (not just direct invocation)
+  - Belief System should reflect the agent's core philosophy (problem-first for ideation, founder-articulation for brand)
+  - "What You Do NOT Do" section is critical for facilitators to prevent scope creep
+---
+
+## Iteration 6 - US-006: Create Product Discovery Command
+- Created `.claude/commands/product-discovery.md`
+- Followed brand-discovery.md pattern: Goal, Primary Agent, Supporting Agents, Skills, Standards, Overview, When to Use, What This Produces, 5 Discovery Phases, Output Location, Success Criteria, Handoff Recommendations, Important Notes, Agents Involved, Getting Started
+- Key content includes:
+  - Primary agent: @ideation-facilitator
+  - Output location: product/product-ideation-brief.md
+  - 10-item success criteria checklist matching skill phases
+  - 7 handoff options based on discovery results
+  - "When to Use" comparison table for routing
+  - "What This Is NOT" section for clarity
+- Files changed: `.claude/commands/product-discovery.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Command files for discovery sessions should parallel the agent's workflow sections
+  - Supporting agents list should match the handoff options in the recommendations table
+  - "When to Use" tables help users choose the right entry point
+  - Success criteria should directly map to what the skill captures in each phase
+---

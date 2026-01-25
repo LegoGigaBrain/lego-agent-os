@@ -82,12 +82,12 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user, I want a `/product-discovery` command that initiates a product ideation session.
 
 **Acceptance Criteria:**
-- [ ] Create `.claude/commands/product-discovery.md`
-- [ ] Define overview and when to use
-- [ ] Specify @ideation-facilitator as primary agent
-- [ ] Define output location: `product/product-ideation-brief.md`
-- [ ] Include success criteria checklist
-- [ ] Define handoff options
+- [x] Create `.claude/commands/product-discovery.md`
+- [x] Define overview and when to use
+- [x] Specify @ideation-facilitator as primary agent
+- [x] Define output location: `product/product-ideation-brief.md`
+- [x] Include success criteria checklist
+- [x] Define handoff options
 
 ---
 
