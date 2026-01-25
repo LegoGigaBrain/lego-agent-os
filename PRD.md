@@ -250,10 +250,10 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user, I want a comprehensive index of all skills so I understand available methodologies.
 
 **Acceptance Criteria:**
-- [ ] Create `docs/lego-os/skills-index.md`
-- [ ] Read all skills from `.claude/skills/` folder
-- [ ] Include for each: name, purpose, which agents use it, key frameworks
-- [ ] Organize by category (brand, content, development, etc.)
+- [x] Create `docs/lego-os/skills-index.md`
+- [x] Read all skills from `.claude/skills/` folder
+- [x] Include for each: name, purpose, which agents use it, key frameworks
+- [x] Organize by category (brand, content, development, etc.)
 
 ---
 
