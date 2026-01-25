@@ -134,13 +134,13 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user, I want workflow paths documentation showing the decision tree for choosing the right workflow.
 
 **Acceptance Criteria:**
-- [ ] Create `docs/lego-os/workflow-paths.md`
-- [ ] Include Path A: Product Discovery flow with ASCII diagram
-- [ ] Include Path B: Brand Discovery flow with ASCII diagram
-- [ ] Include Path C: Content Production flow
-- [ ] Include Path D: Website/App flow
-- [ ] Include Path E: Smart Contract flow
-- [ ] Include Workflow Selection Matrix table
+- [x] Create `docs/lego-os/workflow-paths.md`
+- [x] Include Path A: Product Discovery flow with ASCII diagram
+- [x] Include Path B: Brand Discovery flow with ASCII diagram
+- [x] Include Path C: Content Production flow
+- [x] Include Path D: Website/App flow
+- [x] Include Path E: Smart Contract flow
+- [x] Include Workflow Selection Matrix table
 
 ---
 

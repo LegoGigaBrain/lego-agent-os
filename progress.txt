@@ -142,3 +142,47 @@
   - New categories need corresponding keywords in keyword_to_category for proper routing
   - Always validate JSON after edits with node -e "JSON.parse(...)"
 ---
+
+## Iteration 9 - US-009: Create Getting Started Documentation
+- Created `docs/getting-started.md` with comprehensive onboarding guide
+- Included "What Do You Have?" decision tree with 5 paths:
+  - Path A: Product Discovery (idea only)
+  - Path B: Brand Discovery (validated product)
+  - Path C: Content Production (existing brand)
+  - Path D: Software Development (specs ready)
+  - Path E: Marketing Launch (brand + content ready)
+- Included Discovery -> Execution flow diagram with ASCII art showing facilitators to executors
+- Added Key Concepts section covering:
+  - Facilitators vs. Executors comparison table
+  - Living Documents explanation with key document list
+  - Agent Handoffs with visual flow diagram
+- Added Quick Commands tables for Discovery, Brand, Content, Software, and Review commands
+- Added Need Help? section with documentation links, troubleshooting, and extensibility
+- Added Quick Reference Card ASCII art summary
+- Files changed: `docs/getting-started.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - ASCII art diagrams should use box-drawing characters for visual clarity
+  - "Common Starting Scenarios" section helps users map their situation to specific paths
+  - Quick Reference Card provides concise summary for power users
+  - Documentation follows existing style from overview.md (headers, tables, code blocks)
+---
+
+## Iteration 10 - US-010: Create Workflow Paths Documentation
+- Created `docs/lego-os/workflow-paths.md` with comprehensive workflow path documentation
+- Included 5 workflow paths:
+  - Path A: Product Discovery - with ASCII diagram showing @ideation-facilitator flow
+  - Path B: Brand Discovery - with ASCII diagram showing @brand-facilitator flow
+  - Path C: Content Production - with ASCII diagram showing content strategy execution
+  - Path D: Website/App Development - with ASCII diagram showing development options
+  - Path E: Smart Contract Development - with ASCII diagram showing contract workflow
+- Added Workflow Selection Matrix table at the top for quick reference
+- Added "Combining Paths" section showing how paths can be sequenced
+- Added "Decision Tree Summary" ASCII diagram for overall path selection
+- Files changed: `docs/lego-os/workflow-paths.md` (new), `PRD.md` (updated)
+- Learnings for future iterations:
+  - Each path should have clear "Start here if" guidance
+  - ASCII diagrams should show agents, commands, and outputs at each step
+  - "Next Steps After Path X" tables help with path transitions
+  - "Combining Paths" section shows real-world workflow combinations
+  - Related Documentation links at the end tie into other docs
+---
