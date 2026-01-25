@@ -203,10 +203,13 @@ Delegate to `@defi-risk-engineer` for economic model review.
 
 ---
 
-## Ralph Loop Integration
+## Ralph Wiggum Integration
 
 For autonomous security audits, use the firm-level audit template in `skill-ralph-wiggum.md`. This template follows professional audit firm methodology with 8 phases, OWASP SCSVS checklist, and structured report generation.
 
-```bash
-/ralph-loop "Perform firm-level security audit of contracts/*.sol" --max-iterations 100 --completion-promise "AUDIT_COMPLETE"
+1. Run `/ralph-plan` to generate PRD.md with audit tasks
+2. Execute in terminal:
+```powershell
+./scripts/ralph/ralph.ps1 -MaxIterations 100
 ```
+3. Review with `/smart-contract-review` when complete

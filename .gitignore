@@ -144,3 +144,8 @@ frameworks/
 # Local config with API keys
 .claude/settings.local.json
 .mcp.json
+
+# GUI Development (private until release)
+gui/
+schemas/
+ui-components/

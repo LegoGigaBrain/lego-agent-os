@@ -1,0 +1,470 @@
+# Agent Dependencies
+# Defines handoff paths, escalation chains, and collaboration patterns between agents
+
+version: "1.0.0"
+last_updated: "2026-01-22"
+
+# =============================================================================
+# HANDOFF PATHS
+# Defines which agents hand off work to other agents after their phase completes
+# =============================================================================
+
+handoff_paths:
+
+  # Engineering Agents
+  senior-architect:
+    receives_from:
+      - ux-product-strategist  # Product specs → Architecture
+      - business-strategist    # Business requirements → Technical design
+    hands_off_to:
+      - backend-engineer       # Architecture → Implementation
+      - solidity-protocol-engineer  # Architecture → Contract implementation
+      - security-auditor       # Architecture → Security review
+    escalates_to: []  # Top of engineering chain
+
+  backend-engineer:
+    receives_from:
+      - senior-architect       # Architecture specs
+      - ux-product-strategist  # Feature requirements
+    hands_off_to:
+      - pragmatic-code-reviewer  # Code → Review
+      - security-auditor         # Security-sensitive code → Audit
+    escalates_to:
+      - senior-architect       # Architecture questions
+      - security-auditor       # Security concerns
+
+  solidity-protocol-engineer:
+    receives_from:
+      - senior-architect       # Protocol architecture
+      - defi-risk-engineer     # Economic model specs
+    hands_off_to:
+      - security-auditor       # Contracts → Audit
+      - pragmatic-code-reviewer  # Code → Review
+    escalates_to:
+      - senior-architect       # Architecture decisions
+      - security-auditor       # Security concerns
+      - defi-risk-engineer     # Economic model questions
+
+  security-auditor:
+    receives_from:
+      - backend-engineer       # Backend code for review
+      - solidity-protocol-engineer  # Contracts for audit
+      - senior-architect       # Architecture for threat modeling
+    hands_off_to:
+      - backend-engineer       # Remediation instructions
+      - solidity-protocol-engineer  # Contract fixes
+    escalates_to: []  # Top of security chain
+
+  defi-risk-engineer:
+    receives_from:
+      - solidity-protocol-engineer  # DeFi mechanisms for review
+      - senior-architect       # Economic architecture
+    hands_off_to:
+      - solidity-protocol-engineer  # Economic model specs
+      - security-auditor       # Risk findings
+    escalates_to: []  # Top of economic chain
+
+  pragmatic-code-reviewer:
+    receives_from:
+      - backend-engineer       # Code for review
+      - solidity-protocol-engineer  # Contracts for review
+    hands_off_to:
+      - backend-engineer       # Review findings
+      - solidity-protocol-engineer  # Review findings
+    escalates_to:
+      - senior-architect       # Architecture concerns
+      - security-auditor       # Security concerns
+
+  # Design & UX Agents
+  ux-product-strategist:
+    receives_from:
+      - business-strategist    # Business requirements
+      - brand-strategist       # Brand strategy
+    hands_off_to:
+      - senior-architect       # Product specs → Architecture
+      - design-reviewer        # UX specs → Design review
+      - ux-writer              # UX specs → Copy
+    escalates_to:
+      - brand-strategist       # Brand alignment questions
+      - business-strategist    # Business priority questions
+
+  design-reviewer:
+    receives_from:
+      - ux-product-strategist  # UX specs for review
+      - design-strategist      # Design specs for review
+    hands_off_to:
+      - ux-product-strategist  # Design feedback
+      - visual-designer        # Design direction
+    escalates_to:
+      - ux-product-strategist  # Product questions
+
+  design-strategist:
+    receives_from:
+      - brand-strategist       # Brand strategy → Visual direction
+    hands_off_to:
+      - visual-designer        # Creative briefs
+      - ai-creative-strategist # AI creative briefs
+    escalates_to:
+      - brand-strategist       # Brand alignment
+
+  visual-designer:
+    receives_from:
+      - design-strategist      # Creative briefs
+      - brand-identity-architect  # Identity systems
+    hands_off_to:
+      - design-reviewer        # Designs for review
+    escalates_to:
+      - design-strategist      # Direction questions
+      - brand-identity-architect  # Identity questions
+
+  # Brand Agents
+  brand-strategist:
+    receives_from:
+      - business-strategist    # Business context
+      - research-analyst       # Market research
+    hands_off_to:
+      - archetype-analyst      # Archetype work
+      - brand-identity-architect  # Identity development
+      - verbal-identity-designer  # Verbal identity
+      - marketing-strategist   # Campaign foundation
+      - content-strategist     # Content pillars
+    escalates_to: []  # Top of brand chain
+
+  archetype-analyst:
+    receives_from:
+      - brand-strategist       # Brand strategy context
+    hands_off_to:
+      - brand-strategist       # Archetype analysis results
+    escalates_to:
+      - brand-strategist       # Strategic alignment
+
+  brand-identity-architect:
+    receives_from:
+      - brand-strategist       # Brand strategy
+    hands_off_to:
+      - visual-designer        # Identity systems
+      - design-strategist      # Visual direction
+    escalates_to:
+      - brand-strategist       # Strategic alignment
+
+  verbal-identity-designer:
+    receives_from:
+      - brand-strategist       # Brand strategy
+    hands_off_to:
+      - copywriter             # Voice guidelines
+      - ux-writer              # UX voice guidelines
+    escalates_to:
+      - brand-strategist       # Strategic alignment
+
+  # Content & Marketing Agents
+  content-strategist:
+    receives_from:
+      - brand-strategist       # Content pillars
+      - marketing-strategist   # Campaign content needs
+    hands_off_to:
+      - copywriter             # Content briefs
+      - vibe-marketer          # Content calendar
+    escalates_to:
+      - brand-strategist       # Brand alignment
+      - marketing-strategist   # Campaign alignment
+
+  copywriter:
+    receives_from:
+      - verbal-identity-designer  # Voice guidelines
+      - content-strategist     # Content briefs
+    hands_off_to:
+      - content-strategist     # Content for review
+    escalates_to:
+      - verbal-identity-designer  # Voice questions
+      - brand-strategist       # Brand alignment
+
+  ux-writer:
+    receives_from:
+      - verbal-identity-designer  # Voice guidelines
+      - ux-product-strategist  # UX specs
+    hands_off_to:
+      - ux-product-strategist  # Copy for review
+    escalates_to:
+      - verbal-identity-designer  # Voice questions
+
+  marketing-strategist:
+    receives_from:
+      - brand-strategist       # Brand foundation
+      - business-strategist    # Business goals
+    hands_off_to:
+      - growth-engineer        # Growth implementation
+      - social-media-manager   # Social execution
+      - content-strategist     # Content execution
+      - vibe-marketer          # Rapid content
+    escalates_to:
+      - brand-strategist       # Brand alignment
+      - business-strategist    # Business priorities
+
+  growth-engineer:
+    receives_from:
+      - marketing-strategist   # Growth strategy
+    hands_off_to:
+      - marketing-strategist   # Growth analysis
+    escalates_to:
+      - marketing-strategist   # Strategy questions
+
+  vibe-marketer:
+    receives_from:
+      - content-strategist     # Content calendar
+      - marketing-strategist   # Campaign briefs
+    hands_off_to:
+      - content-strategist     # Content for review
+    escalates_to:
+      - content-strategist     # Content questions
+      - marketing-strategist   # Campaign questions
+
+  social-media-manager:
+    receives_from:
+      - marketing-strategist   # Social strategy
+    hands_off_to:
+      - community-manager      # Community engagement
+    escalates_to:
+      - marketing-strategist   # Strategy questions
+
+  community-manager:
+    receives_from:
+      - social-media-manager   # Community handoff
+      - brand-strategist       # Tribe strategy
+    hands_off_to:
+      - marketing-strategist   # Community insights
+    escalates_to:
+      - brand-strategist       # Tribe alignment
+
+  # Research & Strategy Agents
+  business-strategist:
+    receives_from:
+      - research-analyst       # Market research
+    hands_off_to:
+      - brand-strategist       # Brand strategy work
+      - marketing-strategist   # Marketing strategy
+      - ux-product-strategist  # Product strategy
+    escalates_to: []  # Top of business chain
+
+  research-analyst:
+    receives_from: []  # Entry point for research
+    hands_off_to:
+      - business-strategist    # Business insights
+      - brand-strategist       # Brand insights
+      - marketing-strategist   # Market insights
+    escalates_to:
+      - business-strategist    # Strategic direction
+
+  # Operations Agents
+  context-steward:
+    receives_from: []  # Autonomous operation
+    hands_off_to: []   # Maintains context, doesn't hand off
+    escalates_to:
+      - senior-architect       # Technical questions
+
+  ralph-loop-architect:
+    receives_from: []  # Generates PRDs for autonomous execution
+    hands_off_to:
+      - External script (./scripts/ralph/ralph.ps1)
+    escalates_to:
+      - senior-architect       # Complex story sizing
+
+  prp-analyst:
+    receives_from:
+      - Any agent with bug reports
+    hands_off_to:
+      - backend-engineer       # Bug fixes
+      - solidity-protocol-engineer  # Contract fixes
+      - pragmatic-code-reviewer  # Fix review
+    escalates_to:
+      - senior-architect       # Architecture-level bugs
+
+
+# =============================================================================
+# COMMAND DEPENDENCIES
+# Defines prerequisites and follow-up commands
+# =============================================================================
+
+command_dependencies:
+
+  # Feature Development Flow
+  implement-feature:
+    requires:
+      - spec-and-plan         # Must have spec first
+    followed_by:
+      - pragmatic-code-review # Review after implementation
+      - verify-implementation # Verify after review
+
+  # Spec Flow
+  spec-and-plan:
+    requires: []              # Entry point
+    followed_by:
+      - implement-feature     # Implementation follows spec
+
+  # Review Flow
+  pragmatic-code-review:
+    requires:
+      - implement-feature     # Must have code to review
+    followed_by:
+      - verify-implementation # Verify after review passes
+
+  verify-implementation:
+    requires:
+      - pragmatic-code-review # Must pass review first
+    followed_by: []           # Terminal command
+
+  # Security Flow
+  security-review:
+    requires: []              # Can be run anytime
+    followed_by:
+      - pragmatic-code-review # Re-review after security fixes
+
+  smart-contract-review:
+    requires: []              # Can be run anytime
+    followed_by:
+      - prp-fix               # Fix findings
+      - smart-contract-audit  # Full audit if needed
+
+  smart-contract-audit:
+    requires:
+      - smart-contract-review # Basic review first
+    followed_by:
+      - prp-fix               # Fix critical findings
+
+  # Bug Fix Flow (PRPs)
+  prp-investigate:
+    requires: []              # Entry point for bugs
+    followed_by:
+      - prp-debug             # Debug after investigation
+
+  prp-debug:
+    requires:
+      - prp-investigate       # Must investigate first
+    followed_by:
+      - prp-fix               # Fix after debugging
+
+  prp-fix:
+    requires:
+      - prp-debug             # Must debug first
+    followed_by:
+      - pragmatic-code-review # Review the fix
+      - verify-implementation # Verify fix works
+
+  # Brand Flow
+  brand-strategy:
+    requires: []              # Entry point
+    followed_by:
+      - brand-positioning     # Positioning after strategy
+      - archetype-analysis    # Archetype work
+
+  brand-positioning:
+    requires:
+      - brand-strategy        # Strategy first
+    followed_by:
+      - onliness-statement    # Onliness from positioning
+      - visual-identity       # Visual direction
+
+  visual-identity:
+    requires:
+      - brand-strategy        # Strategy foundation
+    followed_by:
+      - design-brief          # Briefs for execution
+
+  verbal-identity:
+    requires:
+      - brand-strategy        # Strategy foundation
+    followed_by:
+      - content-strategy      # Content from verbal identity
+
+  # Marketing Flow
+  gtm-strategy:
+    requires:
+      - brand-strategy        # Brand foundation
+    followed_by:
+      - campaign-plan         # Campaigns from GTM
+
+  campaign-plan:
+    requires:
+      - gtm-strategy          # GTM context (recommended)
+    followed_by:
+      - content-strategy      # Content for campaign
+
+  content-strategy:
+    requires:
+      - brand-strategy        # Brand foundation (recommended)
+    followed_by:
+      - content-matrix        # Content calendar
+
+  # Context Flow
+  context-sync:
+    requires: []              # Entry point
+    followed_by: []           # Standalone operation
+
+  ralph-plan:
+    requires: []              # Entry point (ideation phase)
+    followed_by:
+      - External script execution
+      - pragmatic-code-review # Review after Ralph completes
+      - verify-implementation # Verify results
+
+
+# =============================================================================
+# COLLABORATION PATTERNS
+# Defines common multi-agent collaboration workflows
+# =============================================================================
+
+collaboration_patterns:
+
+  feature_development:
+    name: "Feature Development"
+    agents:
+      - ux-product-strategist
+      - senior-architect
+      - backend-engineer
+      - pragmatic-code-reviewer
+    flow: "UX → Architect → Engineer → Reviewer"
+
+  smart_contract_deployment:
+    name: "Smart Contract Deployment"
+    agents:
+      - senior-architect
+      - solidity-protocol-engineer
+      - security-auditor
+      - defi-risk-engineer
+    flow: "Architect → Engineer → Security + DeFi Risk"
+
+  brand_launch:
+    name: "Brand Launch"
+    agents:
+      - brand-strategist
+      - archetype-analyst
+      - brand-identity-architect
+      - verbal-identity-designer
+      - visual-designer
+      - marketing-strategist
+    flow: "Strategy → Archetype → Identity → Visual + Verbal → Marketing"
+
+  content_campaign:
+    name: "Content Campaign"
+    agents:
+      - marketing-strategist
+      - content-strategist
+      - copywriter
+      - vibe-marketer
+    flow: "Marketing → Content Strategy → Copy → Execution"
+
+  bug_resolution:
+    name: "Bug Resolution"
+    agents:
+      - prp-analyst
+      - backend-engineer
+      - pragmatic-code-reviewer
+    flow: "Investigate → Debug → Fix → Review"
+
+  security_audit:
+    name: "Security Audit"
+    agents:
+      - security-auditor
+      - solidity-protocol-engineer
+      - defi-risk-engineer
+      - senior-architect
+    flow: "Audit → Findings → Fix → Re-audit"

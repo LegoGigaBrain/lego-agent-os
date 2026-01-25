@@ -328,17 +328,39 @@ Works with:
 
 ---
 
+# PRPs Investigation Agents
+
+## prp-analyst
+- investigates GitHub issues systematically
+- performs hypothesis-driven debugging
+- applies PRPs (Product Requirement Prompts) methodology
+- maps issues to codebase locations
+- produces investigation and debug reports
+
+Works with:
+- `/prp-investigate`
+- `/prp-debug`
+- `/prp-fix`
+
+---
+
 # Automation Agents
 
 ## ralph-loop-architect
-- designs optimal Ralph Wiggum iterative development loops
-- analyzes tasks for automatic verification methods
-- creates phased execution plans with self-correction
-- estimates iterations and cost
-- warns about subscription limits
+- generates PRDs for canonical Ralph Wiggum autonomous development
+- sizes user stories to fit ONE context window (~10 min)
+- orders stories by dependencies (schema first, UI last)
+- estimates iteration counts based on story complexity
+- creates PRD.md with checkboxes and progress.txt for learnings
 
 Works with:
-- `/ralph-loop`
+- `/ralph-plan`
+
+**Canonical Workflow:**
+1. Ideate with Claude (clarifying questions)
+2. Run `/ralph-plan` to generate PRD.md + progress.txt
+3. Run in terminal: `./scripts/ralph/ralph.ps1 -MaxIterations 25`
+4. Review results with `/security-review`, `/pragmatic-code-review`
 
 ---
 
@@ -377,6 +399,7 @@ Agents collaborate inside commands.
 | **Business Strategy** | business-strategist, research-analyst |
 | **Documentation** | docs-writer, context-steward |
 | **Code Review** | pragmatic-code-reviewer, pragmatic-code-review-subagent, security-review-agent |
+| **PRPs Investigation** | prp-analyst |
 | **Automation** | ralph-loop-architect |
 
-**Total: 30 agents**
+**Total: 31 agents**

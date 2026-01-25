@@ -482,28 +482,102 @@ Use for:
 
 ---
 
+# PRPs Issue & Debug Commands
+
+## `/prp-investigate`
+Use for:
+- analyzing GitHub issues systematically
+- mapping issues to codebase locations
+- forming and testing hypotheses about root cause
+- producing investigation reports
+
+**Agents:** prp-analyst, senior-architect
+
+**Output:** Investigation report at `docs/prps/issues/`
+
+---
+
+## `/prp-debug`
+Use for:
+- structured root cause analysis
+- hypothesis-driven debugging
+- isolating bugs to specific file:line
+- documenting debug process
+
+**Agents:** prp-analyst
+
+**Output:** Debug report at `docs/prps/reports/debug/`
+
+---
+
+## `/prp-fix`
+Use for:
+- implementing fixes based on investigation/debug reports
+- routing to appropriate workflow (direct, `/spec-and-plan`, or `/ralph-loop`)
+- verifying fixes and documenting changes
+
+**Agents:** prp-analyst, backend-engineer, senior-architect
+
+**Output:** Fix report at `docs/prps/issues/completed/`
+
+---
+
 # Automation Commands
 
-## `/ralph-loop`
+## `/ralph-plan`
 Use for:
-- autonomous iterative development loops
-- tasks with automatic verification (tests, linters, Playwright)
-- overnight development runs
-- large refactors with existing test coverage
-- E2E testing with Playwright
-- browser automation tasks
+- generating PRD.md with user stories and checkboxes
+- creating progress.txt for learnings accumulation
+- preparing for autonomous Ralph Wiggum execution
+- story sizing and dependency ordering
 
-**Agents:** ralph-loop-architect
+**The Workflow:**
+1. Ideate with Claude (describe what you want to build)
+2. Run `/ralph-plan` to generate PRD.md and progress.txt
+3. Run the script in terminal: `./scripts/ralph/ralph.ps1 -MaxIterations 25`
+4. Review results back in Claude Code
 
-**Example:**
-```bash
-/ralph-loop "Build login form with E2E tests. Output <promise>COMPLETE</promise> when all pass." --max-iterations 40 --completion-promise "COMPLETE"
+**Output:**
+- `PRD.md` - User stories with `[ ]` checkboxes
+- `progress.txt` - Learnings log (append-only)
+- Suggested iteration count
+
+**Key Rule:** Each story must be completable in ONE context window (~10 min of AI work).
+
+---
+
+## `/ralph-loop` (DEPRECATED)
+
+**This command has been deprecated.** The plugin-based approach continues in the same session with compaction, causing context rot.
+
+**Use the canonical workflow instead:**
+1. Run `/ralph-plan` to generate files
+2. Run in terminal: `./scripts/ralph/ralph.ps1 -MaxIterations 25`
+
+The canonical approach spawns a **fresh Claude Code instance** per iteration.
+
+See: `.claude/skills/skill-ralph-wiggum.md` for full documentation.
+
+---
+
+## Ralph Advanced Features
+
+**Parallel Execution:**
+```powershell
+./scripts/ralph/ralph.ps1 -Parallel -Workers 3
 ```
 
-**Requirements:**
-- Ralph Loop plugin must be installed
-- Task must have automatic verification method
-- Clear completion criteria required
+**Webhook Notifications:**
+Configure in `.ralph/config.yaml` for Discord/Slack alerts.
+
+**Playwright Integration:**
+Enable browser testing for UI tasks in config.
+
+**Config File:**
+```bash
+mkdir -p .ralph
+cp scripts/ralph/config.template.yaml .ralph/config.yaml
+```
 
 ---
 
@@ -521,6 +595,7 @@ Use for:
 | **Business Strategy** | `/business-strategy`, `/market-research`, `/competitive-analysis` |
 | **Documentation** | `/write-docs`, `/gitbook-docs` |
 | **Context & Planning** | `/context-sync`, `/product-plan`, `/spec-and-plan`, `/implement-feature`, `/verify-implementation`, `/project-matrix`, `/project-matrix-sync` |
-| **Automation** | `/ralph-loop` |
+| **PRPs Issue & Debug** | `/prp-investigate`, `/prp-debug`, `/prp-fix` |
+| **Automation** | `/ralph-plan`, `/ralph-loop` (deprecated) |
 
-**Total: 48 commands**
+**Total: 52 commands**

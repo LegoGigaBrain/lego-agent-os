@@ -1,0 +1,373 @@
+# Ralph Wiggum Scripts
+
+Canonical Ralph Wiggum implementation for autonomous coding loops.
+
+## What is Ralph?
+
+Ralph Wiggum is an iterative development pattern where Claude Code completes tasks one at a time, with **fresh context each iteration**. This prevents context window degradation and ensures consistent quality across long-running builds.
+
+## Key Concept: Fresh Context
+
+Each iteration spawns a **NEW Claude Code instance**. Memory persists ONLY through files:
+- `PRD.md` - Task list with `[ ]` checkboxes
+- `progress.txt` - Learnings log (append-only)
+- Git commits
+- `CLAUDE.md` - Project patterns (if exists)
+
+---
+
+## Quick Start
+
+### 1. Generate PRD (in Claude Code)
+
+```
+You: "I want to build a user authentication system with login, logout, and password reset"
+
+Claude: [Asks clarifying questions]
+
+You: /ralph-plan
+
+Claude: [Generates PRD.md and progress.txt]
+```
+
+### 2. Run Ralph (in Terminal)
+
+**PowerShell:**
+```powershell
+./scripts/ralph/ralph.ps1 -MaxIterations 25
+```
+
+**Bash:**
+```bash
+./scripts/ralph/ralph.sh 25
+```
+
+### 3. Review (back in Claude Code)
+
+```
+You: "Ralph finished, please review what was built"
+
+Claude: [Reviews progress.txt, runs /security-review, /code-review]
+```
+
+---
+
+## Command Line Options
+
+### PowerShell
+
+```powershell
+./scripts/ralph/ralph.ps1 [options]
+
+Options:
+  -MaxIterations <n>   Maximum loop iterations (default: 10 or config)
+  -SleepSeconds <n>    Delay between iterations (default: 2 or config)
+  -Parallel            Enable parallel execution with git worktrees
+  -Workers <n>         Number of parallel workers (default: 3)
+  -Task <id>           Run specific task only (e.g., "US-001")
+  -SkipWebhooks        Disable webhook notifications
+  -Verbose             Show debug output
+```
+
+### Bash
+
+```bash
+./scripts/ralph/ralph.sh [options]
+
+Options:
+  -m, --max-iterations <n>   Maximum iterations
+  -s, --sleep <n>            Sleep between iterations
+  -p, --parallel             Enable parallel execution
+  -w, --workers <n>          Number of workers
+  -t, --task <id>            Run specific task only
+  --skip-webhooks            Disable webhooks
+  -v, --verbose              Debug output
+```
+
+---
+
+## Configuration File
+
+Create `.ralph/config.yaml` in your project root to customize behavior.
+
+**Quick setup:**
+```bash
+mkdir -p .ralph
+cp scripts/ralph/config.template.yaml .ralph/config.yaml
+```
+
+### Configuration Options
+
+```yaml
+# Iteration settings
+iterations:
+  default: 10          # Default max iterations
+  sleep: 2             # Seconds between iterations
+
+# Verification commands
+verification:
+  commands:
+    - npm run typecheck
+    - npm test
+  playwright:
+    enabled: false
+    command: npx playwright test
+
+# Git settings
+git:
+  commit_prefix: "feat:"
+  auto_commit: true
+  branch_prefix: "ralph/"
+
+# Parallel execution
+parallel:
+  enabled: false
+  max_workers: 3
+  worktree_dir: ".ralph-worktrees"
+
+# Webhooks
+webhooks:
+  discord:
+    enabled: false
+    url: "https://discord.com/api/webhooks/..."
+    events: [complete, max_reached, task_failed]
+  slack:
+    enabled: false
+    url: "https://hooks.slack.com/..."
+    events: [complete, max_reached]
+
+# Browser automation
+browser:
+  enabled: false
+  screenshots: false
+  accessibility_snapshots: true
+
+# Project-specific prompt additions
+prompt:
+  additions: |
+    # Project-Specific Notes
+    - This project uses Prisma for database
+    - Run 'npm run db:push' after schema changes
+
+# Blocker handling
+blockers:
+  max_attempts: 5
+  action: notify  # skip | stop | notify
+```
+
+---
+
+## Features
+
+### Parallel Execution
+
+Run multiple tasks concurrently using git worktrees:
+
+```powershell
+./scripts/ralph/ralph.ps1 -Parallel -Workers 3
+```
+
+How it works:
+1. Creates separate git worktree for each worker
+2. Each worker runs on its own branch (`ralph/US-001`, etc.)
+3. Workers complete tasks independently
+4. Branches merge manually after completion
+
+### Webhook Notifications
+
+Get notified on Discord or Slack when:
+- All tasks complete
+- Max iterations reached
+- A task fails repeatedly (blocked)
+- Each task completes (optional)
+
+Configure in `.ralph/config.yaml`:
+
+```yaml
+webhooks:
+  discord:
+    enabled: true
+    url: "https://discord.com/api/webhooks/your-webhook-url"
+    events:
+      - complete
+      - max_reached
+      - task_failed
+```
+
+### Playwright Integration
+
+Automatically run Playwright tests for UI-related tasks:
+
+```yaml
+verification:
+  playwright:
+    enabled: true
+    command: npx playwright test
+    filter_pattern: "UI|component|frontend|page"
+```
+
+When enabled, UI tasks must pass Playwright tests before being marked complete.
+
+### Blocker Detection
+
+Ralph tracks task failures and notifies when a task appears blocked:
+
+```yaml
+blockers:
+  max_attempts: 5    # Alert after 5 failures on same task
+  action: notify     # notify | skip | stop
+```
+
+---
+
+## Required Files
+
+### PRD.md
+
+Your task list with checkboxes. Generated by `/ralph-plan`:
+
+```markdown
+# PRD: Feature Name
+
+## User Stories
+
+### US-001: First task
+- [ ] Specific criterion
+- [ ] Another criterion
+- [ ] Typecheck passes
+
+### US-002: Second task
+- [ ] Specific criterion
+- [ ] Typecheck passes
+```
+
+### progress.txt
+
+Learnings log. Each iteration appends to it:
+
+```markdown
+# Progress Log
+
+## Learnings
+(Patterns discovered during implementation)
+
+---
+
+## Iteration 1 - US-001: First task
+- Implemented X
+- Files changed: src/foo.ts
+- Learnings:
+  - This codebase uses Y for Z
+---
+```
+
+---
+
+## How It Works
+
+1. Script runs `claude --dangerously-skip-permissions` with the Ralph prompt
+2. Claude reads `PRD.md`, finds first `[ ]` task
+3. Claude reads `progress.txt` for learnings from previous iterations
+4. Claude implements ONE task
+5. Claude runs tests/typecheck
+6. If tests pass: marks `[x]`, commits, appends to progress.txt
+7. If tests fail: appends failure to progress.txt (no commit)
+8. Script checks for `<promise>COMPLETE</promise>` to know when done
+9. Loops until complete or max iterations reached
+
+---
+
+## Exit Conditions
+
+- **Success**: All tasks marked `[x]`, outputs `<promise>COMPLETE</promise>`
+- **Max iterations**: Some tasks remain `[ ]`, script exits with code 1
+
+---
+
+## Troubleshooting
+
+### Max iterations reached
+
+Check `progress.txt` for what's blocking:
+```
+You (in Claude Code): "Review progress.txt and help me understand what's blocking"
+```
+
+Common causes:
+- Task too large (split it)
+- Missing dependency
+- Flaky tests
+- Unclear acceptance criteria
+
+### Parallel mode issues
+
+If worktrees aren't cleaned up:
+```bash
+git worktree list
+git worktree remove .ralph-worktrees/worker-0 --force
+```
+
+### Webhook not working
+
+Test your webhook URL:
+```bash
+curl -X POST -H "Content-Type: application/json" \
+  -d '{"content":"Test"}' \
+  "YOUR_WEBHOOK_URL"
+```
+
+---
+
+## Examples
+
+### Basic usage
+```powershell
+./scripts/ralph/ralph.ps1 -MaxIterations 25
+```
+
+### Parallel with 4 workers
+```powershell
+./scripts/ralph/ralph.ps1 -Parallel -Workers 4
+```
+
+### Run specific task
+```powershell
+./scripts/ralph/ralph.ps1 -Task "US-003" -MaxIterations 10
+```
+
+### With config file
+```bash
+# Config at .ralph/config.yaml will be auto-loaded
+./scripts/ralph/ralph.sh
+```
+
+---
+
+## Integration with LEGO OS
+
+Ralph integrates with LEGO OS at planning time:
+- `/ralph-plan` uses agent registry for task routing
+- Standards are referenced in PRD acceptance criteria
+- Post-execution review uses LEGO OS verification commands
+
+Mid-loop agent delegation is NOT supported (breaks fresh context model).
+
+---
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `ralph.ps1` | PowerShell script |
+| `ralph.sh` | Bash script |
+| `config.template.yaml` | Configuration template |
+| `README.md` | This documentation |
+
+---
+
+## Reference
+
+- Skill documentation: `.claude/skills/skill-ralph-wiggum.md`
+- PRD command: `/ralph-plan`
+- Research materials: `docs/research/`
+- Original technique: https://ghuntley.com/ralph/

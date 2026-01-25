@@ -80,8 +80,14 @@ Each agent represents a senior role, organized by department:
 - docs-writer
 - context-steward
 
-**Automation**
+**Automation & Operations**
 - ralph-loop-architect
+- prp-analyst
+
+**Product & Analytics** (NEW)
+- product-manager
+- user-researcher
+- analytics-strategist
 
 They read standards and context, then act accordingly.
 
@@ -161,6 +167,19 @@ Slash commands orchestrate multi-agent workflows:
 
 **Automation Commands**
 - `/ralph-loop`
+- `/ralph-plan` (NEW)
+- `/ai-docs-sync` (NEW)
+
+**Workflow Paths** (NEW)
+- `/workflow-new-feature` - End-to-end feature development
+- `/workflow-bug-fix` - PRPs-based bug resolution
+- `/workflow-brand-launch` - Complete brand system creation
+- `/workflow-smart-contract` - Secure contract development
+
+**PRP Commands**
+- `/prp-investigate`
+- `/prp-debug`
+- `/prp-fix`
 
 These are reusable across *all* projects.
 
@@ -175,6 +194,70 @@ To avoid bloated root context:
 - `docs/project/{plan, roadmap, changelog}.md` capture evolving project knowledge
 
 Agents read these **procedurally** in layers.
+
+---
+
+### 🔄 5. Ralph Wiggum (Autonomous Development)
+
+Ralph Wiggum is the canonical iterative development pattern for autonomous coding.
+
+**Key Insight**: Each iteration spawns a **NEW Claude Code instance** with fresh context. Memory persists ONLY through files.
+
+**The Workflow:**
+```
+STEP 1: Ideate (in Claude Code)
+   "I want to build X with features Y and Z"
+   Claude asks clarifying questions (1A, 2B, 3C style)
+        ↓
+STEP 2: Generate PRD (/ralph-plan)
+   Creates PRD.md (user stories with [ ] checkboxes)
+   Creates progress.txt (learnings log)
+   Suggests iteration count
+        ↓
+STEP 3: Run Ralph (in terminal)
+   ./scripts/ralph/ralph.ps1 -MaxIterations 25
+   Each iteration: fresh context, implements ONE task, runs tests
+        ↓
+STEP 4: Review (back in Claude Code)
+   "Ralph finished, please review"
+   Runs /security-review, /code-review
+```
+
+**Advanced Features:**
+- **Parallel Execution**: Git worktrees for concurrent tasks
+- **Webhook Notifications**: Discord/Slack alerts
+- **Playwright Integration**: Browser testing for UI tasks
+- **Config File**: `.ralph/config.yaml` for project settings
+
+**Key Rule**: Each story must be completable in ONE context window (~10 min of AI work).
+
+Use `/ralph-plan` to generate PRD and start the workflow.
+
+---
+
+### 📋 6. Operational Framework (NEW)
+
+LEGO OS includes operational infrastructure:
+
+**Agent Registry** (`.claude/agent-registry.json`)
+- Programmatic task-to-agent routing
+- Capability and skill mappings
+- Keyword-based category detection
+
+**Escalation Matrix** (`.claude/escalation-matrix.md`)
+- Mandatory escalation triggers
+- Blocker protocols
+- Agent escalation chains
+
+**Agent Dependencies** (`.claude/agent-dependencies.yml`)
+- Handoff paths between agents
+- Command dependencies
+- Collaboration patterns
+
+**Resource Allocation** (`docs/lego-os/resource-allocation.md`)
+- Token budget management
+- WIP limits
+- Sprint planning guidelines
 
 ---
 

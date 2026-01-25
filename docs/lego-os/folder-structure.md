@@ -105,15 +105,53 @@ These mirror the commands but in human-readable form.
 
 ## `docs/` — Project Documentation (including LEGO OS docs)
 
-## `docs/` — Project Documentation (including LEGO OS docs)
+- `docs/project/mission.md`      ← from mission.template.md
+- `docs/project/roadmap.md`      ← from roadmap.template.md
+- `docs/project/tech-stack.md`   ← from tech-stack.template.md
+- `docs/project/changelog.md`    ← from changelog.template.md
 
-- `docs/project/mission.md`      ← from mission.template.md  
-- `docs/project/roadmap.md`      ← from roadmap.template.md  
-- `docs/project/tech-stack.md`   ← from tech-stack.template.md  
-- `docs/project/changelog.md`    ← from changelog.template.md  
+- `docs/lego-os/` → this OS handbook
+- `docs/specs/`   → feature specifications (from spec-templates)
+- `docs/prps/`    → PRPs workflow artifacts (investigation/debug/fix reports)
 
-- `docs/lego-os/` → this OS handbook  
-- `docs/specs/`   → feature specifications (from spec-templates)  
+---
+
+## `ai-docs/` — Curated Codebase Intelligence
+
+This folder contains pre-digested documentation for AI context:
+- `architecture-overview.md` → system design
+- `domain-context.md` → business logic
+- `patterns-and-conventions.md` → code patterns
+- `common-pitfalls.md` → known gotchas
+
+Used by PRPs commands (`/prp-investigate`, `/prp-debug`, `/prp-fix`).
+
+---
+
+## `prp-templates/` — PRPs Report Templates
+
+Templates for PRPs workflow outputs:
+- `issue-investigation.template.md`
+- `debug-report.template.md`
+- `fix-report.template.md`
+
+---
+
+## `scripts/ralph/` — Ralph Wiggum Autonomous Development
+
+Scripts for the canonical Ralph Wiggum iterative development pattern:
+- `ralph.ps1` — PowerShell loop script
+- `ralph.sh` — Bash loop script
+- `config.template.yaml` — Configuration template
+- `README.md` — Full documentation
+
+**Key concept**: Each iteration spawns a **fresh Claude Code instance**.
+
+**Usage:**
+1. Run `/ralph-plan` to generate `PRD.md` and `progress.txt`
+2. Execute in terminal: `./scripts/ralph/ralph.ps1 -MaxIterations 25`
+
+**Project config**: Create `.ralph/config.yaml` from template for project-specific settings.
 
 ---
 

@@ -1,0 +1,124 @@
+# Ralph Wiggum Configuration Template
+# Copy this to .ralph/config.yaml in your project root
+
+# =============================================================================
+# ITERATION SETTINGS
+# =============================================================================
+
+iterations:
+  # Default max iterations (can be overridden via CLI)
+  default: 10
+
+  # Sleep between iterations (seconds)
+  sleep: 2
+
+# =============================================================================
+# VERIFICATION COMMANDS
+# =============================================================================
+
+verification:
+  # Commands to run after each task implementation
+  # Ralph will only mark a task complete if ALL commands pass
+  commands:
+    - npm run typecheck
+    - npm test
+
+  # Optional: Playwright E2E tests (set enabled: true to use)
+  playwright:
+    enabled: false
+    command: npx playwright test
+    # Only run on UI-related tasks (matches task title)
+    filter_pattern: "UI|component|frontend|page"
+
+# =============================================================================
+# GIT SETTINGS
+# =============================================================================
+
+git:
+  # Commit message prefix
+  commit_prefix: "feat:"
+
+  # Auto-commit on task completion
+  auto_commit: true
+
+  # Branch naming for parallel execution
+  branch_prefix: "ralph/"
+
+# =============================================================================
+# PARALLEL EXECUTION (Advanced)
+# =============================================================================
+
+parallel:
+  # Enable parallel task execution using git worktrees
+  enabled: false
+
+  # Max concurrent workers
+  max_workers: 3
+
+  # Worktree directory (relative to project root)
+  worktree_dir: ".ralph-worktrees"
+
+# =============================================================================
+# WEBHOOKS (Notifications)
+# =============================================================================
+
+webhooks:
+  # Discord webhook for notifications
+  discord:
+    enabled: false
+    url: ""  # Your Discord webhook URL
+    # Events to notify on
+    events:
+      - complete      # All tasks done
+      - max_reached   # Hit max iterations
+      - task_done     # Each task completion
+      - task_failed   # Task failed 3+ times
+
+  # Slack webhook for notifications
+  slack:
+    enabled: false
+    url: ""  # Your Slack webhook URL
+    events:
+      - complete
+      - max_reached
+
+# =============================================================================
+# BROWSER AUTOMATION (Playwright MCP)
+# =============================================================================
+
+browser:
+  # Enable browser automation for visual verification
+  enabled: false
+
+  # Take screenshots on task completion
+  screenshots: false
+  screenshot_dir: ".ralph/screenshots"
+
+  # Accessibility snapshot instead of screenshot (more efficient)
+  accessibility_snapshots: true
+
+# =============================================================================
+# PROJECT-SPECIFIC PROMPT ADDITIONS
+# =============================================================================
+
+prompt:
+  # Additional context to include in every iteration
+  # Useful for project-specific patterns or rules
+  additions: |
+    # Project-Specific Notes
+    # Add any project-specific patterns here that Ralph should know
+    # Example:
+    # - This project uses Prisma for database access
+    # - Run 'npm run db:push' after schema changes
+    # - Components are in src/components/
+
+# =============================================================================
+# BLOCKER HANDLING
+# =============================================================================
+
+blockers:
+  # Max attempts on same task before flagging as blocked
+  max_attempts: 5
+
+  # Action when blocked: "skip" | "stop" | "notify"
+  action: notify
