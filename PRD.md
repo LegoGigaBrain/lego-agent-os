@@ -69,12 +69,12 @@ Complete the LEGO Agent OS by adding the Facilitator Layer (brand and ideation d
 **Description:** As a user, I want an ideation facilitator agent that helps me clarify my product idea before brand development.
 
 **Acceptance Criteria:**
-- [ ] Create `.claude/agents/ideation-facilitator.md`
-- [ ] Include frontmatter with name, department (strategy), description, tools
-- [ ] Reference PRIMARY skill: skill-product-ideation.md
-- [ ] Define mission: product discovery BEFORE brand
-- [ ] Include workflow: Opening, Phase-by-Phase Discovery, Synthesis, Handoff
-- [ ] Include quality checklist
+- [x] Create `.claude/agents/ideation-facilitator.md`
+- [x] Include frontmatter with name, department (strategy), description, tools
+- [x] Reference PRIMARY skill: skill-product-ideation.md
+- [x] Define mission: product discovery BEFORE brand
+- [x] Include workflow: Opening, Phase-by-Phase Discovery, Synthesis, Handoff
+- [x] Include quality checklist
 
 ---
 
