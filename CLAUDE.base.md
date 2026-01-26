@@ -78,7 +78,24 @@ Use **risk-based planning**:
 - Prefer clarity over cleverness.
 - Write small, composable functions.
 - Keep changes minimal: no drive-by refactors.
-- Every behavioural change must be covered by tests (existing or new).  
+- Every behavioural change must be covered by tests (existing or new).
+
+## Backend-First Security (Global Rule)
+
+When generating code for apps using Supabase, Firebase, or similar BaaS:
+
+- **NEVER** write business logic in frontend/client code
+- **NEVER** use direct database queries from the frontend (no `supabase.from()` in client code)
+- **ALWAYS** use Server Actions, Edge Functions, or API Routes for data access
+- **ALWAYS** verify webhook signatures before processing payloads
+- **ALWAYS** use signed URLs for storage access (no public buckets for user data)
+- **ALWAYS** implement rate limiting on auth and mutation endpoints
+- **ALWAYS** use UUIDs for filenames (not sequential or predictable names)
+
+The frontend is a VIEW LAYER only. It speaks to APIs, not databases.
+
+Apply the **Vibe-Coding Security** skill when working with BaaS platforms.
+See: `standards/security/vibe-coding-security.md` for the 10-point security checklist.
 
 ## Sub-agents
 

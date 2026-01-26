@@ -149,3 +149,4 @@ frameworks/
 gui/
 schemas/
 ui-components/
+.claude/settings.local.json

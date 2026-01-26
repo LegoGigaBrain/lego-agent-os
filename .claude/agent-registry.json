@@ -15,11 +15,11 @@
     },
     "backend-engineer": {
       "department": "engineering",
-      "capabilities": ["backend", "api", "database", "services", "typescript", "node"],
-      "skills": ["skill-backend-api-standards", "skill-data-modelling-standards", "skill-testing-standards", "skill-secure-coding-standards"],
+      "capabilities": ["backend", "api", "database", "services", "typescript", "node", "supabase", "firebase", "baas"],
+      "skills": ["skill-backend-api-standards", "skill-data-modelling-standards", "skill-testing-standards", "skill-secure-coding-standards", "skill-vibe-coding-security"],
       "commands": ["implement-feature", "pragmatic-code-review"],
       "escalates_to": ["senior-architect", "security-auditor"],
-      "when_to_use": "API development, database work, backend services, Node.js/TypeScript implementation"
+      "when_to_use": "API development, database work, backend services, Node.js/TypeScript implementation, Supabase/Firebase backend-first patterns"
     },
     "solidity-protocol-engineer": {
       "department": "engineering",
@@ -31,11 +31,11 @@
     },
     "security-auditor": {
       "department": "engineering",
-      "capabilities": ["security", "audit", "vulnerability-assessment", "threat-modeling", "penetration-testing"],
-      "skills": ["skill-secure-coding-standards", "skill-smart-contract-auditor", "skill-smart-contract-audit-checklist"],
-      "commands": ["security-review", "smart-contract-review", "smart-contract-audit"],
+      "capabilities": ["security", "audit", "vulnerability-assessment", "threat-modeling", "penetration-testing", "baas-security", "vibe-coding-security"],
+      "skills": ["skill-secure-coding-standards", "skill-smart-contract-auditor", "skill-smart-contract-audit-checklist", "skill-vibe-coding-security"],
+      "commands": ["security-review", "smart-contract-review", "smart-contract-audit", "vibe-security-audit"],
       "escalation_target": true,
-      "when_to_use": "Security-sensitive code, smart contract audits, vulnerability assessment, threat modeling"
+      "when_to_use": "Security-sensitive code, smart contract audits, vulnerability assessment, threat modeling, BaaS/Supabase/Firebase security audits"
     },
     "defi-risk-engineer": {
       "department": "engineering",
@@ -387,6 +387,17 @@
     "vulnerability": "security",
     "threat": "security",
     "exploit": "security",
+    "supabase": "security",
+    "firebase": "security",
+    "baas": "security",
+    "rls": "security",
+    "row-level-security": "security",
+    "webhook": "security",
+    "rate-limit": "security",
+    "storage-bucket": "security",
+    "edge-function": "backend",
+    "server-action": "backend",
+    "vibe-coding": "security",
 
     "architecture": "architecture",
     "system": "architecture",
@@ -463,6 +474,7 @@
     "skill-data-modelling-standards": ["backend-engineer"],
     "skill-testing-standards": ["backend-engineer", "solidity-protocol-engineer", "pragmatic-code-reviewer"],
     "skill-secure-coding-standards": ["backend-engineer", "security-auditor", "security-review-agent", "senior-architect"],
+    "skill-vibe-coding-security": ["security-auditor", "backend-engineer", "security-review-agent"],
     "skill-code-style-standards": ["backend-engineer", "solidity-protocol-engineer", "pragmatic-code-reviewer", "senior-architect"],
     "skill-solidity-style-security": ["solidity-protocol-engineer"],
     "skill-smart-contract-auditor": ["security-auditor", "solidity-protocol-engineer", "defi-risk-engineer"],
@@ -529,6 +541,7 @@
     "verify-implementation": ["pragmatic-code-reviewer"],
     "design-review": ["design-reviewer", "ux-product-strategist"],
     "security-review": ["security-auditor", "security-review-agent"],
+    "vibe-security-audit": ["security-auditor"],
     "architecture-review": ["senior-architect"],
     "ux-review": ["ux-product-strategist"],
     "smart-contract-review": ["security-auditor", "solidity-protocol-engineer"],

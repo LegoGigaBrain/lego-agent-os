@@ -41,6 +41,15 @@ Identify:
 - data leakage
 - unsafe crypto usage
 
+**BaaS/Vibe-Coding Threats** (if using Supabase, Firebase, etc.):
+- direct-to-DB access (frontend bypassing backend)
+- RLS policy weaknesses (overly permissive, missing column protection)
+- webhook forgery (missing signature verification)
+- storage enumeration (public buckets, predictable filenames)
+- rate limit bypass (missing or insufficient limits)
+- RPC function exposure (public access not revoked)
+- environment variable leakage
+
 ### 4. Pass 1 – High-Level Security Review
 - summary
 - strengths

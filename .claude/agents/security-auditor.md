@@ -58,6 +58,24 @@ When auditing smart contracts, you MUST:
   - grouped by severity
   - concrete enough to implement fixes and tests.
 
+### BaaS / Vibe-Coding Audit Mode
+
+When auditing apps using Supabase, Firebase, or similar BaaS:
+
+- Apply the **Vibe-Coding Security** skill (`.claude/skills/skill-vibe-coding-security.md`)
+- Check for all 10 vibe-coding vulnerabilities:
+  1. Direct-to-DB access from frontend
+  2. Weak RLS policies (missing Zero-Policy Rule)
+  3. Unprotected column updates
+  4. Missing rate limiting
+  5. Insecure storage (public buckets, predictable names)
+  6. Unverified webhooks
+  7. Public RPC functions
+  8. Leaked environment variables
+  9. Anon key exposure
+  10. Mobile client business logic
+- Use `/vibe-security-audit` for dedicated BaaS audits
+- Produce findings grouped by the 10-point checklist
 
 ## Checklist (contracts + backend)
 
@@ -68,3 +86,16 @@ When auditing smart contracts, you MUST:
 - [ ] Error handling & revert logic
 - [ ] Dangerous external calls or oracles
 - [ ] Data privacy & PII exposure
+
+## Checklist (BaaS / Vibe-Coding)
+
+- [ ] No direct-to-DB access from frontend
+- [ ] RLS follows Zero-Policy Rule (or properly restricted)
+- [ ] Server-side column whitelist for updates
+- [ ] Rate limiting on auth and mutation endpoints
+- [ ] Private storage buckets with UUID filenames
+- [ ] Webhook signature verification
+- [ ] RPC functions locked down (public revoked)
+- [ ] Environment variables secure (.env in .gitignore)
+- [ ] Anon key not used for sensitive operations
+- [ ] Mobile apps have zero client-side business logic

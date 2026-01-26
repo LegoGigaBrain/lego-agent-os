@@ -70,5 +70,20 @@ Security is everyone’s job, not just the auditor’s.
   - authorization edge cases
   - suspected attack paths.
 
-When making a change, ask: **“Could this be abused, and how?”**  
-If you’re not sure, escalate to a security review.
+When making a change, ask: **"Could this be abused, and how?"**
+If you're not sure, escalate to a security review.
+
+## 10. BaaS / Vibe-Coding Security
+
+When using Backend-as-a-Service platforms (Supabase, Firebase, etc.):
+
+- See: `standards/security/vibe-coding-security.md` for the comprehensive 10-point checklist.
+- Key principle: **Backend-First Architecture** (frontend is view-only)
+- Never write business logic in client/frontend code
+- Never query the database directly from the frontend
+- Apply rate limiting to all auth and mutation endpoints
+- Verify all webhook signatures before processing
+- Use private storage buckets with UUID filenames and signed URLs
+- Lock down all RPC functions (revoke public access)
+
+Use `/vibe-security-audit` for focused audits of BaaS codebases.
